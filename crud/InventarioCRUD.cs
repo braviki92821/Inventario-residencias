@@ -2,6 +2,8 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,7 +48,7 @@ namespace Inventario_residencias.crud
                     inventario.columna = mReader.GetString("columna");
                     inventario.fila = mReader.GetString("fila");                   
                     inventario.ubicacion = mReader.GetString("ubicacion");
-                    //inventario.imagen = (byte[])mReader.GetValue(6);
+                    inventario.imagen = (byte[])mReader.GetValue(6);
                     inventario.existencia = mReader.GetBoolean(7);
                     inventarios.Add(inventario);
                 }
@@ -58,7 +60,6 @@ namespace Inventario_residencias.crud
 
             return inventarios;
         }
-
 
         public bool agregarItem(Inventario inventario)
         {
@@ -78,5 +79,46 @@ namespace Inventario_residencias.crud
 
             return command.ExecuteNonQuery() > 0;
         }
-    }
+
+        public bool actualizarItem(Inventario inventario)
+        {
+            string query = "UPDATE inventario SET descripcion=@descripcion, tablero= @tablero, columna=@columna, fila= @fila, ubicacion= @ubicacion, imagen=@imagen, existencia=@existencia WHERE numeroFisico=@numeroFisico";
+
+            MySqlCommand command = new MySqlCommand(query, conexionMysql.sqlConnection());
+
+            command.Parameters.Add(new MySqlParameter("@descripcion", inventario.descripcion));
+            command.Parameters.Add(new MySqlParameter("@tablero", inventario.tablero));
+            command.Parameters.Add(new MySqlParameter("@columna", inventario.columna));
+            command.Parameters.Add(new MySqlParameter("@fila", inventario.fila));
+            command.Parameters.Add(new MySqlParameter("@ubicacion", inventario.ubicacion));
+            command.Parameters.Add(new MySqlParameter("@imagen", inventario.imagen));
+            command.Parameters.Add(new MySqlParameter("@existencia", inventario.existencia));
+            command.Parameters.Add(new MySqlParameter("@numeroFisico", inventario.numeroFisicoId));
+
+            return command.ExecuteNonQuery() > 0;
+        }
+
+        public bool existeItem(string numeroFisico)
+        {
+            string query = "SELECT * FROM inventario WHERE numeroFisico='"+ numeroFisico+"'";
+            bool existe;
+            MySqlDataReader mReader = null;
+  
+                MySqlCommand mySqlCommand = new MySqlCommand(query);
+                mySqlCommand.Connection = conexionMysql.sqlConnection();
+                mReader = mySqlCommand.ExecuteReader();
+                existe= mReader.Read();
+                mReader.Close();
+                return existe;
+        }
+
+        public byte[] ImageToByteArray(Image image)
+        {
+            if (image == null)
+                return null;
+            MemoryStream memoryStream = new MemoryStream();
+            image.Save(memoryStream, ImageFormat.Png);
+            return memoryStream.ToArray();
+        }
+        }
 }

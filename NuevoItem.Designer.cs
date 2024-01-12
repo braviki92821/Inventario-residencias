@@ -106,7 +106,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(29, 365);
+            label6.Location = new Point(29, 287);
             label6.Name = "label6";
             label6.Size = new Size(102, 24);
             label6.TabIndex = 9;
@@ -116,7 +116,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(29, 287);
+            label7.Location = new Point(29, 365);
             label7.Name = "label7";
             label7.Size = new Size(47, 24);
             label7.TabIndex = 11;
@@ -186,7 +186,7 @@
             cbxColumna.FormattingEnabled = true;
             cbxColumna.IntegralHeight = false;
             cbxColumna.Items.AddRange(new object[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" });
-            cbxColumna.Location = new Point(29, 398);
+            cbxColumna.Location = new Point(29, 320);
             cbxColumna.MaxDropDownItems = 6;
             cbxColumna.Name = "cbxColumna";
             cbxColumna.Size = new Size(221, 25);
@@ -201,7 +201,7 @@
             cbxFila.FormattingEnabled = true;
             cbxFila.IntegralHeight = false;
             cbxFila.Items.AddRange(new object[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
-            cbxFila.Location = new Point(29, 320);
+            cbxFila.Location = new Point(29, 398);
             cbxFila.MaxDropDownItems = 6;
             cbxFila.Name = "cbxFila";
             cbxFila.Size = new Size(221, 25);

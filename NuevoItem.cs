@@ -1,15 +1,7 @@
 ﻿using Inventario_residencias.crud;
 using Inventario_residencias.modelos;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace Inventario_residencias
 {
@@ -27,13 +19,18 @@ namespace Inventario_residencias
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            if (!validaciones())
+            {
+                return;
+            }
+
             Inventario.numeroFisicoId = txtNumeroFisico.Text;
             Inventario.descripcion = txtDescripcion.Text;
             Inventario.tablero = cbxTablero.SelectedItem.ToString();
             Inventario.columna = cbxColumna.SelectedItem.ToString();
             Inventario.fila = cbxFila.SelectedItem.ToString();
             Inventario.ubicacion = cbxColumna.SelectedItem.ToString() + "-" + cbxFila.SelectedItem.ToString();
-            Inventario.imagen = ImageToByteArray(pbxImagen.Image);
+            Inventario.imagen = inventarioCRUD.ImageToByteArray(pbxImagen.Image);
             Inventario.existencia = cbxExistencia.SelectedItem.ToString() == "Si" ? true : false;
             if (inventarioCRUD.agregarItem(Inventario))
             {
@@ -43,14 +40,6 @@ namespace Inventario_residencias
             MessageBox.Show("Error al guardar");
         }
 
-        private byte[] ImageToByteArray(Image image)
-        {
-            if (image == null)
-                return null;
-            MemoryStream memoryStream = new MemoryStream();
-            image.Save(memoryStream, ImageFormat.Png);
-            return memoryStream.ToArray();
-        }
 
         private void pbxImagen_Click(object sender, EventArgs e)
         {
@@ -66,6 +55,49 @@ namespace Inventario_residencias
         private void NuevoItem_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private bool validaciones()
+        {
+            if (txtNumeroFisico.Text.Equals(""))
+            {
+                MessageBox.Show("Numero Fisico es requerido");
+                return false;
+            }       
+            if (txtDescripcion.Text.Equals(""))
+            {
+                MessageBox.Show("La descripcion es requerido");
+                return false;
+            }
+                
+            if (cbxTablero.Text == "-----Seleccione-----")
+            {
+                MessageBox.Show("Seleccione un tablero");
+                return false;
+            }
+            if (cbxColumna.Text == "-----Seleccione-----")
+            {
+                MessageBox.Show("Seleccione una columna");
+                return false;
+            }
+                
+            if (cbxFila.Text == "-----Seleccione-----")
+            {
+                MessageBox.Show("Seleccione una fila");
+                return false;
+            }
+
+            if (cbxExistencia.Text == "-----Seleccione-----")
+            {
+                MessageBox.Show("Debe seleccionar si el item tiene existencias");
+                return false;
+            }
+            if (pbxImagen.Image == null)
+            {
+                MessageBox.Show("Debe seleccionar una imagen");
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -31,8 +31,8 @@
             label1 = new Label();
             label2 = new Label();
             txtNumeroFisico = new TextBox();
-            txtDescripcion = new TextBox();
             label3 = new Label();
+            txtDescripcion = new TextBox();
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
@@ -43,8 +43,8 @@
             cbxTablero = new ComboBox();
             cbxColumna = new ComboBox();
             cbxFila = new ComboBox();
-            cbxExistencia = new ComboBox();
             label4 = new Label();
+            cbxExistencia = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pbxImagen).BeginInit();
             SuspendLayout();
             // 
@@ -75,13 +75,6 @@
             txtNumeroFisico.Size = new Size(221, 23);
             txtNumeroFisico.TabIndex = 2;
             // 
-            // txtDescripcion
-            // 
-            txtDescripcion.Location = new Point(29, 176);
-            txtDescripcion.Name = "txtDescripcion";
-            txtDescripcion.Size = new Size(221, 23);
-            txtDescripcion.TabIndex = 4;
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -91,6 +84,13 @@
             label3.Size = new Size(133, 24);
             label3.TabIndex = 3;
             label3.Text = "Descripcion";
+            // 
+            // txtDescripcion
+            // 
+            txtDescripcion.Location = new Point(29, 176);
+            txtDescripcion.Name = "txtDescripcion";
+            txtDescripcion.Size = new Size(221, 23);
+            txtDescripcion.TabIndex = 4;
             // 
             // label5
             // 
@@ -208,6 +208,16 @@
             cbxFila.TabIndex = 20;
             cbxFila.Text = "-----Seleccione-----";
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(301, 365);
+            label4.Name = "label4";
+            label4.Size = new Size(114, 24);
+            label4.TabIndex = 21;
+            label4.Text = "Existencia";
+            // 
             // cbxExistencia
             // 
             cbxExistencia.Cursor = Cursors.Hand;
@@ -222,16 +232,6 @@
             cbxExistencia.Size = new Size(176, 25);
             cbxExistencia.TabIndex = 22;
             cbxExistencia.Text = "-----Seleccione-----";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(301, 365);
-            label4.Name = "label4";
-            label4.Size = new Size(114, 24);
-            label4.TabIndex = 21;
-            label4.Text = "Existencia";
             // 
             // NuevoItem
             // 
@@ -265,18 +265,16 @@
         }
 
         #endregion
-
+        private TextBox textBox3;
+        private TextBox textBox5;
+        private TextBox textBox6;
         private Label label1;
         private Label label2;
         private TextBox txtNumeroFisico;
-        private TextBox txtDescripcion;
         private Label label3;
-        private TextBox textBox3;
-        private Label label4;
+        private TextBox txtDescripcion;
         private Label label5;
-        private TextBox textBox5;
         private Label label6;
-        private TextBox textBox6;
         private Label label7;
         private Label label8;
         private Button btnGuardar;
@@ -285,6 +283,7 @@
         private ComboBox cbxTablero;
         private ComboBox cbxColumna;
         private ComboBox cbxFila;
+        private Label label4;
         private ComboBox cbxExistencia;
     }
 }

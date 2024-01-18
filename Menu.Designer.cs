@@ -29,191 +29,99 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            panelUsuarioSubMenu = new Panel();
-            btnListaUsuarios = new Button();
-            btnAgregarUsuario = new Button();
             btnUsuarios = new Button();
-            panelInventarioSubMenu = new Panel();
+            label3 = new Label();
             btnListaItems = new Button();
             btnAgregarItem = new Button();
-            btnInventario = new Button();
-            panelProfileSubMenu = new Panel();
-            btnLogout = new Button();
-            btnMisDatos = new Button();
-            btnPerfil = new Button();
-            pictureBox1 = new PictureBox();
+            label2 = new Label();
             panelContenedor = new Panel();
             panel1.SuspendLayout();
-            panelUsuarioSubMenu.SuspendLayout();
-            panelInventarioSubMenu.SuspendLayout();
-            panelProfileSubMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.AutoScroll = true;
             panel1.BackColor = Color.SteelBlue;
-            panel1.Controls.Add(panelUsuarioSubMenu);
+            panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(btnUsuarios);
-            panel1.Controls.Add(panelInventarioSubMenu);
-            panel1.Controls.Add(btnInventario);
-            panel1.Controls.Add(panelProfileSubMenu);
-            panel1.Controls.Add(btnPerfil);
-            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(btnListaItems);
+            panel1.Controls.Add(btnAgregarItem);
+            panel1.Controls.Add(label2);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(292, 560);
+            panel1.Size = new Size(307, 560);
             panel1.TabIndex = 0;
-            // 
-            // panelUsuarioSubMenu
-            // 
-            panelUsuarioSubMenu.Controls.Add(btnListaUsuarios);
-            panelUsuarioSubMenu.Controls.Add(btnAgregarUsuario);
-            panelUsuarioSubMenu.Dock = DockStyle.Top;
-            panelUsuarioSubMenu.Location = new Point(0, 422);
-            panelUsuarioSubMenu.Name = "panelUsuarioSubMenu";
-            panelUsuarioSubMenu.Size = new Size(292, 91);
-            panelUsuarioSubMenu.TabIndex = 6;
-            // 
-            // btnListaUsuarios
-            // 
-            btnListaUsuarios.Dock = DockStyle.Top;
-            btnListaUsuarios.Location = new Point(0, 45);
-            btnListaUsuarios.Name = "btnListaUsuarios";
-            btnListaUsuarios.Size = new Size(292, 45);
-            btnListaUsuarios.TabIndex = 1;
-            btnListaUsuarios.Text = "Lista de usuarios";
-            btnListaUsuarios.UseVisualStyleBackColor = true;
-            // 
-            // btnAgregarUsuario
-            // 
-            btnAgregarUsuario.Dock = DockStyle.Top;
-            btnAgregarUsuario.Location = new Point(0, 0);
-            btnAgregarUsuario.Name = "btnAgregarUsuario";
-            btnAgregarUsuario.Size = new Size(292, 45);
-            btnAgregarUsuario.TabIndex = 0;
-            btnAgregarUsuario.Text = "Agregar Usuario";
-            btnAgregarUsuario.UseVisualStyleBackColor = true;
             // 
             // btnUsuarios
             // 
             btnUsuarios.Dock = DockStyle.Top;
             btnUsuarios.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnUsuarios.Location = new Point(0, 378);
+            btnUsuarios.Location = new Point(0, 148);
             btnUsuarios.Name = "btnUsuarios";
-            btnUsuarios.Size = new Size(292, 44);
-            btnUsuarios.TabIndex = 5;
-            btnUsuarios.Text = "Usuarios";
+            btnUsuarios.Size = new Size(305, 41);
+            btnUsuarios.TabIndex = 9;
+            btnUsuarios.Text = "Lista de usuarios";
             btnUsuarios.UseVisualStyleBackColor = true;
             btnUsuarios.Click += btnUsuarios_Click;
             // 
-            // panelInventarioSubMenu
+            // label3
             // 
-            panelInventarioSubMenu.Controls.Add(btnListaItems);
-            panelInventarioSubMenu.Controls.Add(btnAgregarItem);
-            panelInventarioSubMenu.Dock = DockStyle.Top;
-            panelInventarioSubMenu.Location = new Point(0, 290);
-            panelInventarioSubMenu.Name = "panelInventarioSubMenu";
-            panelInventarioSubMenu.Size = new Size(292, 88);
-            panelInventarioSubMenu.TabIndex = 4;
+            label3.AutoSize = true;
+            label3.Dock = DockStyle.Top;
+            label3.Font = new Font("Arial Rounded MT Bold", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(0, 115);
+            label3.Name = "label3";
+            label3.Size = new Size(143, 33);
+            label3.TabIndex = 7;
+            label3.Text = "Usuarios";
+            label3.TextAlign = ContentAlignment.TopCenter;
             // 
             // btnListaItems
             // 
             btnListaItems.Dock = DockStyle.Top;
-            btnListaItems.Location = new Point(0, 45);
+            btnListaItems.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnListaItems.Location = new Point(0, 74);
             btnListaItems.Name = "btnListaItems";
-            btnListaItems.Size = new Size(292, 40);
-            btnListaItems.TabIndex = 1;
-            btnListaItems.Text = "Lista de items";
+            btnListaItems.Size = new Size(305, 41);
+            btnListaItems.TabIndex = 6;
+            btnListaItems.Text = "Lista de Inventario";
             btnListaItems.UseVisualStyleBackColor = true;
             btnListaItems.Click += btnListaItems_Click;
             // 
             // btnAgregarItem
             // 
             btnAgregarItem.Dock = DockStyle.Top;
-            btnAgregarItem.Location = new Point(0, 0);
+            btnAgregarItem.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAgregarItem.Location = new Point(0, 33);
+            btnAgregarItem.Margin = new Padding(3, 10, 3, 3);
             btnAgregarItem.Name = "btnAgregarItem";
-            btnAgregarItem.Size = new Size(292, 45);
-            btnAgregarItem.TabIndex = 0;
-            btnAgregarItem.Text = "Añadir Item";
+            btnAgregarItem.Size = new Size(305, 41);
+            btnAgregarItem.TabIndex = 5;
+            btnAgregarItem.Text = "Agregar Item";
             btnAgregarItem.UseVisualStyleBackColor = true;
             btnAgregarItem.Click += btnAgregarItem_Click;
             // 
-            // btnInventario
+            // label2
             // 
-            btnInventario.Dock = DockStyle.Top;
-            btnInventario.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnInventario.Location = new Point(0, 241);
-            btnInventario.Name = "btnInventario";
-            btnInventario.Size = new Size(292, 49);
-            btnInventario.TabIndex = 3;
-            btnInventario.Text = "Inventario";
-            btnInventario.UseVisualStyleBackColor = true;
-            btnInventario.Click += btnInventario_Click;
-            // 
-            // panelProfileSubMenu
-            // 
-            panelProfileSubMenu.BackColor = Color.LightSkyBlue;
-            panelProfileSubMenu.Controls.Add(btnLogout);
-            panelProfileSubMenu.Controls.Add(btnMisDatos);
-            panelProfileSubMenu.Dock = DockStyle.Top;
-            panelProfileSubMenu.Location = new Point(0, 146);
-            panelProfileSubMenu.Name = "panelProfileSubMenu";
-            panelProfileSubMenu.Size = new Size(292, 95);
-            panelProfileSubMenu.TabIndex = 2;
-            // 
-            // btnLogout
-            // 
-            btnLogout.Dock = DockStyle.Top;
-            btnLogout.Location = new Point(0, 45);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(292, 47);
-            btnLogout.TabIndex = 1;
-            btnLogout.Text = "Cerrar Sesión";
-            btnLogout.UseVisualStyleBackColor = true;
-            // 
-            // btnMisDatos
-            // 
-            btnMisDatos.Dock = DockStyle.Top;
-            btnMisDatos.Location = new Point(0, 0);
-            btnMisDatos.Name = "btnMisDatos";
-            btnMisDatos.Size = new Size(292, 45);
-            btnMisDatos.TabIndex = 0;
-            btnMisDatos.Text = "Mis Datos";
-            btnMisDatos.UseVisualStyleBackColor = true;
-            // 
-            // btnPerfil
-            // 
-            btnPerfil.Dock = DockStyle.Top;
-            btnPerfil.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnPerfil.Location = new Point(0, 97);
-            btnPerfil.Name = "btnPerfil";
-            btnPerfil.Size = new Size(292, 49);
-            btnPerfil.TabIndex = 1;
-            btnPerfil.Text = "Perfil";
-            btnPerfil.UseVisualStyleBackColor = true;
-            btnPerfil.Click += btnPerfil_Click;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.Azure;
-            pictureBox1.Dock = DockStyle.Top;
-            pictureBox1.Location = new Point(0, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(292, 97);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            label2.AutoSize = true;
+            label2.Dock = DockStyle.Top;
+            label2.Font = new Font("Arial Rounded MT Bold", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(0, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(159, 33);
+            label2.TabIndex = 4;
+            label2.Text = "Inventario";
+            label2.TextAlign = ContentAlignment.TopCenter;
             // 
             // panelContenedor
             // 
             panelContenedor.BackColor = Color.SteelBlue;
             panelContenedor.Dock = DockStyle.Fill;
-            panelContenedor.Location = new Point(292, 0);
+            panelContenedor.Location = new Point(307, 0);
             panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new Size(776, 560);
+            panelContenedor.Size = new Size(788, 560);
             panelContenedor.TabIndex = 1;
             // 
             // Menu
@@ -221,36 +129,26 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonFace;
-            ClientSize = new Size(1068, 560);
+            ClientSize = new Size(1095, 560);
             Controls.Add(panelContenedor);
             Controls.Add(panel1);
+            MaximizeBox = false;
             Name = "Menu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Menu";
             panel1.ResumeLayout(false);
-            panelUsuarioSubMenu.ResumeLayout(false);
-            panelInventarioSubMenu.ResumeLayout(false);
-            panelProfileSubMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel1;
-        private PictureBox pictureBox1;
-        private Panel panelProfileSubMenu;
-        private Button btnPerfil;
-        private Button btnMisDatos;
-        private Button btnLogout;
-        private Button btnInventario;
-        private Panel panelInventarioSubMenu;
+        private Panel panelContenedor;
+        private Label label2;
         private Button btnAgregarItem;
         private Button btnListaItems;
+        private Label label3;
         private Button btnUsuarios;
-        private Panel panelUsuarioSubMenu;
-        private Button btnListaUsuarios;
-        private Button btnAgregarUsuario;
-        private Panel panelContenedor;
     }
 }

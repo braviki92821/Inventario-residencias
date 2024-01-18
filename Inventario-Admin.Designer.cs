@@ -60,7 +60,6 @@
             pbxImagen = new PictureBox();
             btnLimpiar = new Button();
             btnModificar = new Button();
-            btnEliminar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvInventario).BeginInit();
             ((System.ComponentModel.ISupportInitialize)inventarioBindingSource).BeginInit();
             panel1.SuspendLayout();
@@ -362,7 +361,7 @@
             // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(537, 255);
+            btnLimpiar.Location = new Point(413, 255);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(102, 28);
             btnLimpiar.TabIndex = 29;
@@ -380,23 +379,12 @@
             btnModificar.UseVisualStyleBackColor = true;
             btnModificar.Click += btnModificar_Click;
             // 
-            // btnEliminar
-            // 
-            btnEliminar.Location = new Point(408, 255);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(102, 28);
-            btnEliminar.TabIndex = 31;
-            btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = true;
-            btnEliminar.Click += btnEliminar_Click;
-            // 
             // Inventario_Admin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(800, 450);
-            Controls.Add(btnEliminar);
             Controls.Add(btnModificar);
             Controls.Add(btnLimpiar);
             Controls.Add(pbxImagen);
@@ -459,6 +447,5 @@
         private DataGridViewCheckBoxColumn existenciaDataGridViewCheckBoxColumn;
         private Button btnLimpiar;
         private Button btnModificar;
-        private Button btnEliminar;
     }
 }

@@ -1,16 +1,5 @@
-﻿using Inventario_residencias.crud;
-using Inventario_residencias.modelos;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
+﻿using Inventario_residencias.modelos;
+using Inventario_residencias.Repositorio;
 
 namespace Inventario_residencias
 {
@@ -18,7 +7,7 @@ namespace Inventario_residencias
     {
 
         List<Inventario> inventarios = new List<Inventario>();
-        InventarioCRUD inventarioCRUD = new InventarioCRUD();
+        InventarioRepositorio inventarioRepositorio = new InventarioRepositorio();
         private Inventario Inventario;
 
         public Inventario_Admin()
@@ -31,16 +20,15 @@ namespace Inventario_residencias
         private void cargarInventario(string numeroFisico = "")
         {
             inventarios.Clear();
-            inventarios = inventarioCRUD.obtenerInventario(numeroFisico, 5, 0);
+            inventarios = inventarioRepositorio.obtenerInventario(numeroFisico, 5, 0);
             dgvInventario.DataSource = inventarios;
         }
-
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
             int limite = int.Parse(comboBox1.SelectedItem.ToString());
             inventarios.Clear();
-            inventarios = inventarioCRUD.obtenerInventario("", limite, 0);
+            inventarios = inventarioRepositorio.obtenerInventario("", limite, 0);
             dgvInventario.DataSource = inventarios;
         }
 
@@ -50,7 +38,7 @@ namespace Inventario_residencias
             if (!numeroFisico.Equals(""))
             {
                 inventarios.Clear();
-                inventarios = inventarioCRUD.obtenerInventario(numeroFisico, 5, 0);
+                inventarios = inventarioRepositorio.obtenerInventario(numeroFisico, 5, 0);
                 dgvInventario.DataSource = inventarios;
                 return;
             }
@@ -61,7 +49,7 @@ namespace Inventario_residencias
         {
             string numeroFisico = txtNumFisico.Text;
             inventarios.Clear();
-            inventarios = inventarioCRUD.obtenerInventario(numeroFisico, 5, 0);
+            inventarios = inventarioRepositorio.obtenerInventario(numeroFisico, 5, 0);
             dgvInventario.DataSource = inventarios;
         }
 
@@ -82,10 +70,10 @@ namespace Inventario_residencias
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (!validaciones())
-                return;
+                 return;
             Inventario.numeroFisicoId = txtNumeroFisico.Text;
 
-            if (!inventarioCRUD.existeItem(txtNumeroFisico.Text))
+            if (!inventarioRepositorio.buscarPorNumeroFisico(txtNumeroFisico.Text))
             {
                 MessageBox.Show("Este elemento no existe en la base de datos");
                 return;
@@ -96,10 +84,10 @@ namespace Inventario_residencias
             Inventario.columna = cbxColumna.SelectedItem.ToString();
             Inventario.fila = cbxFila.SelectedItem.ToString();
             Inventario.ubicacion = cbxColumna.SelectedItem.ToString() + "-" + cbxFila.SelectedItem.ToString();
-            Inventario.imagen = inventarioCRUD.ImageToByteArray(pbxImagen.Image);
+            Inventario.imagen = inventarioRepositorio.ImageToByteArray(pbxImagen.Image);
             Inventario.existencia = cbxExistencia.SelectedItem.ToString() == "Si" ? true : false;
 
-            if (inventarioCRUD.actualizarItem(Inventario))
+            if (inventarioRepositorio.actualizarItem(Inventario))
             {
                 MessageBox.Show("Modificado Correctamente");
                 cargarInventario("");

@@ -1,5 +1,5 @@
-﻿using Inventario_residencias.crud;
-using Inventario_residencias.modelos;
+﻿using Inventario_residencias.modelos;
+using Inventario_residencias.Repositorio;
 using System.Drawing.Imaging;
 
 
@@ -8,13 +8,13 @@ namespace Inventario_residencias
     public partial class NuevoItem : Form
     {
         private Inventario Inventario;
-        private InventarioCRUD inventarioCRUD;
+        private InventarioRepositorio inventarioRepositorio;
 
         public NuevoItem()
         {
             InitializeComponent();
             Inventario = new Inventario();
-            inventarioCRUD = new InventarioCRUD();
+            inventarioRepositorio = new InventarioRepositorio();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -30,9 +30,9 @@ namespace Inventario_residencias
             Inventario.columna = cbxColumna.SelectedItem.ToString();
             Inventario.fila = cbxFila.SelectedItem.ToString();
             Inventario.ubicacion = cbxColumna.SelectedItem.ToString() + "-" + cbxFila.SelectedItem.ToString();
-            Inventario.imagen = inventarioCRUD.ImageToByteArray(pbxImagen.Image);
+            Inventario.imagen = inventarioRepositorio.ImageToByteArray(pbxImagen.Image);
             Inventario.existencia = cbxExistencia.SelectedItem.ToString() == "Si" ? true : false;
-            if (inventarioCRUD.agregarItem(Inventario))
+            if (inventarioRepositorio.agregarItem(Inventario))
             {
                 MessageBox.Show("Agregado Correctamente");
                 return;
@@ -63,13 +63,13 @@ namespace Inventario_residencias
             {
                 MessageBox.Show("Numero Fisico es requerido");
                 return false;
-            }       
+            }
             if (txtDescripcion.Text.Equals(""))
             {
                 MessageBox.Show("La descripcion es requerido");
                 return false;
             }
-                
+
             if (cbxTablero.Text == "-----Seleccione-----")
             {
                 MessageBox.Show("Seleccione un tablero");
@@ -80,7 +80,7 @@ namespace Inventario_residencias
                 MessageBox.Show("Seleccione una columna");
                 return false;
             }
-                
+
             if (cbxFila.Text == "-----Seleccione-----")
             {
                 MessageBox.Show("Seleccione una fila");

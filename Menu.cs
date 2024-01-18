@@ -18,50 +18,6 @@ namespace Inventario_residencias
         public Menu()
         {
             InitializeComponent();
-            customDesing();
-        }
-
-        private void customDesing()
-        {
-            panelProfileSubMenu.Visible = false;
-            panelInventarioSubMenu.Visible = false;
-            panelUsuarioSubMenu.Visible = false;
-        }
-
-        private void hideSubMenu()
-        {
-            if (panelProfileSubMenu.Visible == true)
-                panelProfileSubMenu.Visible = false;
-            if (panelInventarioSubMenu.Visible == true)
-                panelInventarioSubMenu.Visible = false;
-            if (panelUsuarioSubMenu.Visible == true)
-                panelUsuarioSubMenu.Visible = false;
-        }
-
-        private void showSubMenu(Panel subMenu)
-        {
-            if (subMenu.Visible == false)
-            {
-                hideSubMenu();
-                subMenu.Visible = true;
-            }
-            else
-                subMenu.Visible = false;
-        }
-
-        private void btnPerfil_Click(object sender, EventArgs e)
-        {
-            showSubMenu(panelProfileSubMenu);
-        }
-
-        private void btnInventario_Click(object sender, EventArgs e)
-        {
-            showSubMenu(panelInventarioSubMenu);
-        }
-
-        private void btnUsuarios_Click(object sender, EventArgs e)
-        {
-            showSubMenu(panelUsuarioSubMenu);
         }
 
         private void openChildForm(Form childForm)
@@ -78,6 +34,16 @@ namespace Inventario_residencias
             childForm.Show();
         }
 
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnAgregarItem_Click(object sender, EventArgs e)
         {
             openChildForm(new NuevoItem());
@@ -86,6 +52,11 @@ namespace Inventario_residencias
         private void btnListaItems_Click(object sender, EventArgs e)
         {
             openChildForm(new Inventario_Admin());
+        }
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            openChildForm(new Usuarios());
         }
     }
 }

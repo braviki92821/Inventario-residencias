@@ -146,7 +146,6 @@
             // 
             imagenDataGridViewImageColumn.DataPropertyName = "imagen";
             imagenDataGridViewImageColumn.HeaderText = "imagen";
-            imagenDataGridViewImageColumn.Image = Properties.Resources.WVG;
             imagenDataGridViewImageColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
             imagenDataGridViewImageColumn.Name = "imagenDataGridViewImageColumn";
             imagenDataGridViewImageColumn.ReadOnly = true;

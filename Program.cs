@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 namespace Inventario_residencias
 {
     internal static class Program

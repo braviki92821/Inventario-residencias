@@ -31,7 +31,7 @@ namespace Inventario_residencias
             Inventario.fila = cbxFila.SelectedItem.ToString();
             Inventario.ubicacion = cbxColumna.SelectedItem.ToString() + "-" + cbxFila.SelectedItem.ToString();
             Inventario.imagen = inventarioRepositorio.ImageToByteArray(pbxImagen.Image);
-            Inventario.existencia = cbxExistencia.SelectedItem.ToString() == "Si" ? true : false;
+            Inventario.existencia = true;
             if (inventarioRepositorio.agregarItem(Inventario))
             {
                 MessageBox.Show("Agregado Correctamente");
@@ -87,11 +87,6 @@ namespace Inventario_residencias
                 return false;
             }
 
-            if (cbxExistencia.Text == "-----Seleccione-----")
-            {
-                MessageBox.Show("Debe seleccionar si el item tiene existencias");
-                return false;
-            }
             if (pbxImagen.Image == null)
             {
                 MessageBox.Show("Debe seleccionar una imagen");
@@ -99,5 +94,6 @@ namespace Inventario_residencias
             }
             return true;
         }
+
     }
 }

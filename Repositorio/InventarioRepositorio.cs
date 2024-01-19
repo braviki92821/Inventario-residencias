@@ -56,18 +56,36 @@ namespace Inventario_residencias.Repositorio
             return command.ExecuteNonQuery() > 0;
         }
 
-        public bool buscarPorNumeroFisico(string numeroFisico)
+        public Inventario buscarPorNumeroFisico(string numeroFisico)
         {
             string query = "SELECT * FROM inventario WHERE numeroFisico='" + numeroFisico + "'";
-            bool existe;
             MySqlDataReader mReader = null;
+            Inventario inventario = null;
+            try 
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand(query);
+                mySqlCommand.Connection = conexionMysql.sqlConnection();
+                mReader = mySqlCommand.ExecuteReader();
+                while (mReader.Read())
+                {
+                    inventario = new Inventario();
+                    inventario.numeroFisicoId = mReader.GetString("numeroFisico");
+                    inventario.descripcion = mReader.GetString("descripcion");
+                    inventario.tablero = mReader.GetString("tablero");
+                    inventario.columna = mReader.GetString("columna");
+                    inventario.fila = mReader.GetString("fila");
+                    inventario.ubicacion = mReader.GetString("ubicacion");
+                    inventario.imagen = (byte[])mReader.GetValue(6);
+                    inventario.existencia = mReader.GetBoolean(7);
+                }
+                mReader.Close();
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
 
-            MySqlCommand mySqlCommand = new MySqlCommand(query);
-            mySqlCommand.Connection = conexionMysql.sqlConnection();
-            mReader = mySqlCommand.ExecuteReader();
-            existe = mReader.Read();
-            mReader.Close();
-            return existe;
+            return inventario; 
         }
 
         public byte[] ImageToByteArray(Image image)

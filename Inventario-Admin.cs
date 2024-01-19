@@ -73,11 +73,11 @@ namespace Inventario_residencias
                  return;
             Inventario.numeroFisicoId = txtNumeroFisico.Text;
 
-            if (!inventarioRepositorio.buscarPorNumeroFisico(txtNumeroFisico.Text))
-            {
-                MessageBox.Show("Este elemento no existe en la base de datos");
-                return;
-            }
+            //if (!inventarioRepositorio.buscarPorNumeroFisico(txtNumeroFisico.Text))
+            //{
+            //    MessageBox.Show("Este elemento no existe en la base de datos");
+            //    return;
+            //}
 
             Inventario.descripcion = txtDescripcion.Text;
             Inventario.tablero = cbxTablero.SelectedItem.ToString();

@@ -15,7 +15,7 @@ namespace Inventario_residencias.Interfaces
 
         bool actualizarItem(Inventario inventario);
 
-        bool buscarPorNumeroFisico(string numeroFisico);
+        Inventario buscarPorNumeroFisico(string numeroFisico);
 
         byte[] ImageToByteArray(Image image);
 

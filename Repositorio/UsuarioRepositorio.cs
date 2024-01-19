@@ -1,12 +1,8 @@
 ﻿using Inventario_residencias.Interfaces;
 using Inventario_residencias.modelos;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Inventario_residencias.Repositorio
 {
@@ -36,7 +32,10 @@ namespace Inventario_residencias.Repositorio
 
         public bool eliminarUsuario(int usuarioId)
         {
-            throw new NotImplementedException();
+            string query = "UPDATE usuarios SET estatus= @estatus WHERE usuarioId=@usuarioId";
+            MySqlCommand command = new MySqlCommand(query, conexionMysql.sqlConnection());
+            command.Parameters.Add(new MySqlParameter("@estatus", false));
+            return command.ExecuteNonQuery() > 0;
         }
 
         public string hashPassword(string password)
@@ -56,14 +55,13 @@ namespace Inventario_residencias.Repositorio
 
         public bool modificarUsuario(Usuario usuario)
         {
-            string query = "UPDATE usuarios SET nombre= @nombre, correo= @correo, tipo=@tipo, estatus= @estatus, imagen=@imagen WHERE usuarioId=@usuarioId";
+            string query = "UPDATE usuarios SET nombre= @nombre, correo= @correo, tipo=@tipo, imagen=@imagen WHERE usuarioId=@usuarioId";
 
             MySqlCommand command = new MySqlCommand(query, conexionMysql.sqlConnection());
 
             command.Parameters.Add(new MySqlParameter("@nombre", usuario.nombre));
             command.Parameters.Add(new MySqlParameter("@correo", usuario.correo));
             command.Parameters.Add(new MySqlParameter("@tipo", usuario.tipo));
-            command.Parameters.Add(new MySqlParameter("@estatus", usuario.status));
             command.Parameters.Add(new MySqlParameter("@imagen", usuario.imagen));
             command.Parameters.Add(new MySqlParameter("@usuarioId", usuario.usuarioId));
             return command.ExecuteNonQuery() > 0;
@@ -117,5 +115,6 @@ namespace Inventario_residencias.Repositorio
             bool isPassword = BCrypt.Net.BCrypt.EnhancedVerify(passwordLg, passwordBd);
             return isPassword;
         }
+
     }
 }

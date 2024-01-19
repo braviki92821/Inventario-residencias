@@ -43,8 +43,6 @@
             cbxTablero = new ComboBox();
             cbxColumna = new ComboBox();
             cbxFila = new ComboBox();
-            label4 = new Label();
-            cbxExistencia = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pbxImagen).BeginInit();
             SuspendLayout();
             // 
@@ -52,7 +50,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial Rounded MT Bold", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(337, 24);
+            label1.Location = new Point(221, 9);
             label1.Name = "label1";
             label1.Size = new Size(166, 28);
             label1.TabIndex = 0;
@@ -72,7 +70,7 @@
             // 
             txtNumeroFisico.Location = new Point(29, 103);
             txtNumeroFisico.Name = "txtNumeroFisico";
-            txtNumeroFisico.Size = new Size(221, 23);
+            txtNumeroFisico.Size = new Size(206, 23);
             txtNumeroFisico.TabIndex = 2;
             // 
             // label3
@@ -89,7 +87,7 @@
             // 
             txtDescripcion.Location = new Point(29, 176);
             txtDescripcion.Name = "txtDescripcion";
-            txtDescripcion.Size = new Size(221, 23);
+            txtDescripcion.Size = new Size(206, 23);
             txtDescripcion.TabIndex = 4;
             // 
             // label5
@@ -126,7 +124,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(349, 80);
+            label8.Location = new Point(301, 66);
             label8.Name = "label8";
             label8.Size = new Size(86, 24);
             label8.TabIndex = 13;
@@ -135,9 +133,9 @@
             // btnGuardar
             // 
             btnGuardar.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnGuardar.Location = new Point(592, 387);
+            btnGuardar.Location = new Point(301, 387);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(133, 36);
+            btnGuardar.Size = new Size(271, 36);
             btnGuardar.TabIndex = 15;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
@@ -146,9 +144,9 @@
             // pbxImagen
             // 
             pbxImagen.BackColor = SystemColors.ButtonFace;
-            pbxImagen.Location = new Point(349, 129);
+            pbxImagen.Location = new Point(301, 103);
             pbxImagen.Name = "pbxImagen";
-            pbxImagen.Size = new Size(376, 155);
+            pbxImagen.Size = new Size(271, 242);
             pbxImagen.SizeMode = PictureBoxSizeMode.StretchImage;
             pbxImagen.TabIndex = 16;
             pbxImagen.TabStop = false;
@@ -157,7 +155,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(462, 110);
+            label9.Location = new Point(393, 75);
             label9.Name = "label9";
             label9.Size = new Size(136, 15);
             label9.TabIndex = 17;
@@ -174,7 +172,7 @@
             cbxTablero.Location = new Point(29, 246);
             cbxTablero.MaxDropDownItems = 6;
             cbxTablero.Name = "cbxTablero";
-            cbxTablero.Size = new Size(221, 25);
+            cbxTablero.Size = new Size(206, 25);
             cbxTablero.TabIndex = 18;
             cbxTablero.Text = "-----Seleccione-----";
             // 
@@ -189,7 +187,7 @@
             cbxColumna.Location = new Point(29, 320);
             cbxColumna.MaxDropDownItems = 6;
             cbxColumna.Name = "cbxColumna";
-            cbxColumna.Size = new Size(221, 25);
+            cbxColumna.Size = new Size(206, 25);
             cbxColumna.TabIndex = 19;
             cbxColumna.Text = "-----Seleccione-----";
             // 
@@ -204,43 +202,16 @@
             cbxFila.Location = new Point(29, 398);
             cbxFila.MaxDropDownItems = 6;
             cbxFila.Name = "cbxFila";
-            cbxFila.Size = new Size(221, 25);
+            cbxFila.Size = new Size(206, 25);
             cbxFila.TabIndex = 20;
             cbxFila.Text = "-----Seleccione-----";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(301, 365);
-            label4.Name = "label4";
-            label4.Size = new Size(114, 24);
-            label4.TabIndex = 21;
-            label4.Text = "Existencia";
-            // 
-            // cbxExistencia
-            // 
-            cbxExistencia.Cursor = Cursors.Hand;
-            cbxExistencia.DropDownHeight = 60;
-            cbxExistencia.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            cbxExistencia.FormattingEnabled = true;
-            cbxExistencia.IntegralHeight = false;
-            cbxExistencia.Items.AddRange(new object[] { "Si", "No" });
-            cbxExistencia.Location = new Point(301, 398);
-            cbxExistencia.MaxDropDownItems = 6;
-            cbxExistencia.Name = "cbxExistencia";
-            cbxExistencia.Size = new Size(176, 25);
-            cbxExistencia.TabIndex = 22;
-            cbxExistencia.Text = "-----Seleccione-----";
             // 
             // NuevoItem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(800, 450);
-            Controls.Add(cbxExistencia);
-            Controls.Add(label4);
+            ClientSize = new Size(595, 450);
             Controls.Add(cbxFila);
             Controls.Add(cbxColumna);
             Controls.Add(cbxTablero);
@@ -256,8 +227,17 @@
             Controls.Add(txtNumeroFisico);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MaximumSize = new Size(611, 489);
+            MinimizeBox = false;
+            MinimumSize = new Size(611, 489);
             Name = "NuevoItem";
+            ShowIcon = false;
+            ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "NuevoItem";
+            TopMost = true;
             Load += NuevoItem_Load;
             ((System.ComponentModel.ISupportInitialize)pbxImagen).EndInit();
             ResumeLayout(false);
@@ -283,7 +263,5 @@
         private ComboBox cbxTablero;
         private ComboBox cbxColumna;
         private ComboBox cbxFila;
-        private Label label4;
-        private ComboBox cbxExistencia;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inventario_residencias.Vistas.Administrador;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -51,7 +52,8 @@ namespace Inventario_residencias
 
         private void btnListaItems_Click(object sender, EventArgs e)
         {
-            openChildForm(new Inventario_Admin());
+            //openChildForm(new Inventario_Admin());
+            openChildForm(new Lista_Inventario());
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e)

@@ -176,9 +176,6 @@ namespace Inventario_residencias
             pbxImagen.Image = null;
         }
 
-        private void btnAgregar_Click_1(object sender, EventArgs e)
-        {
 
-        }
     }
 }

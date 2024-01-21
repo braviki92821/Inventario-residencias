@@ -38,6 +38,7 @@ namespace Inventario_residencias
             if (inventarioRepositorio.agregarItem(Inventario))
             {
                 MessageBox.Show("Agregado Correctamente");
+                limpiarCampos();
                 return;
             }
             MessageBox.Show("Error al guardar");
@@ -100,6 +101,16 @@ namespace Inventario_residencias
         private void cargarTableros()
         {
             cbxTablero.DataSource = inventarioRepositorio.obtenerTableros();
+        }
+
+        private void limpiarCampos()
+        {
+            txtNumeroFisico.Text = "";
+            txtDescripcion.Text = "";
+            cbxTablero.SelectedItem = 1.ToString();
+            cbxColumna.SelectedItem = 1.ToString();
+            cbxFila.SelectedItem = 1.ToString();
+            pbxImagen.Image = null;
         }
 
     }

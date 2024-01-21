@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             cbxFila = new ComboBox();
             cbxColumna = new ComboBox();
             cbxTablero = new ComboBox();
@@ -43,7 +44,9 @@
             txtNumeroFisico = new TextBox();
             label2 = new Label();
             label1 = new Label();
+            tableroBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)pbxImagen).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tableroBindingSource).BeginInit();
             SuspendLayout();
             // 
             // cbxFila
@@ -79,17 +82,18 @@
             // cbxTablero
             // 
             cbxTablero.Cursor = Cursors.Hand;
+            cbxTablero.DataSource = tableroBindingSource;
+            cbxTablero.DisplayMember = "tablero";
             cbxTablero.DropDownHeight = 60;
             cbxTablero.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             cbxTablero.FormattingEnabled = true;
             cbxTablero.IntegralHeight = false;
-            cbxTablero.Items.AddRange(new object[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" });
             cbxTablero.Location = new Point(27, 251);
             cbxTablero.MaxDropDownItems = 6;
             cbxTablero.Name = "cbxTablero";
             cbxTablero.Size = new Size(206, 25);
             cbxTablero.TabIndex = 32;
-            cbxTablero.Text = "-----Seleccione-----";
+            cbxTablero.ValueMember = "tableroId";
             // 
             // label9
             // 
@@ -206,6 +210,10 @@
             label1.TabIndex = 35;
             label1.Text = "Modificar Item";
             // 
+            // tableroBindingSource
+            // 
+            tableroBindingSource.DataSource = typeof(Modelos.Tablero);
+            // 
             // ModificarItem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -238,6 +246,7 @@
             Text = "ModificarItem";
             TopMost = true;
             ((System.ComponentModel.ISupportInitialize)pbxImagen).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tableroBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -259,5 +268,6 @@
         private TextBox txtNumeroFisico;
         private Label label2;
         private Label label1;
+        private BindingSource tableroBindingSource;
     }
 }

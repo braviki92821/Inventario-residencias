@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,11 +15,7 @@ namespace Inventario_residencias
 
         public ConexionMysql()
         {
-            cadenaConexion = "Database=" + database + ";" +
-                " DataSource=" + server + ";" +
-                " User Id=" + user + ";" +
-                " Password=" + password;
-
+            cadenaConexion = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
             connection = new MySqlConnection(cadenaConexion);
         }
 

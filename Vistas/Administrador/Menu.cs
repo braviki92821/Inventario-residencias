@@ -45,14 +45,8 @@ namespace Inventario_residencias
 
         }
 
-        private void btnAgregarItem_Click(object sender, EventArgs e)
-        {
-            openChildForm(new NuevoItem());
-        }
-
         private void btnListaItems_Click(object sender, EventArgs e)
         {
-            //openChildForm(new Inventario_Admin());
             openChildForm(new Lista_Inventario());
         }
 

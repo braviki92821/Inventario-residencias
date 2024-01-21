@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             label2 = new Label();
             txtNumeroFisico = new TextBox();
@@ -41,16 +42,20 @@
             pbxImagen = new PictureBox();
             label9 = new Label();
             cbxTablero = new ComboBox();
+            tableroBindingSource = new BindingSource(components);
             cbxColumna = new ComboBox();
             cbxFila = new ComboBox();
+            dtpFecha = new DateTimePicker();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)pbxImagen).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tableroBindingSource).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial Rounded MT Bold", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(221, 9);
+            label1.Location = new Point(201, 9);
             label1.Name = "label1";
             label1.Size = new Size(166, 28);
             label1.TabIndex = 0;
@@ -60,7 +65,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(29, 66);
+            label2.Location = new Point(29, 49);
             label2.Name = "label2";
             label2.Size = new Size(158, 24);
             label2.TabIndex = 1;
@@ -68,7 +73,7 @@
             // 
             // txtNumeroFisico
             // 
-            txtNumeroFisico.Location = new Point(29, 103);
+            txtNumeroFisico.Location = new Point(29, 76);
             txtNumeroFisico.Name = "txtNumeroFisico";
             txtNumeroFisico.Size = new Size(206, 23);
             txtNumeroFisico.TabIndex = 2;
@@ -77,7 +82,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(29, 139);
+            label3.Location = new Point(29, 111);
             label3.Name = "label3";
             label3.Size = new Size(133, 24);
             label3.TabIndex = 3;
@@ -85,7 +90,7 @@
             // 
             // txtDescripcion
             // 
-            txtDescripcion.Location = new Point(29, 176);
+            txtDescripcion.Location = new Point(29, 138);
             txtDescripcion.Name = "txtDescripcion";
             txtDescripcion.Size = new Size(206, 23);
             txtDescripcion.TabIndex = 4;
@@ -94,7 +99,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(29, 213);
+            label5.Location = new Point(29, 175);
             label5.Name = "label5";
             label5.Size = new Size(88, 24);
             label5.TabIndex = 7;
@@ -104,7 +109,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(29, 287);
+            label6.Location = new Point(29, 243);
             label6.Name = "label6";
             label6.Size = new Size(102, 24);
             label6.TabIndex = 9;
@@ -114,7 +119,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(29, 365);
+            label7.Location = new Point(29, 313);
             label7.Name = "label7";
             label7.Size = new Size(47, 24);
             label7.TabIndex = 11;
@@ -124,7 +129,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(301, 66);
+            label8.Location = new Point(301, 48);
             label8.Name = "label8";
             label8.Size = new Size(86, 24);
             label8.TabIndex = 13;
@@ -144,7 +149,7 @@
             // pbxImagen
             // 
             pbxImagen.BackColor = SystemColors.ButtonFace;
-            pbxImagen.Location = new Point(301, 103);
+            pbxImagen.Location = new Point(301, 85);
             pbxImagen.Name = "pbxImagen";
             pbxImagen.Size = new Size(271, 242);
             pbxImagen.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -155,7 +160,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(393, 75);
+            label9.Location = new Point(393, 57);
             label9.Name = "label9";
             label9.Size = new Size(136, 15);
             label9.TabIndex = 17;
@@ -164,17 +169,22 @@
             // cbxTablero
             // 
             cbxTablero.Cursor = Cursors.Hand;
+            cbxTablero.DataSource = tableroBindingSource;
+            cbxTablero.DisplayMember = "tablero";
             cbxTablero.DropDownHeight = 60;
             cbxTablero.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             cbxTablero.FormattingEnabled = true;
             cbxTablero.IntegralHeight = false;
-            cbxTablero.Items.AddRange(new object[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" });
-            cbxTablero.Location = new Point(29, 246);
+            cbxTablero.Location = new Point(29, 202);
             cbxTablero.MaxDropDownItems = 6;
             cbxTablero.Name = "cbxTablero";
             cbxTablero.Size = new Size(206, 25);
             cbxTablero.TabIndex = 18;
-            cbxTablero.Text = "-----Seleccione-----";
+            cbxTablero.ValueMember = "tableroId";
+            // 
+            // tableroBindingSource
+            // 
+            tableroBindingSource.DataSource = typeof(Modelos.Tablero);
             // 
             // cbxColumna
             // 
@@ -184,7 +194,7 @@
             cbxColumna.FormattingEnabled = true;
             cbxColumna.IntegralHeight = false;
             cbxColumna.Items.AddRange(new object[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" });
-            cbxColumna.Location = new Point(29, 320);
+            cbxColumna.Location = new Point(29, 270);
             cbxColumna.MaxDropDownItems = 6;
             cbxColumna.Name = "cbxColumna";
             cbxColumna.Size = new Size(206, 25);
@@ -199,12 +209,30 @@
             cbxFila.FormattingEnabled = true;
             cbxFila.IntegralHeight = false;
             cbxFila.Items.AddRange(new object[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
-            cbxFila.Location = new Point(29, 398);
+            cbxFila.Location = new Point(29, 340);
             cbxFila.MaxDropDownItems = 6;
             cbxFila.Name = "cbxFila";
             cbxFila.Size = new Size(206, 25);
             cbxFila.TabIndex = 20;
             cbxFila.Text = "-----Seleccione-----";
+            // 
+            // dtpFecha
+            // 
+            dtpFecha.Location = new Point(29, 415);
+            dtpFecha.MinDate = new DateTime(2000, 1, 1, 0, 0, 0, 0);
+            dtpFecha.Name = "dtpFecha";
+            dtpFecha.Size = new Size(206, 23);
+            dtpFecha.TabIndex = 21;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(29, 387);
+            label4.Name = "label4";
+            label4.Size = new Size(185, 24);
+            label4.TabIndex = 22;
+            label4.Text = "Fecha de compra";
             // 
             // NuevoItem
             // 
@@ -212,6 +240,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(595, 450);
+            Controls.Add(label4);
+            Controls.Add(dtpFecha);
             Controls.Add(cbxFila);
             Controls.Add(cbxColumna);
             Controls.Add(cbxTablero);
@@ -240,6 +270,7 @@
             TopMost = true;
             Load += NuevoItem_Load;
             ((System.ComponentModel.ISupportInitialize)pbxImagen).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tableroBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -263,5 +294,8 @@
         private ComboBox cbxTablero;
         private ComboBox cbxColumna;
         private ComboBox cbxFila;
+        private BindingSource tableroBindingSource;
+        private DateTimePicker dtpFecha;
+        private Label label4;
     }
 }

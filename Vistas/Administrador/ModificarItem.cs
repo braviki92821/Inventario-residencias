@@ -1,14 +1,5 @@
 ﻿using Inventario_residencias.modelos;
 using Inventario_residencias.Repositorio;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Inventario_residencias.Vistas.Administrador
 {
@@ -22,6 +13,7 @@ namespace Inventario_residencias.Vistas.Administrador
             InitializeComponent();
             Inventario = new Inventario();
             inventarioRepositorio = new InventarioRepositorio();
+            cargarTableros();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -30,6 +22,19 @@ namespace Inventario_residencias.Vistas.Administrador
             {
                 return;
             }
+            Inventario.numeroFisicoId = txtNumeroFisico.Text;
+            Inventario.descripcion = txtDescripcion.Text;
+            Inventario.tablero= int.Parse(cbxTablero.SelectedValue.ToString());
+            Inventario.columna = cbxColumna.SelectedItem.ToString();
+            Inventario.fila = cbxFila.SelectedItem.ToString();
+            Inventario.ubicacion = cbxColumna.SelectedItem.ToString() + "-" + cbxFila.SelectedItem.ToString();
+            Inventario.imagen = inventarioRepositorio.ImageToByteArray(pbxImagen.Image);
+            if (inventarioRepositorio.actualizarItem(Inventario))
+            {
+                MessageBox.Show("Cambios Guardados Correctamente");
+                return;
+            }
+            MessageBox.Show("Error al guardar");
         }
 
         private void pbxImagen_Click(object sender, EventArgs e)
@@ -86,12 +91,18 @@ namespace Inventario_residencias.Vistas.Administrador
             Inventario = inventarioRepositorio.buscarPorNumeroFisico(numeroFisico);
             txtNumeroFisico.Text = numeroFisico;
             txtDescripcion.Text = Inventario.descripcion;
-            cbxTablero.SelectedItem = Inventario.tablero;
+            cbxTablero.SelectedValue = Inventario.tablero;
             cbxColumna.SelectedItem = Inventario.columna;
             cbxFila.SelectedItem = Inventario.fila;
+            MemoryStream memoryStream = new MemoryStream(Inventario.imagen);
+            Image image = Image.FromStream(memoryStream);
+            pbxImagen.Image = image;
         }
 
-
+        private void cargarTableros()
+        {
+            cbxTablero.DataSource = inventarioRepositorio.obtenerTableros();
+        }
 
     }
 }

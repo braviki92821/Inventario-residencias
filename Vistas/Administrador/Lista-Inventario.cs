@@ -10,23 +10,24 @@ namespace Inventario_residencias.Vistas.Administrador
         private Inventario Inventario;
         string registro = "";
         double total;
-        decimal paginas;
+        double paginas;
         int paginaActual = 1;
+        int offSet = 0;
 
         public Lista_Inventario()
         {
             InitializeComponent();
             Inventario = new Inventario();
-            cargarInventario();
+            cargarInventario(offSet);
             txtPaginaActual.Text = paginaActual.ToString();
         }
 
-        private void cargarInventario(string numeroFisico = "")
+        private void cargarInventario(int offSet, string numeroFisico = "")
         {
             inventarios.Clear();
-            inventarios = inventarioRepositorio.obtenerInventario(numeroFisico, 20, 0);
-            total = inventarios.Count;
-            paginas = (decimal)Math.Ceiling(total / 20);
+            inventarios = inventarioRepositorio.obtenerInventario(numeroFisico, 10, offSet);
+            total = inventarioRepositorio.cantidadRegistros();
+            paginas = Math.Ceiling(total / 10);
             txtTotalPaginas.Text = paginas.ToString();
             dgvInventario.DataSource = inventarios;
         }
@@ -39,7 +40,7 @@ namespace Inventario_residencias.Vistas.Administrador
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if(registro.Equals(""))
+            if (registro.Equals(""))
             {
                 MessageBox.Show("seleccione un registro");
                 return;
@@ -52,6 +53,54 @@ namespace Inventario_residencias.Vistas.Administrador
         private void dgvInventario_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             registro = dgvInventario.CurrentRow.Cells[0].Value.ToString();
+        }
+
+        private void txtNumFisico_TextChanged(object sender, EventArgs e)
+        {
+            cargarInventario(0, txtNumFisico.Text);
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if (txtPaginaActual.Text.Equals("1"))
+            {
+                return;
+            }
+            paginaActual--;
+            offSet = paginaActual * 10 - 10;
+            cargarInventario(offSet);
+            txtPaginaActual.Text = paginaActual.ToString();
+        }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            if (txtPaginaActual.Text.Equals(paginas.ToString()))
+            {
+                return;
+            }
+            paginaActual++;
+            offSet = paginaActual * 10 - 10;
+            cargarInventario(offSet);
+            txtPaginaActual.Text = paginaActual.ToString();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (registro.Equals(""))
+            {
+                MessageBox.Show("seleccione un registro");
+                return;
+            }
+
+            string mensaje = inventarioRepositorio.eliminarExistenciaItem(registro) ? "Existencia del Item actualizada" : "Error al actualizar";
+            MessageBox.Show(mensaje);
+            cargarInventario(offSet);
+        }
+
+        private void btnReporte_Click(object sender, EventArgs e)
+        {
+            Opciones_Reporte opciones_Reporte = new Opciones_Reporte();
+            opciones_Reporte.ShowDialog();
         }
     }
 }

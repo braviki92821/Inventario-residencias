@@ -81,6 +81,7 @@
             dgvUsuarios.Size = new Size(800, 146);
             dgvUsuarios.TabIndex = 38;
             dgvUsuarios.CellClick += dgvUsuarios_CellClick;
+            dgvUsuarios.CellContentClick += dgvUsuarios_CellContentClick;
             // 
             // usuarioIdDataGridViewTextBoxColumn
             // 

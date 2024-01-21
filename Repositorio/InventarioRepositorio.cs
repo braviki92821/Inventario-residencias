@@ -1,12 +1,11 @@
 ﻿using Inventario_residencias.Interfaces;
 using Inventario_residencias.modelos;
+using Inventario_residencias.Modelos;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+
 
 namespace Inventario_residencias.Repositorio
 {
@@ -31,7 +30,6 @@ namespace Inventario_residencias.Repositorio
             command.Parameters.Add(new MySqlParameter("@fila", inventario.fila));
             command.Parameters.Add(new MySqlParameter("@ubicacion", inventario.ubicacion));
             command.Parameters.Add(new MySqlParameter("@imagen", inventario.imagen));
-            command.Parameters.Add(new MySqlParameter("@existencia", inventario.existencia));
             command.Parameters.Add(new MySqlParameter("@numeroFisico", inventario.numeroFisicoId));
 
             return command.ExecuteNonQuery() > 0;
@@ -40,7 +38,7 @@ namespace Inventario_residencias.Repositorio
         public bool agregarItem(Inventario inventario)
         {
             string query = "INSERT INTO inventario(numeroFisico, descripcion, tablero, columna, fila, ubicacion, imagen, existencia)" +
-                " Values(@numeroFisico, @descripcion, @tablero, @columna, @fila, @ubicacion, @imagen, @existencia) ";
+                " Values(@numeroFisico, @descripcion, @tablero, @columna, @fila, @ubicacion, @imagen, @existencia, @fechaCompra) ";
 
             MySqlCommand command = new MySqlCommand(query, conexionMysql.sqlConnection());
 
@@ -52,6 +50,7 @@ namespace Inventario_residencias.Repositorio
             command.Parameters.Add(new MySqlParameter("@ubicacion", inventario.ubicacion));
             command.Parameters.Add(new MySqlParameter("@imagen", inventario.imagen));
             command.Parameters.Add(new MySqlParameter("@existencia", inventario.existencia));
+            command.Parameters.Add(new MySqlParameter("@existencia", inventario.fecha));
 
             return command.ExecuteNonQuery() > 0;
         }
@@ -71,7 +70,7 @@ namespace Inventario_residencias.Repositorio
                     inventario = new Inventario();
                     inventario.numeroFisicoId = mReader.GetString("numeroFisico");
                     inventario.descripcion = mReader.GetString("descripcion");
-                    inventario.tablero = mReader.GetString("tablero");
+                    inventario.tablero = mReader.GetInt16("tablero");
                     inventario.columna = mReader.GetString("columna");
                     inventario.fila = mReader.GetString("fila");
                     inventario.ubicacion = mReader.GetString("ubicacion");
@@ -88,6 +87,39 @@ namespace Inventario_residencias.Repositorio
             return inventario; 
         }
 
+        public int cantidadRegistros()
+        {
+            string query = "SELECT COUNT(*) FROM inventario ";
+            MySqlDataReader mReader = null;
+            int registros = 0;
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand(query);
+                mySqlCommand.Connection = conexionMysql.sqlConnection();
+                mReader = mySqlCommand.ExecuteReader();
+                while (mReader.Read())
+                {
+                    registros = mReader.GetInt16("COUNT(*)");
+                }
+                mReader.Close();
+            }
+            catch(MySqlException ex)
+            {
+                throw;
+            }
+
+            return registros;
+        }
+
+        public bool eliminarExistenciaItem(string numeroFisico)
+        {
+            string query = "UPDATE inventario SET existencia=@existencia WHERE numeroFisico=@numeroFisico";
+            MySqlCommand command = new MySqlCommand(query, conexionMysql.sqlConnection());
+            command.Parameters.Add(new MySqlParameter("@existencia", false));
+            command.Parameters.Add(new MySqlParameter("@numeroFisico", numeroFisico));
+            return command.ExecuteNonQuery() > 0;
+        }
+
         public byte[] ImageToByteArray(Image image)
         {
             if (image == null)
@@ -99,10 +131,8 @@ namespace Inventario_residencias.Repositorio
 
         public List<Inventario> obtenerInventario(string numeroFisico, int limite, int offset)
         {
-            string query = "SELECT * FROM inventario LIMIT " + limite + " OFFSET " + offset + "";
-
+            string query = "SELECT * FROM inventario  LIMIT " + limite + " OFFSET " + offset + "";
             MySqlDataReader mReader = null;
-
             List<Inventario> inventarios = new List<Inventario>();
 
             try
@@ -122,11 +152,10 @@ namespace Inventario_residencias.Repositorio
                     inventario = new Inventario();
                     inventario.numeroFisicoId = mReader.GetString("numeroFisico");
                     inventario.descripcion = mReader.GetString("descripcion");
-                    inventario.tablero = mReader.GetString("tablero");
+                    inventario.tablero= mReader.GetInt16("tablero");
                     inventario.columna = mReader.GetString("columna");
                     inventario.fila = mReader.GetString("fila");
                     inventario.ubicacion = mReader.GetString("ubicacion");
-                    inventario.imagen = (byte[])mReader.GetValue(6);
                     inventario.existencia = mReader.GetBoolean(7);
                     inventarios.Add(inventario);
                 }
@@ -138,6 +167,36 @@ namespace Inventario_residencias.Repositorio
             }
 
             return inventarios;
+        }
+
+        public List<Tablero> obtenerTableros()
+        {
+            string query = "SELECT * FROM tablero ";
+            MySqlDataReader mReader = null;
+            List<Tablero> tableros = new List<Tablero>();
+
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand(query);
+                mySqlCommand.Connection = conexionMysql.sqlConnection();
+                mReader = mySqlCommand.ExecuteReader();
+
+                Tablero tablero = null;
+                while (mReader.Read())
+                {
+                    tablero = new Tablero();
+                    tablero.tableroId = mReader.GetInt16("tableroId");
+                    tablero.tablero = mReader.GetString("tablero");
+                    tableros.Add(tablero);
+                }
+                mReader.Close();
+            }
+            catch(MySqlException ex)
+            {
+                throw;
+            }
+
+            return tableros;
         }
     }
 }

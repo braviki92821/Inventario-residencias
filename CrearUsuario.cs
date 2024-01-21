@@ -176,6 +176,9 @@ namespace Inventario_residencias
             pbxImagen.Image = null;
         }
 
+        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
+        }
     }
 }

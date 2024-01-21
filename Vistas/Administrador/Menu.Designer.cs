@@ -32,8 +32,8 @@
             button1 = new Button();
             btnUsuarios = new Button();
             btnListaItems = new Button();
-            btnAgregarItem = new Button();
             panelContenedor = new Panel();
+            btnReportes = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -42,10 +42,10 @@
             panel1.AutoScroll = true;
             panel1.BackColor = Color.SteelBlue;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btnReportes);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(btnUsuarios);
             panel1.Controls.Add(btnListaItems);
-            panel1.Controls.Add(btnAgregarItem);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -73,11 +73,11 @@
             btnUsuarios.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 192, 255);
             btnUsuarios.FlatStyle = FlatStyle.Flat;
             btnUsuarios.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnUsuarios.Location = new Point(0, 152);
+            btnUsuarios.Location = new Point(0, 76);
             btnUsuarios.Name = "btnUsuarios";
             btnUsuarios.Size = new Size(307, 76);
             btnUsuarios.TabIndex = 9;
-            btnUsuarios.Text = "Lista de usuarios";
+            btnUsuarios.Text = "Usuarios";
             btnUsuarios.UseVisualStyleBackColor = false;
             btnUsuarios.Click += btnUsuarios_Click;
             // 
@@ -89,33 +89,13 @@
             btnListaItems.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 192, 255);
             btnListaItems.FlatStyle = FlatStyle.Flat;
             btnListaItems.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnListaItems.Location = new Point(0, 76);
+            btnListaItems.Location = new Point(0, 0);
             btnListaItems.Name = "btnListaItems";
             btnListaItems.Size = new Size(307, 76);
             btnListaItems.TabIndex = 6;
-            btnListaItems.Text = "Lista de Inventario";
+            btnListaItems.Text = "Inventario";
             btnListaItems.UseVisualStyleBackColor = false;
             btnListaItems.Click += btnListaItems_Click;
-            // 
-            // btnAgregarItem
-            // 
-            btnAgregarItem.BackColor = Color.FromArgb(128, 128, 255);
-            btnAgregarItem.BackgroundImageLayout = ImageLayout.Zoom;
-            btnAgregarItem.Cursor = Cursors.Hand;
-            btnAgregarItem.Dock = DockStyle.Top;
-            btnAgregarItem.FlatAppearance.BorderColor = Color.Black;
-            btnAgregarItem.FlatAppearance.BorderSize = 2;
-            btnAgregarItem.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 192, 255);
-            btnAgregarItem.FlatStyle = FlatStyle.Flat;
-            btnAgregarItem.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAgregarItem.Location = new Point(0, 0);
-            btnAgregarItem.Margin = new Padding(3, 10, 3, 3);
-            btnAgregarItem.Name = "btnAgregarItem";
-            btnAgregarItem.Size = new Size(307, 76);
-            btnAgregarItem.TabIndex = 5;
-            btnAgregarItem.Text = "Agregar Item";
-            btnAgregarItem.UseVisualStyleBackColor = false;
-            btnAgregarItem.Click += btnAgregarItem_Click;
             // 
             // panelContenedor
             // 
@@ -125,6 +105,21 @@
             panelContenedor.Name = "panelContenedor";
             panelContenedor.Size = new Size(955, 560);
             panelContenedor.TabIndex = 1;
+            // 
+            // btnReportes
+            // 
+            btnReportes.BackColor = Color.FromArgb(128, 128, 255);
+            btnReportes.Dock = DockStyle.Top;
+            btnReportes.FlatAppearance.BorderSize = 2;
+            btnReportes.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 192, 255);
+            btnReportes.FlatStyle = FlatStyle.Flat;
+            btnReportes.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnReportes.Location = new Point(0, 152);
+            btnReportes.Name = "btnReportes";
+            btnReportes.Size = new Size(307, 76);
+            btnReportes.TabIndex = 11;
+            btnReportes.Text = "Reportes";
+            btnReportes.UseVisualStyleBackColor = false;
             // 
             // Menu
             // 
@@ -146,9 +141,9 @@
 
         private Panel panel1;
         private Panel panelContenedor;
-        private Button btnAgregarItem;
         private Button btnListaItems;
         private Button btnUsuarios;
         private Button button1;
+        private Button btnReportes;
     }
 }

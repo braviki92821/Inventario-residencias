@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Inventario_residencias.Modelos;
+using System.ComponentModel;
 
 namespace Inventario_residencias.modelos
 {
@@ -12,6 +13,6 @@ namespace Inventario_residencias.modelos
         public string ubicacion { get; set; }
         public byte[]? imagen { get; set; }
         public bool existencia { get; set; }
-        public DateTime fecha { get; set; }
+        public string fecha { get; set; }
     }
 }

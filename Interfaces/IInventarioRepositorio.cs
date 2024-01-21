@@ -1,4 +1,5 @@
 ﻿using Inventario_residencias.modelos;
+using Inventario_residencias.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,10 @@ namespace Inventario_residencias.Interfaces
 
         byte[] ImageToByteArray(Image image);
 
+        List<Tablero> obtenerTableros();
+
+        int cantidadRegistros();
+
+        bool eliminarExistenciaItem(string numeroFisico);
     }
 }

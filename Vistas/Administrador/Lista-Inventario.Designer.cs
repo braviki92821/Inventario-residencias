@@ -35,12 +35,13 @@
             dgvInventario = new DataGridView();
             numeroFisicoIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             descripcionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            tableroDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             columnaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             filaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             ubicacionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             imagenDataGridViewImageColumn = new DataGridViewImageColumn();
             existenciaDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
+            fechaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             inventarioBindingSource = new BindingSource(components);
             panel2 = new Panel();
             flowLayoutPanel2 = new FlowLayoutPanel();
@@ -54,6 +55,7 @@
             txtTotalPaginas = new TextBox();
             label3 = new Label();
             panel3 = new Panel();
+            btnReporte = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvInventario).BeginInit();
             ((System.ComponentModel.ISupportInitialize)inventarioBindingSource).BeginInit();
@@ -87,12 +89,13 @@
             // txtNumFisico
             // 
             txtNumFisico.Cursor = Cursors.IBeam;
-            txtNumFisico.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNumFisico.Location = new Point(324, 19);
+            txtNumFisico.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtNumFisico.Location = new Point(282, 22);
             txtNumFisico.Name = "txtNumFisico";
             txtNumFisico.PlaceholderText = "Buscar por Numero Fisico";
-            txtNumFisico.Size = new Size(236, 26);
+            txtNumFisico.Size = new Size(186, 21);
             txtNumFisico.TabIndex = 2;
+            txtNumFisico.TextChanged += txtNumFisico_TextChanged;
             // 
             // dgvInventario
             // 
@@ -100,8 +103,9 @@
             dgvInventario.AllowUserToDeleteRows = false;
             dgvInventario.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvInventario.AutoGenerateColumns = false;
+            dgvInventario.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvInventario.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvInventario.Columns.AddRange(new DataGridViewColumn[] { numeroFisicoIdDataGridViewTextBoxColumn, descripcionDataGridViewTextBoxColumn, tableroDataGridViewTextBoxColumn, columnaDataGridViewTextBoxColumn, filaDataGridViewTextBoxColumn, ubicacionDataGridViewTextBoxColumn, imagenDataGridViewImageColumn, existenciaDataGridViewCheckBoxColumn });
+            dgvInventario.Columns.AddRange(new DataGridViewColumn[] { numeroFisicoIdDataGridViewTextBoxColumn, descripcionDataGridViewTextBoxColumn, dataGridViewTextBoxColumn2, columnaDataGridViewTextBoxColumn, filaDataGridViewTextBoxColumn, ubicacionDataGridViewTextBoxColumn, imagenDataGridViewImageColumn, existenciaDataGridViewCheckBoxColumn, fechaDataGridViewTextBoxColumn });
             dgvInventario.DataSource = inventarioBindingSource;
             dgvInventario.Location = new Point(24, 137);
             dgvInventario.Name = "dgvInventario";
@@ -118,8 +122,6 @@
             numeroFisicoIdDataGridViewTextBoxColumn.HeaderText = "numeroFisicoId";
             numeroFisicoIdDataGridViewTextBoxColumn.Name = "numeroFisicoIdDataGridViewTextBoxColumn";
             numeroFisicoIdDataGridViewTextBoxColumn.ReadOnly = true;
-            numeroFisicoIdDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
-            numeroFisicoIdDataGridViewTextBoxColumn.Width = 150;
             // 
             // descripcionDataGridViewTextBoxColumn
             // 
@@ -127,17 +129,13 @@
             descripcionDataGridViewTextBoxColumn.HeaderText = "descripcion";
             descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
             descripcionDataGridViewTextBoxColumn.ReadOnly = true;
-            descripcionDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
-            descripcionDataGridViewTextBoxColumn.Width = 150;
             // 
-            // tableroDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn2
             // 
-            tableroDataGridViewTextBoxColumn.DataPropertyName = "tablero";
-            tableroDataGridViewTextBoxColumn.HeaderText = "tablero";
-            tableroDataGridViewTextBoxColumn.Name = "tableroDataGridViewTextBoxColumn";
-            tableroDataGridViewTextBoxColumn.ReadOnly = true;
-            tableroDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
-            tableroDataGridViewTextBoxColumn.Width = 150;
+            dataGridViewTextBoxColumn2.DataPropertyName = "tablero";
+            dataGridViewTextBoxColumn2.HeaderText = "tablero";
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // columnaDataGridViewTextBoxColumn
             // 
@@ -145,7 +143,6 @@
             columnaDataGridViewTextBoxColumn.HeaderText = "columna";
             columnaDataGridViewTextBoxColumn.Name = "columnaDataGridViewTextBoxColumn";
             columnaDataGridViewTextBoxColumn.ReadOnly = true;
-            columnaDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
             // 
             // filaDataGridViewTextBoxColumn
             // 
@@ -153,7 +150,6 @@
             filaDataGridViewTextBoxColumn.HeaderText = "fila";
             filaDataGridViewTextBoxColumn.Name = "filaDataGridViewTextBoxColumn";
             filaDataGridViewTextBoxColumn.ReadOnly = true;
-            filaDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
             // 
             // ubicacionDataGridViewTextBoxColumn
             // 
@@ -161,8 +157,6 @@
             ubicacionDataGridViewTextBoxColumn.HeaderText = "ubicacion";
             ubicacionDataGridViewTextBoxColumn.Name = "ubicacionDataGridViewTextBoxColumn";
             ubicacionDataGridViewTextBoxColumn.ReadOnly = true;
-            ubicacionDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
-            ubicacionDataGridViewTextBoxColumn.Width = 150;
             // 
             // imagenDataGridViewImageColumn
             // 
@@ -170,7 +164,6 @@
             imagenDataGridViewImageColumn.HeaderText = "imagen";
             imagenDataGridViewImageColumn.Name = "imagenDataGridViewImageColumn";
             imagenDataGridViewImageColumn.ReadOnly = true;
-            imagenDataGridViewImageColumn.Resizable = DataGridViewTriState.False;
             imagenDataGridViewImageColumn.Visible = false;
             // 
             // existenciaDataGridViewCheckBoxColumn
@@ -179,7 +172,13 @@
             existenciaDataGridViewCheckBoxColumn.HeaderText = "existencia";
             existenciaDataGridViewCheckBoxColumn.Name = "existenciaDataGridViewCheckBoxColumn";
             existenciaDataGridViewCheckBoxColumn.ReadOnly = true;
-            existenciaDataGridViewCheckBoxColumn.Width = 130;
+            // 
+            // fechaDataGridViewTextBoxColumn
+            // 
+            fechaDataGridViewTextBoxColumn.DataPropertyName = "fecha";
+            fechaDataGridViewTextBoxColumn.HeaderText = "fecha";
+            fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
+            fechaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // inventarioBindingSource
             // 
@@ -258,6 +257,7 @@
             btnEliminar.TabIndex = 3;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnAnterior
             // 
@@ -269,6 +269,7 @@
             btnAnterior.TabIndex = 4;
             btnAnterior.Text = "<";
             btnAnterior.UseVisualStyleBackColor = true;
+            btnAnterior.Click += btnAnterior_Click;
             // 
             // btnSiguiente
             // 
@@ -280,6 +281,7 @@
             btnSiguiente.TabIndex = 5;
             btnSiguiente.Text = ">";
             btnSiguiente.UseVisualStyleBackColor = true;
+            btnSiguiente.Click += btnSiguiente_Click;
             // 
             // label2
             // 
@@ -307,7 +309,7 @@
             txtTotalPaginas.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtTotalPaginas.Enabled = false;
             txtTotalPaginas.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            txtTotalPaginas.Location = new Point(727, 3);
+            txtTotalPaginas.Location = new Point(727, 5);
             txtTotalPaginas.Name = "txtTotalPaginas";
             txtTotalPaginas.Size = new Size(35, 21);
             txtTotalPaginas.TabIndex = 8;
@@ -325,6 +327,7 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(btnReporte);
             panel3.Controls.Add(txtPaginaActual);
             panel3.Controls.Add(label3);
             panel3.Controls.Add(btnAnterior);
@@ -336,6 +339,20 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(800, 87);
             panel3.TabIndex = 10;
+            // 
+            // btnReporte
+            // 
+            btnReporte.BackColor = Color.MediumAquamarine;
+            btnReporte.FlatAppearance.BorderSize = 2;
+            btnReporte.FlatStyle = FlatStyle.Flat;
+            btnReporte.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnReporte.Location = new Point(25, 8);
+            btnReporte.Name = "btnReporte";
+            btnReporte.Size = new Size(190, 34);
+            btnReporte.TabIndex = 10;
+            btnReporte.Text = "Generar Reporte";
+            btnReporte.UseVisualStyleBackColor = false;
+            btnReporte.Click += btnReporte_Click;
             // 
             // Lista_Inventario
             // 
@@ -366,15 +383,6 @@
         private Label label1;
         private Panel panel1;
         private DataGridView dgvInventario;
-        private BindingSource inventarioBindingSource;
-        private DataGridViewTextBoxColumn numeroFisicoIdDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn tableroDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn columnaDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn filaDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn ubicacionDataGridViewTextBoxColumn;
-        private DataGridViewImageColumn imagenDataGridViewImageColumn;
-        private DataGridViewCheckBoxColumn existenciaDataGridViewCheckBoxColumn;
         private Panel panel2;
         private FlowLayoutPanel flowLayoutPanel2;
         private Button btnAgregar;
@@ -388,5 +396,18 @@
         private TextBox txtTotalPaginas;
         private Label label3;
         private Panel panel3;
+        private DataGridViewTextBoxColumn tableroDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private Button btnReporte;
+        private DataGridViewTextBoxColumn numeroFisicoIdDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn columnaDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn filaDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn ubicacionDataGridViewTextBoxColumn;
+        private DataGridViewImageColumn imagenDataGridViewImageColumn;
+        private DataGridViewCheckBoxColumn existenciaDataGridViewCheckBoxColumn;
+        private DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
+        private BindingSource inventarioBindingSource;
     }
 }

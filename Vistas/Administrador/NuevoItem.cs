@@ -1,4 +1,5 @@
 ﻿using Inventario_residencias.modelos;
+using Inventario_residencias.Modelos;
 using Inventario_residencias.Repositorio;
 using System.Drawing.Imaging;
 
@@ -15,6 +16,7 @@ namespace Inventario_residencias
             InitializeComponent();
             Inventario = new Inventario();
             inventarioRepositorio = new InventarioRepositorio();
+            cargarTableros();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -26,12 +28,13 @@ namespace Inventario_residencias
 
             Inventario.numeroFisicoId = txtNumeroFisico.Text;
             Inventario.descripcion = txtDescripcion.Text;
-            Inventario.tablero = cbxTablero.SelectedItem.ToString();
+            Inventario.tablero = int.Parse(cbxTablero.SelectedValue.ToString());
             Inventario.columna = cbxColumna.SelectedItem.ToString();
             Inventario.fila = cbxFila.SelectedItem.ToString();
             Inventario.ubicacion = cbxColumna.SelectedItem.ToString() + "-" + cbxFila.SelectedItem.ToString();
             Inventario.imagen = inventarioRepositorio.ImageToByteArray(pbxImagen.Image);
             Inventario.existencia = true;
+            Inventario.fecha = dtpFecha.Text;
             if (inventarioRepositorio.agregarItem(Inventario))
             {
                 MessageBox.Show("Agregado Correctamente");
@@ -39,7 +42,6 @@ namespace Inventario_residencias
             }
             MessageBox.Show("Error al guardar");
         }
-
 
         private void pbxImagen_Click(object sender, EventArgs e)
         {
@@ -93,6 +95,11 @@ namespace Inventario_residencias
                 return false;
             }
             return true;
+        }
+
+        private void cargarTableros()
+        {
+            cbxTablero.DataSource = inventarioRepositorio.obtenerTableros();
         }
 
     }

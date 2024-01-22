@@ -24,7 +24,7 @@ namespace Inventario_residencias.Vistas.Administrador
             }
             Inventario.numeroFisicoId = txtNumeroFisico.Text;
             Inventario.descripcion = txtDescripcion.Text;
-            Inventario.tablero= int.Parse(cbxTablero.SelectedValue.ToString());
+            Inventario.tablero = int.Parse(cbxTablero.SelectedValue.ToString());
             Inventario.columna = cbxColumna.SelectedItem.ToString();
             Inventario.fila = cbxFila.SelectedItem.ToString();
             Inventario.ubicacion = cbxColumna.SelectedItem.ToString() + "-" + cbxFila.SelectedItem.ToString();

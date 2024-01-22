@@ -32,6 +32,7 @@
             cbxFila = new ComboBox();
             cbxColumna = new ComboBox();
             cbxTablero = new ComboBox();
+            tableroBindingSource = new BindingSource(components);
             label9 = new Label();
             pbxImagen = new PictureBox();
             btnGuardar = new Button();
@@ -44,9 +45,8 @@
             txtNumeroFisico = new TextBox();
             label2 = new Label();
             label1 = new Label();
-            tableroBindingSource = new BindingSource(components);
-            ((System.ComponentModel.ISupportInitialize)pbxImagen).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tableroBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbxImagen).BeginInit();
             SuspendLayout();
             // 
             // cbxFila
@@ -94,6 +94,10 @@
             cbxTablero.Size = new Size(206, 25);
             cbxTablero.TabIndex = 32;
             cbxTablero.ValueMember = "tableroId";
+            // 
+            // tableroBindingSource
+            // 
+            tableroBindingSource.DataSource = typeof(Modelos.Tablero);
             // 
             // label9
             // 
@@ -185,6 +189,7 @@
             // 
             // txtNumeroFisico
             // 
+            txtNumeroFisico.Enabled = false;
             txtNumeroFisico.Location = new Point(27, 108);
             txtNumeroFisico.Name = "txtNumeroFisico";
             txtNumeroFisico.Size = new Size(206, 23);
@@ -209,10 +214,6 @@
             label1.Size = new Size(179, 28);
             label1.TabIndex = 35;
             label1.Text = "Modificar Item";
-            // 
-            // tableroBindingSource
-            // 
-            tableroBindingSource.DataSource = typeof(Modelos.Tablero);
             // 
             // ModificarItem
             // 
@@ -245,8 +246,8 @@
             ShowIcon = false;
             Text = "ModificarItem";
             TopMost = true;
-            ((System.ComponentModel.ISupportInitialize)pbxImagen).EndInit();
             ((System.ComponentModel.ISupportInitialize)tableroBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbxImagen).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

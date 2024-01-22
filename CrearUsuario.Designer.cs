@@ -69,11 +69,13 @@
             dgvUsuarios.AllowUserToAddRows = false;
             dgvUsuarios.AllowUserToDeleteRows = false;
             dgvUsuarios.AutoGenerateColumns = false;
+            dgvUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvUsuarios.Columns.AddRange(new DataGridViewColumn[] { usuarioIdDataGridViewTextBoxColumn, nombreDataGridViewTextBoxColumn, correoDataGridViewTextBoxColumn, passwordDataGridViewTextBoxColumn, tipoDataGridViewTextBoxColumn, statusDataGridViewCheckBoxColumn, imagenDataGridViewImageColumn });
             dgvUsuarios.DataSource = usuarioBindingSource;
             dgvUsuarios.Dock = DockStyle.Bottom;
             dgvUsuarios.Location = new Point(0, 304);
+            dgvUsuarios.MultiSelect = false;
             dgvUsuarios.Name = "dgvUsuarios";
             dgvUsuarios.ReadOnly = true;
             dgvUsuarios.RowTemplate.Height = 25;
@@ -96,7 +98,6 @@
             nombreDataGridViewTextBoxColumn.HeaderText = "nombre";
             nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
             nombreDataGridViewTextBoxColumn.ReadOnly = true;
-            nombreDataGridViewTextBoxColumn.Width = 150;
             // 
             // correoDataGridViewTextBoxColumn
             // 
@@ -104,7 +105,6 @@
             correoDataGridViewTextBoxColumn.HeaderText = "correo";
             correoDataGridViewTextBoxColumn.Name = "correoDataGridViewTextBoxColumn";
             correoDataGridViewTextBoxColumn.ReadOnly = true;
-            correoDataGridViewTextBoxColumn.Width = 150;
             // 
             // passwordDataGridViewTextBoxColumn
             // 
@@ -337,9 +337,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(800, 450);
+            ControlBox = false;
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(dgvUsuarios);
+            FormBorderStyle = FormBorderStyle.None;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Usuarios";
             Text = "Usuarios";
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).EndInit();

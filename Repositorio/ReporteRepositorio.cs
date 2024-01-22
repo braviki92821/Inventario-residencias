@@ -1,4 +1,5 @@
 ﻿using Inventario_residencias.Interfaces;
+using Inventario_residencias.Modelos;
 using Inventario_residencias.Properties;
 using iText.IO.Font.Constants;
 using iText.IO.Image;
@@ -85,6 +86,11 @@ namespace Inventario_residencias.Repositorio
                 titulo.SetBold();
                 titulo.SetFontSize(16);
 
+                var autor = new Paragraph("Reporte Generado por: " + Session.nombre);
+                autor.SetTextAlignment(TextAlignment.CENTER);
+                autor.SetFontSize(12);
+  
+
                 PdfDocument pdfDocument = new PdfDocument(new PdfReader("Reporte.pdf"), new PdfWriter(new FileStream(sfd.FileName, FileMode.Create)));
                 Document doc = new Document(pdfDocument);
 
@@ -92,11 +98,9 @@ namespace Inventario_residencias.Repositorio
 
                 for (int i = 1; i <= numeros; i++)
                 {
-                    PdfPage pdfPage = pdfDocument.GetPage(i);
-
                     float y = (pdfDocument.GetPage(i).GetPageSize().GetTop() - 15);
                     doc.ShowTextAligned(Ilogo, 40, y + 10, i, TextAlignment.CENTER, VerticalAlignment.TOP, 0);
-                    doc.ShowTextAligned(Ilogo, 745, y + 10, i, TextAlignment.CENTER, VerticalAlignment.TOP, 0);
+                    doc.ShowTextAligned(autor, 620, y - 30, i, TextAlignment.CENTER, VerticalAlignment.TOP, 0);
                     doc.ShowTextAligned(titulo, 396, y, i, TextAlignment.CENTER, VerticalAlignment.TOP, 0);
                     doc.ShowTextAligned(new Paragraph(String.Format("Pagina {0} de {1}", 1, numeros)),
                         pdfDocument.GetPage(i).GetPageSize().GetWidth() / 2,
@@ -104,6 +108,7 @@ namespace Inventario_residencias.Repositorio
                         TextAlignment.CENTER, VerticalAlignment.TOP, 0);
                 }
                 doc.Close();
+                MessageBox.Show("Reporte Generado Correctamente");
             }
         }
 
@@ -121,7 +126,7 @@ namespace Inventario_residencias.Repositorio
                 MySqlCommand mySqlCommand = new MySqlCommand(query);
                 mySqlCommand.Connection = conexionMysql.sqlConnection();
                 mReader = mySqlCommand.ExecuteReader();
-                PdfWriter pdfWriter = new PdfWriter(new PdfWriter(new FileStream(sfd.FileName, FileMode.Create)));
+                PdfWriter pdfWriter = new PdfWriter("Reporte.pdf");
                 PdfDocument pdf = new PdfDocument(pdfWriter);
                 PageSize tamañoH = new PageSize(792, 612);
                 Document document = new Document(pdf, tamañoH);
@@ -158,6 +163,7 @@ namespace Inventario_residencias.Repositorio
                 }
                 mReader.Close();
                 document.Add(tabla);
+                document.Close();
 
                 var logo = new iText.Layout.Element.Image(ImageDataFactory.Create(imagen())).SetWidth(50);
                 var Ilogo = new Paragraph("").Add(logo);
@@ -167,22 +173,28 @@ namespace Inventario_residencias.Repositorio
                 titulo.SetBold();
                 titulo.SetFontSize(16);
 
-                int numeros = pdf.GetNumberOfPages();
+                var autor = new Paragraph("Reporte Generado por: " + Session.nombre);
+                autor.SetTextAlignment(TextAlignment.CENTER);
+                autor.SetFontSize(12);
+
+                PdfDocument pdfDocument = new PdfDocument(new PdfReader("Reporte.pdf"), new PdfWriter(new FileStream(sfd.FileName, FileMode.Create)));
+                Document doc = new Document(pdfDocument);
+
+                int numeros = pdfDocument.GetNumberOfPages();
 
                 for (int i = 1; i <= numeros; i++)
                 {
-                    //PdfPage pdfPage = pdf.GetPage(i);
-
-                    float y = (pdf.GetPage(i).GetPageSize().GetTop() - 15);
-                    document.ShowTextAligned(Ilogo, 40, y + 10, i, TextAlignment.CENTER, VerticalAlignment.TOP, 0);
-                    document.ShowTextAligned(Ilogo, 745, y + 10, i, TextAlignment.CENTER, VerticalAlignment.TOP, 0);
-                    document.ShowTextAligned(titulo, 396, y, i, TextAlignment.CENTER, VerticalAlignment.TOP, 0);
-                    document.ShowTextAligned(new Paragraph(String.Format("Pagina {0} de {1}", 1, numeros)),
-                        pdf.GetPage(i).GetPageSize().GetWidth() / 2,
-                        pdf.GetPage(i).GetPageSize().GetBottom() + 30, i,
+                    float y = (pdfDocument.GetPage(i).GetPageSize().GetTop() - 15);
+                    doc.ShowTextAligned(Ilogo, 40, y + 10, i, TextAlignment.CENTER, VerticalAlignment.TOP, 0);
+                    doc.ShowTextAligned(autor, 620, y - 30, i, TextAlignment.CENTER, VerticalAlignment.TOP, 0);
+                    doc.ShowTextAligned(titulo, 396, y, i, TextAlignment.CENTER, VerticalAlignment.TOP, 0);
+                    doc.ShowTextAligned(new Paragraph(String.Format("Pagina {0} de {1}", 1, numeros)),
+                        pdfDocument.GetPage(i).GetPageSize().GetWidth() / 2,
+                        pdfDocument.GetPage(i).GetPageSize().GetBottom() + 30, i,
                         TextAlignment.CENTER, VerticalAlignment.TOP, 0);
                 }
-                document.Close();
+                doc.Close();
+                MessageBox.Show("Reporte Generado Correctamente");
             }
         }
 

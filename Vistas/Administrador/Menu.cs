@@ -1,14 +1,5 @@
-﻿using Inventario_residencias.Vistas.Administrador;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.DirectoryServices.ActiveDirectory;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Inventario_residencias.Modelos;
+using Inventario_residencias.Vistas.Administrador;
 
 namespace Inventario_residencias
 {
@@ -35,14 +26,14 @@ namespace Inventario_residencias
             childForm.Show();
         }
 
-        private void btnPerfil_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-
+            Session.usuarioId = 0;
+            Session.nombre = null;
+            Session.tipo = null;
+            Login login = new Login();
+            login.Show();
+            this.Hide();
         }
 
         private void btnListaItems_Click(object sender, EventArgs e)
@@ -53,6 +44,14 @@ namespace Inventario_residencias
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
             openChildForm(new Usuarios());
+        }
+
+        private void Menu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Session.usuarioId = 0;
+            Session.nombre = null;
+            Session.tipo = null;
+            Application.ExitThread();
         }
     }
 }

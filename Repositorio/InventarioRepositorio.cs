@@ -37,7 +37,7 @@ namespace Inventario_residencias.Repositorio
 
         public bool agregarItem(Inventario inventario)
         {
-            string query = "INSERT INTO inventario(numeroFisico, descripcion, tablero, columna, fila, ubicacion, imagen, existencia)" +
+            string query = "INSERT INTO inventario(numeroFisico, descripcion, tablero, columna, fila, ubicacion, imagen, existencia, fechaCompra)" +
                 " Values(@numeroFisico, @descripcion, @tablero, @columna, @fila, @ubicacion, @imagen, @existencia, @fechaCompra) ";
 
             MySqlCommand command = new MySqlCommand(query, conexionMysql.sqlConnection());
@@ -50,7 +50,7 @@ namespace Inventario_residencias.Repositorio
             command.Parameters.Add(new MySqlParameter("@ubicacion", inventario.ubicacion));
             command.Parameters.Add(new MySqlParameter("@imagen", inventario.imagen));
             command.Parameters.Add(new MySqlParameter("@existencia", inventario.existencia));
-            command.Parameters.Add(new MySqlParameter("@existencia", inventario.fecha));
+            command.Parameters.Add(new MySqlParameter("@fechaCompra", inventario.fecha));
 
             return command.ExecuteNonQuery() > 0;
         }

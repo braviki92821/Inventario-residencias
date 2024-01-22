@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             label1 = new Label();
             panel1 = new Panel();
+            btnRecargar = new Button();
             txtNumFisico = new TextBox();
             dgvInventario = new DataGridView();
             numeroFisicoIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -55,6 +56,7 @@
             txtTotalPaginas = new TextBox();
             label3 = new Label();
             panel3 = new Panel();
+            btnGenerarExcel = new Button();
             btnReporte = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvInventario).BeginInit();
@@ -78,6 +80,7 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btnRecargar);
             panel1.Controls.Add(txtNumFisico);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
@@ -85,6 +88,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 59);
             panel1.TabIndex = 0;
+            // 
+            // btnRecargar
+            // 
+            btnRecargar.Location = new Point(540, 20);
+            btnRecargar.Name = "btnRecargar";
+            btnRecargar.Size = new Size(86, 23);
+            btnRecargar.TabIndex = 3;
+            btnRecargar.Text = "Refrescar";
+            btnRecargar.UseVisualStyleBackColor = true;
+            btnRecargar.Click += btnRecargar_Click;
             // 
             // txtNumFisico
             // 
@@ -108,6 +121,7 @@
             dgvInventario.Columns.AddRange(new DataGridViewColumn[] { numeroFisicoIdDataGridViewTextBoxColumn, descripcionDataGridViewTextBoxColumn, dataGridViewTextBoxColumn2, columnaDataGridViewTextBoxColumn, filaDataGridViewTextBoxColumn, ubicacionDataGridViewTextBoxColumn, imagenDataGridViewImageColumn, existenciaDataGridViewCheckBoxColumn, fechaDataGridViewTextBoxColumn });
             dgvInventario.DataSource = inventarioBindingSource;
             dgvInventario.Location = new Point(24, 137);
+            dgvInventario.MultiSelect = false;
             dgvInventario.Name = "dgvInventario";
             dgvInventario.ReadOnly = true;
             dgvInventario.RowTemplate.Height = 25;
@@ -244,6 +258,7 @@
             // 
             btnEliminar.AutoSize = true;
             btnEliminar.BackColor = Color.Firebrick;
+            btnEliminar.BackgroundImageLayout = ImageLayout.None;
             btnEliminar.Cursor = Cursors.Hand;
             btnEliminar.FlatAppearance.BorderSize = 2;
             btnEliminar.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 128, 128);
@@ -256,6 +271,7 @@
             btnEliminar.Size = new Size(230, 31);
             btnEliminar.TabIndex = 3;
             btnEliminar.Text = "Eliminar";
+            btnEliminar.TextImageRelation = TextImageRelation.TextBeforeImage;
             btnEliminar.UseVisualStyleBackColor = false;
             btnEliminar.Click += btnEliminar_Click;
             // 
@@ -327,6 +343,7 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(btnGenerarExcel);
             panel3.Controls.Add(btnReporte);
             panel3.Controls.Add(txtPaginaActual);
             panel3.Controls.Add(label3);
@@ -340,9 +357,25 @@
             panel3.Size = new Size(800, 87);
             panel3.TabIndex = 10;
             // 
+            // btnGenerarExcel
+            // 
+            btnGenerarExcel.BackColor = Color.MediumAquamarine;
+            btnGenerarExcel.Cursor = Cursors.Hand;
+            btnGenerarExcel.FlatAppearance.BorderSize = 2;
+            btnGenerarExcel.FlatStyle = FlatStyle.Flat;
+            btnGenerarExcel.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnGenerarExcel.Location = new Point(233, 8);
+            btnGenerarExcel.Name = "btnGenerarExcel";
+            btnGenerarExcel.Size = new Size(190, 34);
+            btnGenerarExcel.TabIndex = 11;
+            btnGenerarExcel.Text = "Generar Excel";
+            btnGenerarExcel.UseVisualStyleBackColor = false;
+            btnGenerarExcel.Click += btnGenerarExcel_Click;
+            // 
             // btnReporte
             // 
             btnReporte.BackColor = Color.MediumAquamarine;
+            btnReporte.Cursor = Cursors.Hand;
             btnReporte.FlatAppearance.BorderSize = 2;
             btnReporte.FlatStyle = FlatStyle.Flat;
             btnReporte.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -409,5 +442,7 @@
         private DataGridViewCheckBoxColumn existenciaDataGridViewCheckBoxColumn;
         private DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
         private BindingSource inventarioBindingSource;
+        private Button btnGenerarExcel;
+        private Button btnRecargar;
     }
 }

@@ -35,7 +35,7 @@ namespace Inventario_residencias.Vistas.Administrador
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             NuevoItem nuevoItem = new NuevoItem();
-            nuevoItem.ShowDialog();
+            nuevoItem.Show();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -101,6 +101,16 @@ namespace Inventario_residencias.Vistas.Administrador
         {
             Opciones_Reporte opciones_Reporte = new Opciones_Reporte();
             opciones_Reporte.ShowDialog();
+        }
+
+        private void btnGenerarExcel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRecargar_Click(object sender, EventArgs e)
+        {
+            cargarInventario(offSet = 0);
         }
     }
 }

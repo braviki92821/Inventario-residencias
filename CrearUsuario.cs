@@ -4,6 +4,7 @@ using System.Net;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using Inventario_residencias.Repositorio;
+using Inventario_residencias.Modelos;
 
 namespace Inventario_residencias
 {
@@ -153,7 +154,7 @@ namespace Inventario_residencias
         private void cargarUsuarios()
         {
             usuarios.Clear();
-            usuarios = usuarioRepositorio.obtenerUsuarios("", 5, 0);
+            usuarios = usuarioRepositorio.obtenerUsuarios(true, Session.usuarioId);
             dgvUsuarios.DataSource = usuarios;
         }
 

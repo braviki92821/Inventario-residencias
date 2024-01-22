@@ -9,7 +9,7 @@ namespace Inventario_residencias.Interfaces
 {
     public interface IUsuarioRepositorio
     {
-        List<Usuario> obtenerUsuarios(string nombre, int limite, int offset);
+        List<Usuario> obtenerUsuarios(bool status, int usuarioId);
 
         byte[] ImageToByteArray(Image image);
 
@@ -23,6 +23,8 @@ namespace Inventario_residencias.Interfaces
 
         bool eliminarUsuario(int usuarioId);
 
+        Usuario obtenerUsuarioPorCorreo(string correo);
 
+        bool login(Usuario usuario, string password);
     }
 }

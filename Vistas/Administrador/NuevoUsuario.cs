@@ -1,0 +1,134 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net.Mail;
+using System.Net;
+using System.Text;
+using Inventario_residencias.Repositorio;
+using Inventario_residencias.modelos;
+
+namespace Inventario_residencias.Vistas.Administrador
+{
+    public partial class NuevoUsuario : Form
+    {
+        UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio();
+        private modelos.Usuario Usuario;
+
+        public NuevoUsuario()
+        {
+            InitializeComponent();
+            Usuario = new modelos.Usuario();
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (!validaciones())
+            {
+                return;
+            }
+            string correo = txtCorreo.Text;
+            string password = CreatePassword(6);
+
+            if (usuarioRepositorio.correoRegistrado(correo.Trim()))
+            {
+                MessageBox.Show("Este correo ya esta registrado");
+                return;
+            }
+
+            Usuario.nombre = txtNombre.Text;
+            Usuario.correo = correo.Trim();
+            Usuario.password = usuarioRepositorio.hashPassword(password);
+            Usuario.tipo = cbxTipo.SelectedItem.ToString();
+            Usuario.status = true;
+            Usuario.imagen = usuarioRepositorio.ImageToByteArray(pbxImagen.Image);
+
+            if (usuarioRepositorio.agregarUsuario(Usuario))
+            {
+                enviar(correo, password);
+                MessageBox.Show("Agregado Correctamente");
+                Limpiar();
+                return;
+            }
+            MessageBox.Show("Error al guardar");
+
+        }
+
+        private bool validaciones()
+        {
+            EmailAddressAttribute email = new EmailAddressAttribute();
+
+            if (txtNombre.Text.Equals(""))
+            {
+                MessageBox.Show("Debe ingresar un nombre");
+                return false;
+            }
+            if (txtCorreo.Text.Equals(""))
+            {
+                MessageBox.Show("Debe ingresar un correo");
+                return false;
+            }
+
+            if (!email.IsValid(txtCorreo.Text))
+            {
+                MessageBox.Show("Debe ingresar un correo valido");
+                return false;
+            }
+
+            if (cbxTipo.Text == "-----Seleccione-----")
+            {
+                MessageBox.Show("Seleccione una tipo de usuario");
+                return false;
+            }
+
+            if (pbxImagen.Image == null)
+            {
+                MessageBox.Show("Debe seleccionar una imagen");
+                return false;
+            }
+
+            return true;
+        }
+
+        private string CreatePassword(int length)
+        {
+            const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@-/";
+            StringBuilder res = new StringBuilder();
+            Random rnd = new Random();
+            while (0 < length--)
+            {
+                res.Append(valid[rnd.Next(valid.Length)]);
+            }
+            return res.ToString();
+        }
+
+        private void enviar(string correo, string password)
+        {
+            string body = "Hola tu contraseña de acceso para tableros de inventario es: " + password + " guarda esta contraseña en un lugar seguro";
+
+            var client = new SmtpClient("smtp.ionos.mx", 587)
+            {
+                Credentials = new NetworkCredential("braviki92821@braviki.com", "@BRAjaviki92821@"),
+                EnableSsl = true
+            };
+
+            client.Send("braviki92821@braviki.com", correo, "Contraseña de acceso", body);
+            MessageBox.Show("enviado correctamente");
+        }
+
+        private void Limpiar()
+        {
+            txtCorreo.Text = "";
+            txtNombre.Text = "";
+            pbxImagen.Image = null;
+        }
+
+        private void pbxImagen_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                pbxImagen.ImageLocation = openFile.FileName;
+            }
+        }
+    }
+}

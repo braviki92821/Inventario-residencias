@@ -1,22 +1,14 @@
-﻿using Inventario_residencias.modelos;
-using Inventario_residencias.Modelos;
+﻿using Inventario_residencias.Modelos;
 using Inventario_residencias.Repositorio;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using Inventario_residencias.modelos;
 
 namespace Inventario_residencias.Vistas.Administrador
 {
     public partial class Lista_Usuarios : Form
     {
-        private UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio();
-        private List<Usuario> usuarios = new List<Usuario>();
+        List<modelos.Usuario> usuarios = new List<modelos.Usuario>();
+        private UsuarioRepositorio UsuarioRepositorio = new UsuarioRepositorio();
+
         public Lista_Usuarios()
         {
             InitializeComponent();
@@ -25,7 +17,8 @@ namespace Inventario_residencias.Vistas.Administrador
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-
+            NuevoUsuario nuevoUsuario = new NuevoUsuario();
+            nuevoUsuario.ShowDialog();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -51,7 +44,7 @@ namespace Inventario_residencias.Vistas.Administrador
         private void cargarUsuarios()
         {
             usuarios.Clear();
-            usuarios = usuarioRepositorio.obtenerUsuarios(true, Session.usuarioId);
+            usuarios = UsuarioRepositorio.obtenerUsuarios(true, Session.usuarioId);
             dgvUsuarios.DataSource = usuarios;
         }
     }

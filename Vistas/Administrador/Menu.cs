@@ -43,7 +43,7 @@ namespace Inventario_residencias
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            openChildForm(new Usuarios());
+            openChildForm(new Lista_Usuarios());
         }
 
         private void Menu_FormClosed(object sender, FormClosedEventArgs e)
@@ -52,6 +52,11 @@ namespace Inventario_residencias
             Session.nombre = null;
             Session.tipo = null;
             Application.ExitThread();
+        }
+
+        private void Menu_Load(object sender, EventArgs e)
+        {
+            openChildForm(new Lista_Inventario());
         }
     }
 }

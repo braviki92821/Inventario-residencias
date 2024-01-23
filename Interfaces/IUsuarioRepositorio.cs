@@ -26,5 +26,7 @@ namespace Inventario_residencias.Interfaces
         Usuario obtenerUsuarioPorCorreo(string correo);
 
         bool login(Usuario usuario, string password);
+
+        bool correoRegistrado(string correo);
     }
 }

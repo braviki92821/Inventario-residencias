@@ -258,6 +258,7 @@
             pbxImagen.SizeMode = PictureBoxSizeMode.StretchImage;
             pbxImagen.TabIndex = 52;
             pbxImagen.TabStop = false;
+            pbxImagen.Click += pbxImagen_Click;
             // 
             // cbxTipo
             // 

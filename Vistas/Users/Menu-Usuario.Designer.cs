@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            panelContenedor = new Panel();
-            btnInventario = new Button();
             btnCerrarSesión = new Button();
+            btnInventario = new Button();
+            panelContenedor = new Panel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -46,14 +46,20 @@
             panel1.Size = new Size(309, 560);
             panel1.TabIndex = 0;
             // 
-            // panelContenedor
+            // btnCerrarSesión
             // 
-            panelContenedor.BackColor = Color.SteelBlue;
-            panelContenedor.Dock = DockStyle.Fill;
-            panelContenedor.Location = new Point(309, 0);
-            panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new Size(955, 560);
-            panelContenedor.TabIndex = 1;
+            btnCerrarSesión.BackColor = Color.IndianRed;
+            btnCerrarSesión.Dock = DockStyle.Bottom;
+            btnCerrarSesión.FlatAppearance.BorderSize = 2;
+            btnCerrarSesión.FlatStyle = FlatStyle.Flat;
+            btnCerrarSesión.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCerrarSesión.Location = new Point(0, 484);
+            btnCerrarSesión.Name = "btnCerrarSesión";
+            btnCerrarSesión.Size = new Size(309, 76);
+            btnCerrarSesión.TabIndex = 1;
+            btnCerrarSesión.Text = "Cerrar Sesión";
+            btnCerrarSesión.UseVisualStyleBackColor = false;
+            btnCerrarSesión.Click += btnCerrarSesión_Click;
             // 
             // btnInventario
             // 
@@ -70,20 +76,16 @@
             btnInventario.TabIndex = 0;
             btnInventario.Text = "Inventario";
             btnInventario.UseVisualStyleBackColor = false;
+            btnInventario.Click += btnInventario_Click;
             // 
-            // btnCerrarSesión
+            // panelContenedor
             // 
-            btnCerrarSesión.BackColor = Color.IndianRed;
-            btnCerrarSesión.Dock = DockStyle.Bottom;
-            btnCerrarSesión.FlatAppearance.BorderSize = 2;
-            btnCerrarSesión.FlatStyle = FlatStyle.Flat;
-            btnCerrarSesión.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCerrarSesión.Location = new Point(0, 484);
-            btnCerrarSesión.Name = "btnCerrarSesión";
-            btnCerrarSesión.Size = new Size(309, 76);
-            btnCerrarSesión.TabIndex = 1;
-            btnCerrarSesión.Text = "Cerrar Sesión";
-            btnCerrarSesión.UseVisualStyleBackColor = false;
+            panelContenedor.BackColor = Color.SteelBlue;
+            panelContenedor.Dock = DockStyle.Fill;
+            panelContenedor.Location = new Point(309, 0);
+            panelContenedor.Name = "panelContenedor";
+            panelContenedor.Size = new Size(955, 560);
+            panelContenedor.TabIndex = 1;
             // 
             // Menu_Usuario
             // 

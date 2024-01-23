@@ -31,6 +31,18 @@ namespace Inventario_residencias.Repositorio
             return command.ExecuteNonQuery() > 0;
         }
 
+        public bool correoRegistrado(string correo)
+        {
+            string query = "SELECT * FROM usuarios WHERE correo='" + correo + "' ";
+            MySqlDataReader mReader = null;
+            MySqlCommand mySqlCommand = new MySqlCommand(query);
+            mySqlCommand.Connection = conexionMysql.sqlConnection(); 
+            bool rows = mySqlCommand.ExecuteReader().Read();
+            mySqlCommand.Connection.Close();
+            return rows;
+
+        }
+
         public bool eliminarUsuario(int usuarioId)
         {
             string query = "UPDATE usuarios SET estatus= @estatus WHERE usuarioId=@usuarioId";
@@ -126,7 +138,9 @@ namespace Inventario_residencias.Repositorio
 
         public List<Usuario> obtenerUsuarios(bool estatus, int usuarioId)
         {
-            string query = "SELECT * FROM usuarios WHERE estatus='"+estatus+ "' AND usuarioId <> '" + usuarioId+"' ";
+            int boo = estatus  ?  1 : 0;
+
+            string query = "SELECT * FROM usuarios WHERE estatus='"+boo+ "' AND usuarioId <>'" + usuarioId+"' ";
 
             MySqlDataReader mReader = null;
 

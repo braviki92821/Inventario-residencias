@@ -139,6 +139,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Menu";
             FormClosed += Menu_FormClosed;
+            Load += Menu_Load;
             panel1.ResumeLayout(false);
             ResumeLayout(false);
         }

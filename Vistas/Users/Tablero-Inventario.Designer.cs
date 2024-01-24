@@ -28,10 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
-            dgvTablero = new DataGridView();
+            btnBuscarNumero = new Button();
+            label4 = new Label();
+            txtNumFisico = new TextBox();
+            dgvInventario = new DataGridView();
+            numeroFisicoIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            descripcionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            tableroDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            columnaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            filaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            ubicacionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            existenciaDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
+            fechaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            inventarioBindingSource = new BindingSource(components);
             panel3 = new Panel();
             txtPaginaActual = new TextBox();
             label3 = new Label();
@@ -39,18 +52,12 @@
             txtTotalPaginas = new TextBox();
             btnSiguiente = new Button();
             label2 = new Label();
-            textBox3 = new TextBox();
-            label4 = new Label();
-            btnBuscarNumero = new Button();
-            NumeroFisico = new DataGridViewTextBoxColumn();
-            Descripcion = new DataGridViewTextBoxColumn();
-            Tablero = new DataGridViewTextBoxColumn();
-            Columna = new DataGridViewTextBoxColumn();
-            Ubicacion = new DataGridViewTextBoxColumn();
-            Existencia = new DataGridViewTextBoxColumn();
+            btnReportar = new Button();
+            btnReiniciar = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvTablero).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvInventario).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)inventarioBindingSource).BeginInit();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
@@ -75,31 +82,133 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(btnReiniciar);
+            panel2.Controls.Add(btnReportar);
             panel2.Controls.Add(btnBuscarNumero);
             panel2.Controls.Add(label4);
-            panel2.Controls.Add(textBox3);
+            panel2.Controls.Add(txtNumFisico);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 61);
             panel2.Name = "panel2";
             panel2.Size = new Size(800, 66);
             panel2.TabIndex = 1;
             // 
-            // dgvTablero
+            // btnBuscarNumero
             // 
-            dgvTablero.AllowUserToAddRows = false;
-            dgvTablero.AllowUserToDeleteRows = false;
-            dgvTablero.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dgvTablero.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvTablero.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
-            dgvTablero.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTablero.Columns.AddRange(new DataGridViewColumn[] { NumeroFisico, Descripcion, Tablero, Columna, Ubicacion, Existencia });
-            dgvTablero.Location = new Point(20, 156);
-            dgvTablero.MultiSelect = false;
-            dgvTablero.Name = "dgvTablero";
-            dgvTablero.ReadOnly = true;
-            dgvTablero.RowTemplate.Height = 25;
-            dgvTablero.Size = new Size(765, 195);
-            dgvTablero.TabIndex = 2;
+            btnBuscarNumero.BackColor = Color.RoyalBlue;
+            btnBuscarNumero.FlatAppearance.BorderSize = 2;
+            btnBuscarNumero.FlatAppearance.MouseDownBackColor = Color.FromArgb(128, 128, 255);
+            btnBuscarNumero.FlatStyle = FlatStyle.Flat;
+            btnBuscarNumero.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnBuscarNumero.Location = new Point(262, 21);
+            btnBuscarNumero.Margin = new Padding(10, 3, 3, 3);
+            btnBuscarNumero.Name = "btnBuscarNumero";
+            btnBuscarNumero.Size = new Size(115, 29);
+            btnBuscarNumero.TabIndex = 8;
+            btnBuscarNumero.Text = "Buscar";
+            btnBuscarNumero.UseVisualStyleBackColor = false;
+            btnBuscarNumero.Click += btnBuscarNumero_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(23, 3);
+            label4.Name = "label4";
+            label4.Size = new Size(0, 15);
+            label4.TabIndex = 7;
+            // 
+            // txtNumFisico
+            // 
+            txtNumFisico.Cursor = Cursors.IBeam;
+            txtNumFisico.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            txtNumFisico.Location = new Point(20, 21);
+            txtNumFisico.Margin = new Padding(20, 3, 3, 3);
+            txtNumFisico.Multiline = true;
+            txtNumFisico.Name = "txtNumFisico";
+            txtNumFisico.PlaceholderText = "Buscar por Numero Fisico";
+            txtNumFisico.Size = new Size(229, 29);
+            txtNumFisico.TabIndex = 4;
+            txtNumFisico.TextAlign = HorizontalAlignment.Center;
+            // 
+            // dgvInventario
+            // 
+            dgvInventario.AllowUserToAddRows = false;
+            dgvInventario.AllowUserToDeleteRows = false;
+            dgvInventario.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvInventario.AutoGenerateColumns = false;
+            dgvInventario.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvInventario.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
+            dgvInventario.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvInventario.Columns.AddRange(new DataGridViewColumn[] { numeroFisicoIdDataGridViewTextBoxColumn, descripcionDataGridViewTextBoxColumn, tableroDataGridViewTextBoxColumn, columnaDataGridViewTextBoxColumn, filaDataGridViewTextBoxColumn, ubicacionDataGridViewTextBoxColumn, existenciaDataGridViewCheckBoxColumn, fechaDataGridViewTextBoxColumn });
+            dgvInventario.DataSource = inventarioBindingSource;
+            dgvInventario.Location = new Point(20, 156);
+            dgvInventario.MultiSelect = false;
+            dgvInventario.Name = "dgvInventario";
+            dgvInventario.ReadOnly = true;
+            dgvInventario.RowTemplate.Height = 25;
+            dgvInventario.Size = new Size(765, 195);
+            dgvInventario.TabIndex = 2;
+            dgvInventario.CellClick += dgvInventario_CellClick;
+            // 
+            // numeroFisicoIdDataGridViewTextBoxColumn
+            // 
+            numeroFisicoIdDataGridViewTextBoxColumn.DataPropertyName = "numeroFisicoId";
+            numeroFisicoIdDataGridViewTextBoxColumn.HeaderText = "numeroFisicoId";
+            numeroFisicoIdDataGridViewTextBoxColumn.Name = "numeroFisicoIdDataGridViewTextBoxColumn";
+            numeroFisicoIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // descripcionDataGridViewTextBoxColumn
+            // 
+            descripcionDataGridViewTextBoxColumn.DataPropertyName = "descripcion";
+            descripcionDataGridViewTextBoxColumn.HeaderText = "descripcion";
+            descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
+            descripcionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tableroDataGridViewTextBoxColumn
+            // 
+            tableroDataGridViewTextBoxColumn.DataPropertyName = "tablero";
+            tableroDataGridViewTextBoxColumn.HeaderText = "tablero";
+            tableroDataGridViewTextBoxColumn.Name = "tableroDataGridViewTextBoxColumn";
+            tableroDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // columnaDataGridViewTextBoxColumn
+            // 
+            columnaDataGridViewTextBoxColumn.DataPropertyName = "columna";
+            columnaDataGridViewTextBoxColumn.HeaderText = "columna";
+            columnaDataGridViewTextBoxColumn.Name = "columnaDataGridViewTextBoxColumn";
+            columnaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // filaDataGridViewTextBoxColumn
+            // 
+            filaDataGridViewTextBoxColumn.DataPropertyName = "fila";
+            filaDataGridViewTextBoxColumn.HeaderText = "fila";
+            filaDataGridViewTextBoxColumn.Name = "filaDataGridViewTextBoxColumn";
+            filaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ubicacionDataGridViewTextBoxColumn
+            // 
+            ubicacionDataGridViewTextBoxColumn.DataPropertyName = "ubicacion";
+            ubicacionDataGridViewTextBoxColumn.HeaderText = "ubicacion";
+            ubicacionDataGridViewTextBoxColumn.Name = "ubicacionDataGridViewTextBoxColumn";
+            ubicacionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // existenciaDataGridViewCheckBoxColumn
+            // 
+            existenciaDataGridViewCheckBoxColumn.DataPropertyName = "existencia";
+            existenciaDataGridViewCheckBoxColumn.HeaderText = "existencia";
+            existenciaDataGridViewCheckBoxColumn.Name = "existenciaDataGridViewCheckBoxColumn";
+            existenciaDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // fechaDataGridViewTextBoxColumn
+            // 
+            fechaDataGridViewTextBoxColumn.DataPropertyName = "fecha";
+            fechaDataGridViewTextBoxColumn.HeaderText = "fecha";
+            fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
+            fechaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // inventarioBindingSource
+            // 
+            inventarioBindingSource.DataSource = typeof(modelos.Inventario);
             // 
             // panel3
             // 
@@ -179,77 +288,37 @@
             label2.TabIndex = 12;
             label2.Text = "Pagina";
             // 
-            // textBox3
+            // btnReportar
             // 
-            textBox3.Cursor = Cursors.IBeam;
-            textBox3.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox3.Location = new Point(20, 21);
-            textBox3.Margin = new Padding(20, 3, 3, 3);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.PlaceholderText = "Buscar por Numero Fisico";
-            textBox3.Size = new Size(229, 29);
-            textBox3.TabIndex = 4;
-            textBox3.TextAlign = HorizontalAlignment.Center;
+            btnReportar.BackColor = Color.Brown;
+            btnReportar.FlatAppearance.BorderSize = 2;
+            btnReportar.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 128, 128);
+            btnReportar.FlatStyle = FlatStyle.Flat;
+            btnReportar.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnReportar.Location = new Point(390, 21);
+            btnReportar.Margin = new Padding(10, 3, 3, 3);
+            btnReportar.Name = "btnReportar";
+            btnReportar.Size = new Size(115, 29);
+            btnReportar.TabIndex = 9;
+            btnReportar.Text = "Reportar";
+            btnReportar.UseVisualStyleBackColor = false;
+            btnReportar.Click += btnReportar_Click;
             // 
-            // label4
+            // btnReiniciar
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(23, 3);
-            label4.Name = "label4";
-            label4.Size = new Size(0, 15);
-            label4.TabIndex = 7;
-            // 
-            // btnBuscarNumero
-            // 
-            btnBuscarNumero.BackColor = Color.RoyalBlue;
-            btnBuscarNumero.FlatAppearance.BorderSize = 2;
-            btnBuscarNumero.FlatAppearance.MouseDownBackColor = Color.FromArgb(128, 128, 255);
-            btnBuscarNumero.FlatStyle = FlatStyle.Flat;
-            btnBuscarNumero.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnBuscarNumero.Location = new Point(262, 21);
-            btnBuscarNumero.Margin = new Padding(10, 3, 3, 3);
-            btnBuscarNumero.Name = "btnBuscarNumero";
-            btnBuscarNumero.Size = new Size(115, 29);
-            btnBuscarNumero.TabIndex = 8;
-            btnBuscarNumero.Text = "Buscar";
-            btnBuscarNumero.UseVisualStyleBackColor = false;
-            // 
-            // NumeroFisico
-            // 
-            NumeroFisico.HeaderText = "Numero Fisico";
-            NumeroFisico.Name = "NumeroFisico";
-            NumeroFisico.ReadOnly = true;
-            // 
-            // Descripcion
-            // 
-            Descripcion.HeaderText = "Descripcion";
-            Descripcion.Name = "Descripcion";
-            Descripcion.ReadOnly = true;
-            // 
-            // Tablero
-            // 
-            Tablero.HeaderText = "Tablero";
-            Tablero.Name = "Tablero";
-            Tablero.ReadOnly = true;
-            // 
-            // Columna
-            // 
-            Columna.HeaderText = "Columna";
-            Columna.Name = "Columna";
-            Columna.ReadOnly = true;
-            // 
-            // Ubicacion
-            // 
-            Ubicacion.HeaderText = "Ubicacion";
-            Ubicacion.Name = "Ubicacion";
-            Ubicacion.ReadOnly = true;
-            // 
-            // Existencia
-            // 
-            Existencia.HeaderText = "Existencia";
-            Existencia.Name = "Existencia";
-            Existencia.ReadOnly = true;
+            btnReiniciar.BackColor = Color.MediumSeaGreen;
+            btnReiniciar.FlatAppearance.BorderSize = 2;
+            btnReiniciar.FlatAppearance.MouseDownBackColor = Color.FromArgb(128, 255, 128);
+            btnReiniciar.FlatStyle = FlatStyle.Flat;
+            btnReiniciar.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnReiniciar.Location = new Point(518, 21);
+            btnReiniciar.Margin = new Padding(10, 3, 3, 3);
+            btnReiniciar.Name = "btnReiniciar";
+            btnReiniciar.Size = new Size(115, 29);
+            btnReiniciar.TabIndex = 10;
+            btnReiniciar.Text = "Reiniciar";
+            btnReiniciar.UseVisualStyleBackColor = false;
+            btnReiniciar.Click += btnReiniciar_Click;
             // 
             // Tablero_Inventario
             // 
@@ -259,7 +328,7 @@
             ClientSize = new Size(800, 450);
             ControlBox = false;
             Controls.Add(panel3);
-            Controls.Add(dgvTablero);
+            Controls.Add(dgvInventario);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -269,7 +338,8 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvTablero).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvInventario).EndInit();
+            ((System.ComponentModel.ISupportInitialize)inventarioBindingSource).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ResumeLayout(false);
@@ -280,7 +350,7 @@
         private Panel panel1;
         private Label label1;
         private Panel panel2;
-        private DataGridView dgvTablero;
+        private DataGridView dgvInventario;
         private Panel panel3;
         private TextBox txtPaginaActual;
         private Label label3;
@@ -290,12 +360,17 @@
         private Label label2;
         private Button btnBuscarNumero;
         private Label label4;
-        private TextBox textBox3;
-        private DataGridViewTextBoxColumn NumeroFisico;
-        private DataGridViewTextBoxColumn Descripcion;
-        private DataGridViewTextBoxColumn Tablero;
-        private DataGridViewTextBoxColumn Columna;
-        private DataGridViewTextBoxColumn Ubicacion;
-        private DataGridViewTextBoxColumn Existencia;
+        private TextBox txtNumFisico;
+        private DataGridViewTextBoxColumn numeroFisicoIdDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn tableroDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn columnaDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn filaDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn ubicacionDataGridViewTextBoxColumn;
+        private DataGridViewCheckBoxColumn existenciaDataGridViewCheckBoxColumn;
+        private DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
+        private BindingSource inventarioBindingSource;
+        private Button btnReiniciar;
+        private Button btnReportar;
     }
 }

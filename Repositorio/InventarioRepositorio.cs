@@ -18,7 +18,7 @@ namespace Inventario_residencias.Repositorio
 
         public bool actualizarItem(Inventario inventario)
         {
-            string query = "UPDATE inventario SET descripcion=@descripcion, tablero= @tablero, columna=@columna, fila= @fila, ubicacion= @ubicacion, imagen=@imagen, existencia=@existencia WHERE numeroFisico=@numeroFisico";
+            string query = "UPDATE inventario SET descripcion=@descripcion, tablero=@tablero, columna=@columna, fila=@fila, ubicacion= @ubicacion, imagen=@imagen WHERE numeroFisico=@numeroFisico";
             bool rows = false;
             MySqlCommand command = new MySqlCommand(query, sqlConnection());
 
@@ -89,7 +89,7 @@ namespace Inventario_residencias.Repositorio
             {
                 mySqlCommand.Connection = sqlConnection();
                 mReader = mySqlCommand.ExecuteReader();
-                while (mReader.Read())
+                if (mReader.Read())
                 {
                     inventario = new Inventario();
                     inventario.numeroFisicoId = mReader.GetString("numeroFisico");
@@ -106,6 +106,7 @@ namespace Inventario_residencias.Repositorio
             catch(Exception ex)
             {
                 CloseCommand(mySqlCommand);
+                CloseReader(mReader);
                 throw new InventarioException(ex.Message);
             }
             finally
@@ -136,6 +137,7 @@ namespace Inventario_residencias.Repositorio
             catch(MySqlException ex)
             {
                 CloseCommand(mySqlCommand);
+                CloseReader(mReader);
                 throw new InventarioException(ex.Message);
             }
             finally
@@ -147,14 +149,14 @@ namespace Inventario_residencias.Repositorio
             return registros;
         }
 
-        public bool eliminarExistenciaItem(string numeroFisico)
+        public bool eliminarExistenciaItem(string numeroFisico, bool existencia)
         {
             string query = "UPDATE inventario SET existencia=@existencia WHERE numeroFisico=@numeroFisico";
             bool rows = false;
             MySqlCommand command = new MySqlCommand(query, sqlConnection());
             try
             {
-                command.Parameters.Add(new MySqlParameter("@existencia", false));
+                command.Parameters.Add(new MySqlParameter("@existencia", existencia));
                 command.Parameters.Add(new MySqlParameter("@numeroFisico", numeroFisico));
                 rows = command.ExecuteNonQuery() > 0;
                 CloseCommand(command);
@@ -241,6 +243,7 @@ namespace Inventario_residencias.Repositorio
             catch (Exception ex)
             {
                 CloseCommand(mySqlCommand);
+                CloseReader(mReader);
                 throw new InventarioException(ex.Message);
             }
             finally
@@ -257,9 +260,10 @@ namespace Inventario_residencias.Repositorio
             string query = "SELECT * FROM tablero";
             List<Tablero> tableros = new List<Tablero>();
             MySqlDataReader mReader = null;
+            MySqlCommand mySqlCommand = null;
             try
             {
-                MySqlCommand mySqlCommand = new MySqlCommand(query);
+                mySqlCommand = new MySqlCommand(query);
                 mySqlCommand.Connection = sqlConnection();
                 mReader = mySqlCommand.ExecuteReader();
                 Tablero tablero = null;
@@ -274,8 +278,9 @@ namespace Inventario_residencias.Repositorio
             }
             catch(MySqlException ex)
             {
-                MessageBox.Show(ex.ToString());
-                throw;
+                CloseCommand(mySqlCommand);
+                CloseReader(mReader);
+                throw new InventarioException(ex.ToString());
             } finally
             {
                 sqlConnection().Close();

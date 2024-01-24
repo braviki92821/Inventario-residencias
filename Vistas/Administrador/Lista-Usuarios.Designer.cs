@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
-            groupBox1 = new GroupBox();
-            rbtnBaja = new RadioButton();
-            rbtnActivo = new RadioButton();
             label1 = new Label();
             panel2 = new Panel();
             flowLayoutPanel1 = new FlowLayoutPanel();
@@ -47,7 +45,6 @@
             statusDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
             usuarioBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
-            groupBox1.SuspendLayout();
             panel2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
@@ -56,48 +53,12 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(groupBox1);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 80);
             panel1.TabIndex = 0;
-            // 
-            // groupBox1
-            // 
-            groupBox1.Controls.Add(rbtnBaja);
-            groupBox1.Controls.Add(rbtnActivo);
-            groupBox1.Location = new Point(260, 22);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(174, 43);
-            groupBox1.TabIndex = 1;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Ver Usuarios";
-            // 
-            // rbtnBaja
-            // 
-            rbtnBaja.AutoSize = true;
-            rbtnBaja.Location = new Point(102, 18);
-            rbtnBaja.Name = "rbtnBaja";
-            rbtnBaja.Size = new Size(47, 19);
-            rbtnBaja.TabIndex = 1;
-            rbtnBaja.Text = "Baja";
-            rbtnBaja.UseVisualStyleBackColor = true;
-            rbtnBaja.CheckedChanged += rbtnBaja_CheckedChanged;
-            // 
-            // rbtnActivo
-            // 
-            rbtnActivo.AutoSize = true;
-            rbtnActivo.Checked = true;
-            rbtnActivo.Location = new Point(6, 18);
-            rbtnActivo.Name = "rbtnActivo";
-            rbtnActivo.Size = new Size(64, 19);
-            rbtnActivo.TabIndex = 0;
-            rbtnActivo.TabStop = true;
-            rbtnActivo.Text = "Activos";
-            rbtnActivo.UseVisualStyleBackColor = true;
-            rbtnActivo.CheckedChanged += rbtnActivo_CheckedChanged;
             // 
             // label1
             // 
@@ -194,13 +155,23 @@
             dgvUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvUsuarios.Columns.AddRange(new DataGridViewColumn[] { usuarioIdDataGridViewTextBoxColumn, nombreDataGridViewTextBoxColumn, correoDataGridViewTextBoxColumn, tipoDataGridViewTextBoxColumn, statusDataGridViewCheckBoxColumn });
             dgvUsuarios.DataSource = usuarioBindingSource;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(192, 192, 255);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dgvUsuarios.DefaultCellStyle = dataGridViewCellStyle1;
             dgvUsuarios.Location = new Point(24, 174);
             dgvUsuarios.MultiSelect = false;
             dgvUsuarios.Name = "dgvUsuarios";
             dgvUsuarios.ReadOnly = true;
             dgvUsuarios.RowTemplate.Height = 25;
+            dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvUsuarios.Size = new Size(764, 264);
             dgvUsuarios.TabIndex = 2;
+            dgvUsuarios.CellClick += dgvUsuarios_CellClick;
             // 
             // usuarioIdDataGridViewTextBoxColumn
             // 
@@ -256,8 +227,6 @@
             FormClosed += Lista_Usuarios_FormClosed;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
             panel2.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);
             flowLayoutPanel1.PerformLayout();
@@ -277,9 +246,6 @@
         private Button btnEliminar;
         private DataGridView dgvUsuarios;
         private BindingSource usuarioBindingSource;
-        private GroupBox groupBox1;
-        private RadioButton rbtnBaja;
-        private RadioButton rbtnActivo;
         private DataGridViewTextBoxColumn usuarioIdDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn correoDataGridViewTextBoxColumn;

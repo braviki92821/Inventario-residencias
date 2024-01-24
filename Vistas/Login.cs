@@ -1,5 +1,6 @@
 ﻿using Inventario_residencias.Modelos;
 using Inventario_residencias.Repositorio;
+using Inventario_residencias.Vistas.Usuario;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -35,6 +36,9 @@ namespace Inventario_residencias
                 else if (Session.tipo == "Usuario")
                 {
                     MessageBox.Show("Hola" + Session.nombre);
+                    Menu_Usuario menu_Usuario = new Menu_Usuario();
+                    menu_Usuario.Show();
+                    this.Hide();
                 }
 
             }

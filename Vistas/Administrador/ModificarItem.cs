@@ -32,6 +32,7 @@ namespace Inventario_residencias.Vistas.Administrador
             if (inventarioRepositorio.actualizarItem(Inventario))
             {
                 MessageBox.Show("Cambios Guardados Correctamente");
+                this.Close();
                 return;
             }
             MessageBox.Show("Error al guardar");

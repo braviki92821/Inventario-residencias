@@ -25,6 +25,8 @@ namespace Inventario_residencias.Interfaces
 
         Usuario obtenerUsuarioPorCorreo(string correo);
 
+        Usuario obtenerUsuarioPorId(int usuarioId);
+
         bool login(Usuario usuario, string password);
 
         bool correoRegistrado(string correo);

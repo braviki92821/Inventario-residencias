@@ -19,7 +19,7 @@ namespace Inventario_residencias.Interfaces
 
         int cantidadRegistros();
 
-        bool eliminarExistenciaItem(string numeroFisico);
+        bool eliminarExistenciaItem(string numeroFisico, bool existencia);
 
         bool numeroFisico(string numeroFisico);
     }

@@ -7,8 +7,9 @@ namespace Inventario_residencias.Vistas.Administrador
     {
         List<Inventario> inventarios = new List<Inventario>();
         InventarioRepositorio inventarioRepositorio = new InventarioRepositorio();
-        private Inventario Inventario;
+        //private Inventario Inventario;
         string registro = "";
+        bool existencia = false;
         double total;
         double paginas;
         int paginaActual = 1;
@@ -17,7 +18,6 @@ namespace Inventario_residencias.Vistas.Administrador
         public Lista_Inventario()
         {
             InitializeComponent();
-            Inventario = new Inventario();
             cargarInventario(offSet);
             txtPaginaActual.Text = paginaActual.ToString();
         }
@@ -53,6 +53,7 @@ namespace Inventario_residencias.Vistas.Administrador
         private void dgvInventario_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             registro = dgvInventario.CurrentRow.Cells[0].Value.ToString();
+            existencia = dgvInventario.CurrentRow.Cells[7].Value.Equals(true) ? true : false;
         }
 
         private void txtNumFisico_TextChanged(object sender, EventArgs e)
@@ -92,7 +93,7 @@ namespace Inventario_residencias.Vistas.Administrador
                 return;
             }
 
-            string mensaje = inventarioRepositorio.eliminarExistenciaItem(registro) ? "Existencia del Item actualizada" : "Error al actualizar";
+            string mensaje = inventarioRepositorio.eliminarExistenciaItem(registro, !existencia) ? "Existencia del Item actualizada" : "Error al actualizar";
             MessageBox.Show(mensaje);
             cargarInventario(offSet);
         }

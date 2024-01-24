@@ -268,9 +268,9 @@
             btnEliminar.Location = new Point(541, 3);
             btnEliminar.Margin = new Padding(25, 3, 3, 3);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(230, 31);
+            btnEliminar.Size = new Size(245, 31);
             btnEliminar.TabIndex = 3;
-            btnEliminar.Text = "Eliminar";
+            btnEliminar.Text = "Cambiar estado de existencias";
             btnEliminar.TextImageRelation = TextImageRelation.TextBeforeImage;
             btnEliminar.UseVisualStyleBackColor = false;
             btnEliminar.Click += btnEliminar_Click;

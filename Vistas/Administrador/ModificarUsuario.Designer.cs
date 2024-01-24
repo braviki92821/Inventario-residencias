@@ -87,10 +87,10 @@
             cbxTipo.Size = new Size(221, 23);
             cbxTipo.TabIndex = 60;
             cbxTipo.Text = "-----Seleccione-----";
-            cbxTipo.SelectedIndexChanged += cbxTipo_SelectedIndexChanged;
             // 
             // txtCorreo
             // 
+            txtCorreo.Enabled = false;
             txtCorreo.Location = new Point(27, 231);
             txtCorreo.Name = "txtCorreo";
             txtCorreo.Size = new Size(221, 23);
@@ -125,6 +125,7 @@
             // 
             // txtUsuario
             // 
+            txtUsuario.Enabled = false;
             txtUsuario.Location = new Point(27, 104);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(221, 23);

@@ -121,13 +121,17 @@
             // 
             // btnGuardar
             // 
+            btnGuardar.BackColor = Color.MediumSeaGreen;
+            btnGuardar.FlatAppearance.BorderSize = 2;
+            btnGuardar.FlatAppearance.MouseDownBackColor = Color.FromArgb(128, 255, 128);
+            btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             btnGuardar.Location = new Point(299, 392);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(271, 36);
             btnGuardar.TabIndex = 29;
             btnGuardar.Text = "Guardar Cambios";
-            btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.UseVisualStyleBackColor = false;
             btnGuardar.Click += btnGuardar_Click;
             // 
             // label8

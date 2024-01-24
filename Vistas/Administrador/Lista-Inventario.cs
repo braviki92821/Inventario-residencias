@@ -35,7 +35,7 @@ namespace Inventario_residencias.Vistas.Administrador
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             NuevoItem nuevoItem = new NuevoItem();
-            nuevoItem.Show();
+            nuevoItem.ShowDialog();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -111,6 +111,10 @@ namespace Inventario_residencias.Vistas.Administrador
         private void btnRecargar_Click(object sender, EventArgs e)
         {
             cargarInventario(offSet = 0);
+        }
+
+        private void Lista_Inventario_FormClosed(object sender, FormClosedEventArgs e)
+        {
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Inventario_residencias
             InitializeComponent();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
             if (!validaciones())
             {

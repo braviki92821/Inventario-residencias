@@ -1,10 +1,5 @@
 ﻿using Inventario_residencias.modelos;
 using Inventario_residencias.Modelos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Inventario_residencias.Interfaces
 {
@@ -25,5 +20,7 @@ namespace Inventario_residencias.Interfaces
         int cantidadRegistros();
 
         bool eliminarExistenciaItem(string numeroFisico);
+
+        bool numeroFisico(string numeroFisico);
     }
 }

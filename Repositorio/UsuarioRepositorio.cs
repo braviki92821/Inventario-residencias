@@ -1,4 +1,5 @@
-﻿using Inventario_residencias.Interfaces;
+﻿using Inventario_residencias.Exceptions;
+using Inventario_residencias.Interfaces;
 using Inventario_residencias.modelos;
 using Inventario_residencias.Modelos;
 using MySql.Data.MySqlClient;
@@ -7,20 +8,19 @@ using System.Drawing.Imaging;
 
 namespace Inventario_residencias.Repositorio
 {
-    public class UsuarioRepositorio: IUsuarioRepositorio
+    public class UsuarioRepositorio: ConexionMysql, IUsuarioRepositorio
     {
-        private ConexionMysql conexionMysql;
+
 
         public UsuarioRepositorio()
         {
-            conexionMysql = new ConexionMysql();
         }
 
         public bool agregarUsuario(Usuario usuario)
         {
             string query = "INSERT INTO usuarios(nombre, correo, password, tipo, estatus, imagen)" +
             " Values(@nombre, @correo, @password, @tipo, @estatus, @imagen)";
-            MySqlCommand command = new MySqlCommand(query, conexionMysql.sqlConnection());
+            MySqlCommand command = new MySqlCommand(query, sqlConnection());
             command.Parameters.Add(new MySqlParameter("@nombre", usuario.nombre));
             command.Parameters.Add(new MySqlParameter("@correo", usuario.correo));
             command.Parameters.Add(new MySqlParameter("@password", usuario.password));
@@ -33,12 +33,25 @@ namespace Inventario_residencias.Repositorio
 
         public bool correoRegistrado(string correo)
         {
-            string query = "SELECT * FROM usuarios WHERE correo='" + correo + "' ";
-            MySqlDataReader mReader = null;
+            string query = "SELECT correo usuarios WHERE correo='" + correo + "' ";
+            bool rows = false;
             MySqlCommand mySqlCommand = new MySqlCommand(query);
-            mySqlCommand.Connection = conexionMysql.sqlConnection(); 
-            bool rows = mySqlCommand.ExecuteReader().Read();
-            mySqlCommand.Connection.Close();
+
+            try
+            {
+                mySqlCommand.Connection = sqlConnection();
+                rows = mySqlCommand.ExecuteReader().Read();
+                CloseCommand(mySqlCommand);
+            }
+            catch (Exception ex)
+            {
+                CloseCommand(mySqlCommand);
+                throw new InventarioException(ex.Message);
+            }
+            finally
+            {
+                sqlConnection().Close();
+            }
             return rows;
 
         }
@@ -46,7 +59,7 @@ namespace Inventario_residencias.Repositorio
         public bool eliminarUsuario(int usuarioId)
         {
             string query = "UPDATE usuarios SET estatus= @estatus WHERE usuarioId=@usuarioId";
-            MySqlCommand command = new MySqlCommand(query, conexionMysql.sqlConnection());
+            MySqlCommand command = new MySqlCommand(query, sqlConnection());
             command.Parameters.Add(new MySqlParameter("@estatus", false));
             return command.ExecuteNonQuery() > 0;
         }
@@ -93,7 +106,7 @@ namespace Inventario_residencias.Repositorio
         {
             string query = "UPDATE usuarios SET nombre= @nombre, correo= @correo, tipo=@tipo, imagen=@imagen WHERE usuarioId=@usuarioId";
 
-            MySqlCommand command = new MySqlCommand(query, conexionMysql.sqlConnection());
+            MySqlCommand command = new MySqlCommand(query, sqlConnection());
 
             command.Parameters.Add(new MySqlParameter("@nombre", usuario.nombre));
             command.Parameters.Add(new MySqlParameter("@correo", usuario.correo));
@@ -106,13 +119,12 @@ namespace Inventario_residencias.Repositorio
         public Usuario obtenerUsuarioPorCorreo(string correo)
         {
             string query = "SELECT * FROM usuarios WHERE correo='" + correo + "' ";
-            MySqlDataReader mReader = null;
             Usuario usuario = null;
-
+            MySqlDataReader mReader = null;
             try
             {
                 MySqlCommand mySqlCommand = new MySqlCommand(query);
-                mySqlCommand.Connection = conexionMysql.sqlConnection();
+                mySqlCommand.Connection = sqlConnection();
                 mReader = mySqlCommand.ExecuteReader();
 
                 usuario = new Usuario();
@@ -125,15 +137,19 @@ namespace Inventario_residencias.Repositorio
                     usuario.tipo = mReader.GetString("tipo");
                     usuario.status = mReader.GetBoolean("estatus");
                 }
-                mReader.Close();
+                mySqlCommand.Connection.Close();
             }
             catch (Exception ex)
             {
-                throw;
+                throw new InventarioException(ex.Message); 
+            }
+            finally
+            {
+                sqlConnection().Close();
+                CloseReader(mReader);
             }
 
             return usuario;
-
         }
 
         public List<Usuario> obtenerUsuarios(bool estatus, int usuarioId)
@@ -149,7 +165,7 @@ namespace Inventario_residencias.Repositorio
             try
             {
                 MySqlCommand mySqlCommand = new MySqlCommand(query);
-                mySqlCommand.Connection = conexionMysql.sqlConnection();
+                mySqlCommand.Connection = sqlConnection();
                 mReader = mySqlCommand.ExecuteReader();
 
                 Usuario usuario = null;
@@ -162,15 +178,19 @@ namespace Inventario_residencias.Repositorio
                     usuario.password = mReader.GetString("password");
                     usuario.tipo = mReader.GetString("tipo");
                     usuario.status = mReader.GetBoolean("estatus");
-                    usuario.imagen = (byte[])mReader.GetValue(6);
 
                     usuarios.Add(usuario);
                 }
-                mReader.Close();
+                mySqlCommand.Connection.Close();
             }
             catch (Exception ex)
-            {
+            {              
                 throw;
+            }
+            finally
+            {
+                sqlConnection().Close();
+                mReader.Close();
             }
 
             return usuarios;

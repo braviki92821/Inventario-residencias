@@ -1,4 +1,6 @@
 ﻿
+using Inventario_residencias.Modelos;
+
 namespace Inventario_residencias.Vistas.Usuario
 {
     public partial class Menu_Usuario : Form
@@ -31,7 +33,12 @@ namespace Inventario_residencias.Vistas.Usuario
 
         private void btnCerrarSesión_Click(object sender, EventArgs e)
         {
-
+            Session.usuarioId = 0;
+            Session.nombre = null;
+            Session.tipo = null;
+            Login login = new Login();
+            login.Show();
+            this.Hide();
         }
     }
 }

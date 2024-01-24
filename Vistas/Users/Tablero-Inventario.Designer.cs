@@ -31,10 +31,6 @@
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            txtNumeroFisico = new TextBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
             dgvTablero = new DataGridView();
             panel3 = new Panel();
             txtPaginaActual = new TextBox();
@@ -43,9 +39,17 @@
             txtTotalPaginas = new TextBox();
             btnSiguiente = new Button();
             label2 = new Label();
+            textBox3 = new TextBox();
+            label4 = new Label();
+            btnBuscarNumero = new Button();
+            NumeroFisico = new DataGridViewTextBoxColumn();
+            Descripcion = new DataGridViewTextBoxColumn();
+            Tablero = new DataGridViewTextBoxColumn();
+            Columna = new DataGridViewTextBoxColumn();
+            Ubicacion = new DataGridViewTextBoxColumn();
+            Existencia = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTablero).BeginInit();
             panel3.SuspendLayout();
             SuspendLayout();
@@ -71,69 +75,30 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(flowLayoutPanel1);
+            panel2.Controls.Add(btnBuscarNumero);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(textBox3);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 61);
             panel2.Name = "panel2";
-            panel2.Size = new Size(800, 86);
+            panel2.Size = new Size(800, 66);
             panel2.TabIndex = 1;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Controls.Add(txtNumeroFisico);
-            flowLayoutPanel1.Controls.Add(textBox1);
-            flowLayoutPanel1.Controls.Add(textBox2);
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(800, 86);
-            flowLayoutPanel1.TabIndex = 0;
-            // 
-            // txtNumeroFisico
-            // 
-            txtNumeroFisico.Cursor = Cursors.IBeam;
-            txtNumeroFisico.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNumeroFisico.Location = new Point(20, 3);
-            txtNumeroFisico.Margin = new Padding(20, 3, 3, 3);
-            txtNumeroFisico.Multiline = true;
-            txtNumeroFisico.Name = "txtNumeroFisico";
-            txtNumeroFisico.PlaceholderText = "Buscar por Numero Fisico";
-            txtNumeroFisico.Size = new Size(205, 29);
-            txtNumeroFisico.TabIndex = 0;
-            txtNumeroFisico.TextAlign = HorizontalAlignment.Center;
-            // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(248, 3);
-            textBox1.Margin = new Padding(20, 3, 3, 3);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Buscar por Descripción";
-            textBox1.Size = new Size(205, 29);
-            textBox1.TabIndex = 1;
-            textBox1.TextAlign = HorizontalAlignment.Center;
-            // 
-            // textBox2
-            // 
-            textBox2.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox2.Location = new Point(476, 3);
-            textBox2.Margin = new Padding(20, 3, 3, 3);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "Buscar Por Ubicación";
-            textBox2.Size = new Size(205, 29);
-            textBox2.TabIndex = 2;
-            textBox2.TextAlign = HorizontalAlignment.Center;
             // 
             // dgvTablero
             // 
+            dgvTablero.AllowUserToAddRows = false;
+            dgvTablero.AllowUserToDeleteRows = false;
             dgvTablero.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvTablero.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvTablero.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             dgvTablero.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTablero.Location = new Point(20, 168);
+            dgvTablero.Columns.AddRange(new DataGridViewColumn[] { NumeroFisico, Descripcion, Tablero, Columna, Ubicacion, Existencia });
+            dgvTablero.Location = new Point(20, 156);
+            dgvTablero.MultiSelect = false;
             dgvTablero.Name = "dgvTablero";
+            dgvTablero.ReadOnly = true;
             dgvTablero.RowTemplate.Height = 25;
-            dgvTablero.Size = new Size(765, 183);
+            dgvTablero.Size = new Size(765, 195);
             dgvTablero.TabIndex = 2;
             // 
             // panel3
@@ -214,6 +179,78 @@
             label2.TabIndex = 12;
             label2.Text = "Pagina";
             // 
+            // textBox3
+            // 
+            textBox3.Cursor = Cursors.IBeam;
+            textBox3.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox3.Location = new Point(20, 21);
+            textBox3.Margin = new Padding(20, 3, 3, 3);
+            textBox3.Multiline = true;
+            textBox3.Name = "textBox3";
+            textBox3.PlaceholderText = "Buscar por Numero Fisico";
+            textBox3.Size = new Size(229, 29);
+            textBox3.TabIndex = 4;
+            textBox3.TextAlign = HorizontalAlignment.Center;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(23, 3);
+            label4.Name = "label4";
+            label4.Size = new Size(0, 15);
+            label4.TabIndex = 7;
+            // 
+            // btnBuscarNumero
+            // 
+            btnBuscarNumero.BackColor = Color.RoyalBlue;
+            btnBuscarNumero.FlatAppearance.BorderSize = 2;
+            btnBuscarNumero.FlatAppearance.MouseDownBackColor = Color.FromArgb(128, 128, 255);
+            btnBuscarNumero.FlatStyle = FlatStyle.Flat;
+            btnBuscarNumero.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnBuscarNumero.Location = new Point(262, 21);
+            btnBuscarNumero.Margin = new Padding(10, 3, 3, 3);
+            btnBuscarNumero.Name = "btnBuscarNumero";
+            btnBuscarNumero.Size = new Size(115, 29);
+            btnBuscarNumero.TabIndex = 8;
+            btnBuscarNumero.Text = "Buscar";
+            btnBuscarNumero.UseVisualStyleBackColor = false;
+            // 
+            // NumeroFisico
+            // 
+            NumeroFisico.HeaderText = "Numero Fisico";
+            NumeroFisico.Name = "NumeroFisico";
+            NumeroFisico.ReadOnly = true;
+            // 
+            // Descripcion
+            // 
+            Descripcion.HeaderText = "Descripcion";
+            Descripcion.Name = "Descripcion";
+            Descripcion.ReadOnly = true;
+            // 
+            // Tablero
+            // 
+            Tablero.HeaderText = "Tablero";
+            Tablero.Name = "Tablero";
+            Tablero.ReadOnly = true;
+            // 
+            // Columna
+            // 
+            Columna.HeaderText = "Columna";
+            Columna.Name = "Columna";
+            Columna.ReadOnly = true;
+            // 
+            // Ubicacion
+            // 
+            Ubicacion.HeaderText = "Ubicacion";
+            Ubicacion.Name = "Ubicacion";
+            Ubicacion.ReadOnly = true;
+            // 
+            // Existencia
+            // 
+            Existencia.HeaderText = "Existencia";
+            Existencia.Name = "Existencia";
+            Existencia.ReadOnly = true;
+            // 
             // Tablero_Inventario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -231,8 +268,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
-            flowLayoutPanel1.ResumeLayout(false);
-            flowLayoutPanel1.PerformLayout();
+            panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTablero).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
@@ -244,10 +280,6 @@
         private Panel panel1;
         private Label label1;
         private Panel panel2;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private TextBox txtNumeroFisico;
-        private TextBox textBox1;
-        private TextBox textBox2;
         private DataGridView dgvTablero;
         private Panel panel3;
         private TextBox txtPaginaActual;
@@ -256,5 +288,14 @@
         private TextBox txtTotalPaginas;
         private Button btnSiguiente;
         private Label label2;
+        private Button btnBuscarNumero;
+        private Label label4;
+        private TextBox textBox3;
+        private DataGridViewTextBoxColumn NumeroFisico;
+        private DataGridViewTextBoxColumn Descripcion;
+        private DataGridViewTextBoxColumn Tablero;
+        private DataGridViewTextBoxColumn Columna;
+        private DataGridViewTextBoxColumn Ubicacion;
+        private DataGridViewTextBoxColumn Existencia;
     }
 }

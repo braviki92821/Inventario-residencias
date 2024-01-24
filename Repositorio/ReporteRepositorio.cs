@@ -16,13 +16,11 @@ using System.Drawing.Imaging;
 
 namespace Inventario_residencias.Repositorio
 {
-    public class ReporteRepositorio : IReporteRepositorio
+    public class ReporteRepositorio : ConexionMysql, IReporteRepositorio
     {
-        private ConexionMysql conexionMysql;
 
         public ReporteRepositorio()
         {
-            conexionMysql = new ConexionMysql();
         }
 
         public void GenerarReporteGeneral(string[] colums, float[] tamanios, string campos)
@@ -37,7 +35,7 @@ namespace Inventario_residencias.Repositorio
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 MySqlCommand mySqlCommand = new MySqlCommand(query);
-                mySqlCommand.Connection = conexionMysql.sqlConnection();
+                mySqlCommand.Connection = sqlConnection();
                 mReader = mySqlCommand.ExecuteReader();
                 PdfWriter pdfWriter = new PdfWriter("Reporte.pdf");
                 PdfDocument pdf = new PdfDocument(pdfWriter);
@@ -55,26 +53,41 @@ namespace Inventario_residencias.Repositorio
                 {
                     tabla.AddHeaderCell(new Cell().Add(new Paragraph(columna).SetFont(fontColumnas)));
                 }
-                while (mReader.Read())
+
+                try
                 {
-                    if (colums.Contains("numeroFisico"))
-                        tabla.AddCell(new Cell().Add(new Paragraph(mReader["numeroFisico"].ToString()).SetFont(fontContenido)));
-                    if (colums.Contains("descripcion"))
-                        tabla.AddCell(new Cell().Add(new Paragraph(mReader["descripcion"].ToString()).SetFont(fontContenido)));
-                    if (colums.Contains("tablero"))
-                        tabla.AddCell(new Cell().Add(new Paragraph(mReader["tablero"].ToString()).SetFont(fontContenido)));
-                    if (colums.Contains("columna"))
-                        tabla.AddCell(new Cell().Add(new Paragraph(mReader["columna"].ToString()).SetFont(fontContenido)));
-                    if (colums.Contains("fila"))
-                        tabla.AddCell(new Cell().Add(new Paragraph(mReader["fila"].ToString()).SetFont(fontContenido)));
-                    if (colums.Contains("ubicacion"))
-                        tabla.AddCell(new Cell().Add(new Paragraph(mReader["ubicacion"].ToString()).SetFont(fontContenido)));
-                    if (colums.Contains("existencia"))
-                        tabla.AddCell(new Cell().Add(new Paragraph(mReader["existencia"].ToString()).SetFont(fontContenido)));
-                    if (colums.Contains("fechaCompra"))
-                        tabla.AddCell(new Cell().Add(new Paragraph(mReader["fechaCompra"].ToString()).SetFont(fontContenido)));
+                    while (mReader.Read())
+                    {
+                        if (colums.Contains("numeroFisico"))
+                            tabla.AddCell(new Cell().Add(new Paragraph(mReader["numeroFisico"].ToString()).SetFont(fontContenido)));
+                        if (colums.Contains("descripcion"))
+                            tabla.AddCell(new Cell().Add(new Paragraph(mReader["descripcion"].ToString()).SetFont(fontContenido)));
+                        if (colums.Contains("tablero"))
+                            tabla.AddCell(new Cell().Add(new Paragraph(mReader["tablero"].ToString()).SetFont(fontContenido)));
+                        if (colums.Contains("columna"))
+                            tabla.AddCell(new Cell().Add(new Paragraph(mReader["columna"].ToString()).SetFont(fontContenido)));
+                        if (colums.Contains("fila"))
+                            tabla.AddCell(new Cell().Add(new Paragraph(mReader["fila"].ToString()).SetFont(fontContenido)));
+                        if (colums.Contains("ubicacion"))
+                            tabla.AddCell(new Cell().Add(new Paragraph(mReader["ubicacion"].ToString()).SetFont(fontContenido)));
+                        if (colums.Contains("existencia"))
+                            tabla.AddCell(new Cell().Add(new Paragraph(mReader["existencia"].ToString()).SetFont(fontContenido)));
+                        if (colums.Contains("fechaCompra"))
+                            tabla.AddCell(new Cell().Add(new Paragraph(mReader["fechaCompra"].ToString()).SetFont(fontContenido)));
+                    }
                 }
-                mReader.Close();
+                catch(MySqlException ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    throw;
+                }
+                finally
+                {
+                    CloseCommand(mySqlCommand);
+                    sqlConnection().Close();
+                    CloseReader(mReader);
+                }
+
                 document.Add(tabla);
                 document.Close();
 
@@ -124,7 +137,7 @@ namespace Inventario_residencias.Repositorio
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 MySqlCommand mySqlCommand = new MySqlCommand(query);
-                mySqlCommand.Connection = conexionMysql.sqlConnection();
+                mySqlCommand.Connection = sqlConnection();
                 mReader = mySqlCommand.ExecuteReader();
                 PdfWriter pdfWriter = new PdfWriter("Reporte.pdf");
                 PdfDocument pdf = new PdfDocument(pdfWriter);
@@ -142,26 +155,40 @@ namespace Inventario_residencias.Repositorio
                 {
                     tabla.AddHeaderCell(new Cell().Add(new Paragraph(columna).SetFont(fontColumnas)));
                 }
-                while (mReader.Read())
+
+                try
                 {
-                    if (colums.Contains("numeroFisico"))
-                        tabla.AddCell(new Cell().Add(new Paragraph(mReader["numeroFisico"].ToString()).SetFont(fontContenido)));
-                    if (colums.Contains("descripcion"))
-                        tabla.AddCell(new Cell().Add(new Paragraph(mReader["descripcion"].ToString()).SetFont(fontContenido)));
-                    if (colums.Contains("tablero"))
-                        tabla.AddCell(new Cell().Add(new Paragraph(mReader["tablero"].ToString()).SetFont(fontContenido)));
-                    if (colums.Contains("columna"))
-                        tabla.AddCell(new Cell().Add(new Paragraph(mReader["columna"].ToString()).SetFont(fontContenido)));
-                    if (colums.Contains("fila"))
-                        tabla.AddCell(new Cell().Add(new Paragraph(mReader["fila"].ToString()).SetFont(fontContenido)));
-                    if (colums.Contains("ubicacion"))
-                        tabla.AddCell(new Cell().Add(new Paragraph(mReader["ubicacion"].ToString()).SetFont(fontContenido)));
-                    if (colums.Contains("existencia"))
-                        tabla.AddCell(new Cell().Add(new Paragraph(mReader["existencia"].ToString()).SetFont(fontContenido)));
-                    if (colums.Contains("fechaCompra"))
-                        tabla.AddCell(new Cell().Add(new Paragraph(mReader["fechaCompra"].ToString()).SetFont(fontContenido)));
+                    while (mReader.Read())
+                    {
+                        if (colums.Contains("numeroFisico"))
+                            tabla.AddCell(new Cell().Add(new Paragraph(mReader["numeroFisico"].ToString()).SetFont(fontContenido)));
+                        if (colums.Contains("descripcion"))
+                            tabla.AddCell(new Cell().Add(new Paragraph(mReader["descripcion"].ToString()).SetFont(fontContenido)));
+                        if (colums.Contains("tablero"))
+                            tabla.AddCell(new Cell().Add(new Paragraph(mReader["tablero"].ToString()).SetFont(fontContenido)));
+                        if (colums.Contains("columna"))
+                            tabla.AddCell(new Cell().Add(new Paragraph(mReader["columna"].ToString()).SetFont(fontContenido)));
+                        if (colums.Contains("fila"))
+                            tabla.AddCell(new Cell().Add(new Paragraph(mReader["fila"].ToString()).SetFont(fontContenido)));
+                        if (colums.Contains("ubicacion"))
+                            tabla.AddCell(new Cell().Add(new Paragraph(mReader["ubicacion"].ToString()).SetFont(fontContenido)));
+                        if (colums.Contains("existencia"))
+                            tabla.AddCell(new Cell().Add(new Paragraph(mReader["existencia"].ToString()).SetFont(fontContenido)));
+                        if (colums.Contains("fechaCompra"))
+                            tabla.AddCell(new Cell().Add(new Paragraph(mReader["fechaCompra"].ToString()).SetFont(fontContenido)));
+                    }
                 }
-                mReader.Close();
+                catch(MySqlException ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                finally
+                {
+                    CloseCommand(mySqlCommand);
+                    sqlConnection().Close();
+                    CloseReader(mReader);              
+                }
+
                 document.Add(tabla);
                 document.Close();
 

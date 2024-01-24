@@ -253,6 +253,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "Lista_Usuarios";
             Text = "Lista_Usuarios";
+            FormClosed += Lista_Usuarios_FormClosed;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             groupBox1.ResumeLayout(false);

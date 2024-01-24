@@ -1,3 +1,5 @@
+using Inventario_residencias.Vistas.Administrador;
+
 namespace Inventario_residencias
 {
     internal static class Program

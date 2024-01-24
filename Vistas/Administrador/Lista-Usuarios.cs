@@ -8,7 +8,6 @@ namespace Inventario_residencias.Vistas.Administrador
     {
         List<modelos.Usuario> usuarios = new List<modelos.Usuario>();
         private UsuarioRepositorio UsuarioRepositorio = new UsuarioRepositorio();
-
         public Lista_Usuarios()
         {
             InitializeComponent();
@@ -46,6 +45,11 @@ namespace Inventario_residencias.Vistas.Administrador
             usuarios.Clear();
             usuarios = UsuarioRepositorio.obtenerUsuarios(true, Session.usuarioId);
             dgvUsuarios.DataSource = usuarios;
+        }
+
+        private void Lista_Usuarios_FormClosed(object sender, FormClosedEventArgs e)
+        {
+           // ConexionMysql.sqlConnection().Close();
         }
     }
 }

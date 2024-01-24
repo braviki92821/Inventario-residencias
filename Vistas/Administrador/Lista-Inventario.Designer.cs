@@ -400,6 +400,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "Lista_Inventario";
             Text = "Lista_Inventario";
+            FormClosed += Lista_Inventario_FormClosed;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvInventario).EndInit();

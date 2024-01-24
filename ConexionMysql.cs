@@ -1,37 +1,57 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Inventario_residencias
 {
-    internal class ConexionMysql : Conexion
+    public class ConexionMysql
     {
         private MySqlConnection connection;
         private string cadenaConexion;
 
         public ConexionMysql()
         {
-            cadenaConexion = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
-            connection = new MySqlConnection(cadenaConexion);
         }
 
         public MySqlConnection sqlConnection()
         {
             try
             {
-                if (connection.State != System.Data.ConnectionState.Open)
-                {
-                    connection.Open();
-                }
+                cadenaConexion = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
+                connection = new MySqlConnection(cadenaConexion);
+                connection.Open();
+
             }catch(MySqlException ex)
             {
                 MessageBox.Show(ex.ToString());
+                throw;
             }
             return connection;
+        }
+
+        public void CloseCommand(MySqlCommand mySqlCommand)
+        {
+            try
+            {
+                mySqlCommand.Connection.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw;
+            }
+        }
+
+        public void CloseReader(MySqlDataReader mReader)
+        {
+            try
+            {
+                mReader.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw;
+            }
         }
     }
 }

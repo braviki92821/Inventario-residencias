@@ -1,4 +1,5 @@
-﻿using Inventario_residencias.modelos;
+﻿using Inventario_residencias.Interfaces;
+using Inventario_residencias.modelos;
 using Inventario_residencias.Modelos;
 using Inventario_residencias.Repositorio;
 using System.Drawing.Imaging;
@@ -10,6 +11,7 @@ namespace Inventario_residencias
     {
         private Inventario Inventario;
         private InventarioRepositorio inventarioRepositorio;
+        private List<Tablero> tableros = new List<Tablero>();
 
         public NuevoItem()
         {
@@ -26,6 +28,12 @@ namespace Inventario_residencias
                 return;
             }
 
+            if (inventarioRepositorio.numeroFisico(txtNumeroFisico.Text))
+            {
+                MessageBox.Show("Este numero Fisico esta registrado");
+                return;
+            }
+
             Inventario.numeroFisicoId = txtNumeroFisico.Text;
             Inventario.descripcion = txtDescripcion.Text;
             Inventario.tablero = int.Parse(cbxTablero.SelectedValue.ToString());
@@ -35,6 +43,7 @@ namespace Inventario_residencias
             Inventario.imagen = inventarioRepositorio.ImageToByteArray(pbxImagen.Image);
             Inventario.existencia = true;
             Inventario.fecha = dtpFecha.Text;
+
             if (inventarioRepositorio.agregarItem(Inventario))
             {
                 MessageBox.Show("Agregado Correctamente");
@@ -98,9 +107,11 @@ namespace Inventario_residencias
             return true;
         }
 
-        private void cargarTableros()
+        private async void cargarTableros()
         {
-            cbxTablero.DataSource = inventarioRepositorio.obtenerTableros();
+            tableros.Clear();
+            tableros = inventarioRepositorio.obtenerTableros();
+            cbxTablero.DataSource = tableros;
         }
 
         private void limpiarCampos()

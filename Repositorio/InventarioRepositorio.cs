@@ -49,9 +49,9 @@ namespace Inventario_residencias.Repositorio
         public bool agregarItem(Inventario inventario) 
         {
             string query = "INSERT INTO inventario(numeroFisico, descripcion, tablero, columna, fila, ubicacion, imagen, existencia, fechaCompra)" +
-                " Values(@numeroFisico, @descripcion, @tablero, @columna, @fila, @ubicacion, @imagen, @existencia, @fechaCompra) ";
+                " VALUES(@numeroFisico, @descripcion, @tablero, @columna, @fila, @ubicacion, @imagen, @existencia, @fechaCompra) ";
             bool rows = false;
-                MySqlCommand command = new MySqlCommand(query, sqlConnection());
+            MySqlCommand command = new MySqlCommand(query, sqlConnection());
             try
             {
                 command.Parameters.Add(new MySqlParameter("@numeroFisico", inventario.numeroFisicoId));
@@ -169,6 +169,29 @@ namespace Inventario_residencias.Repositorio
                 sqlConnection().Close();
             }
 
+            return rows;
+        }
+
+        public bool eliminarItem(string numeroFisico)
+        {
+            string query = "DELETE FROM inventario WHERE numeroFisico=@numeroFisico";
+            bool rows = false;
+            MySqlCommand command = new MySqlCommand(query, sqlConnection());
+            try
+            {
+                command.Parameters.Add(new MySqlParameter("@numeroFisico", numeroFisico));
+                rows = command.ExecuteNonQuery() > 0;
+                CloseCommand(command);
+            }
+            catch(MySqlException ex)
+            {
+                CloseCommand(command);
+                throw new InventarioException(ex.ToString());
+            }
+            finally
+            {
+                sqlConnection().Close();
+            }
             return rows;
         }
 

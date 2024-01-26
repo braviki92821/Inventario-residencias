@@ -58,6 +58,7 @@ namespace Inventario_residencias.Vistas.Usuario
                 return;
             }
             Reportar reportar = new Reportar();
+            reportar.numeroFisico(registro);
             reportar.ShowDialog();
         }
 

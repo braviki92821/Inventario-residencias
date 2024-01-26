@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             panel1 = new Panel();
             btnReportes = new Button();
             btnCerrarSesion = new Button();
@@ -134,6 +135,7 @@
             ClientSize = new Size(1264, 560);
             Controls.Add(panelContenedor);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(1000, 599);
             Name = "Menu";
             StartPosition = FormStartPosition.CenterScreen;

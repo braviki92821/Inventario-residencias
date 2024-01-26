@@ -32,6 +32,8 @@
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
+            btnReiniciar = new Button();
+            btnReportar = new Button();
             btnBuscarNumero = new Button();
             label4 = new Label();
             txtNumFisico = new TextBox();
@@ -52,8 +54,6 @@
             txtTotalPaginas = new TextBox();
             btnSiguiente = new Button();
             label2 = new Label();
-            btnReportar = new Button();
-            btnReiniciar = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvInventario).BeginInit();
@@ -92,6 +92,38 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(800, 66);
             panel2.TabIndex = 1;
+            // 
+            // btnReiniciar
+            // 
+            btnReiniciar.BackColor = Color.MediumSeaGreen;
+            btnReiniciar.FlatAppearance.BorderSize = 2;
+            btnReiniciar.FlatAppearance.MouseDownBackColor = Color.FromArgb(128, 255, 128);
+            btnReiniciar.FlatStyle = FlatStyle.Flat;
+            btnReiniciar.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnReiniciar.Location = new Point(518, 21);
+            btnReiniciar.Margin = new Padding(10, 3, 3, 3);
+            btnReiniciar.Name = "btnReiniciar";
+            btnReiniciar.Size = new Size(115, 29);
+            btnReiniciar.TabIndex = 10;
+            btnReiniciar.Text = "Reiniciar";
+            btnReiniciar.UseVisualStyleBackColor = false;
+            btnReiniciar.Click += btnReiniciar_Click;
+            // 
+            // btnReportar
+            // 
+            btnReportar.BackColor = Color.Brown;
+            btnReportar.FlatAppearance.BorderSize = 2;
+            btnReportar.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 128, 128);
+            btnReportar.FlatStyle = FlatStyle.Flat;
+            btnReportar.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnReportar.Location = new Point(390, 21);
+            btnReportar.Margin = new Padding(10, 3, 3, 3);
+            btnReportar.Name = "btnReportar";
+            btnReportar.Size = new Size(115, 29);
+            btnReportar.TabIndex = 9;
+            btnReportar.Text = "Reportar";
+            btnReportar.UseVisualStyleBackColor = false;
+            btnReportar.Click += btnReportar_Click;
             // 
             // btnBuscarNumero
             // 
@@ -146,6 +178,7 @@
             dgvInventario.Name = "dgvInventario";
             dgvInventario.ReadOnly = true;
             dgvInventario.RowTemplate.Height = 25;
+            dgvInventario.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvInventario.Size = new Size(765, 195);
             dgvInventario.TabIndex = 2;
             dgvInventario.CellClick += dgvInventario_CellClick;
@@ -287,38 +320,6 @@
             label2.Size = new Size(47, 14);
             label2.TabIndex = 12;
             label2.Text = "Pagina";
-            // 
-            // btnReportar
-            // 
-            btnReportar.BackColor = Color.Brown;
-            btnReportar.FlatAppearance.BorderSize = 2;
-            btnReportar.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 128, 128);
-            btnReportar.FlatStyle = FlatStyle.Flat;
-            btnReportar.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnReportar.Location = new Point(390, 21);
-            btnReportar.Margin = new Padding(10, 3, 3, 3);
-            btnReportar.Name = "btnReportar";
-            btnReportar.Size = new Size(115, 29);
-            btnReportar.TabIndex = 9;
-            btnReportar.Text = "Reportar";
-            btnReportar.UseVisualStyleBackColor = false;
-            btnReportar.Click += btnReportar_Click;
-            // 
-            // btnReiniciar
-            // 
-            btnReiniciar.BackColor = Color.MediumSeaGreen;
-            btnReiniciar.FlatAppearance.BorderSize = 2;
-            btnReiniciar.FlatAppearance.MouseDownBackColor = Color.FromArgb(128, 255, 128);
-            btnReiniciar.FlatStyle = FlatStyle.Flat;
-            btnReiniciar.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnReiniciar.Location = new Point(518, 21);
-            btnReiniciar.Margin = new Padding(10, 3, 3, 3);
-            btnReiniciar.Name = "btnReiniciar";
-            btnReiniciar.Size = new Size(115, 29);
-            btnReiniciar.TabIndex = 10;
-            btnReiniciar.Text = "Reiniciar";
-            btnReiniciar.UseVisualStyleBackColor = false;
-            btnReiniciar.Click += btnReiniciar_Click;
             // 
             // Tablero_Inventario
             // 

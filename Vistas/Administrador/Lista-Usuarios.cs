@@ -42,6 +42,13 @@ namespace Inventario_residencias.Vistas.Administrador
                 return;
             }
 
+            DialogResult result = MessageBox.Show("¿Esta seguro de eliminar a este usuario?", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if(result == DialogResult.No)
+            {
+                MessageBox.Show("Operacion Caneclada", "Cancelar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
             if (UsuarioRepositorio.eliminarUsuario(int.Parse(registro)))
             {
                 MessageBox.Show("Usuario dado de baja");

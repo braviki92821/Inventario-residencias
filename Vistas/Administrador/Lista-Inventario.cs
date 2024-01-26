@@ -85,19 +85,6 @@ namespace Inventario_residencias.Vistas.Administrador
             txtPaginaActual.Text = paginaActual.ToString();
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            if (registro.Equals(""))
-            {
-                MessageBox.Show("seleccione un registro");
-                return;
-            }
-
-            string mensaje = inventarioRepositorio.eliminarExistenciaItem(registro, !existencia) ? "Existencia del Item actualizada" : "Error al actualizar";
-            MessageBox.Show(mensaje);
-            cargarInventario(offSet);
-        }
-
         private void btnReporte_Click(object sender, EventArgs e)
         {
             Opciones_Reporte opciones_Reporte = new Opciones_Reporte();
@@ -116,6 +103,49 @@ namespace Inventario_residencias.Vistas.Administrador
 
         private void Lista_Inventario_FormClosed(object sender, FormClosedEventArgs e)
         {
+        }
+
+        private void btnEstatus_Click(object sender, EventArgs e)
+        {
+            if (registro.Equals(""))
+            {
+                MessageBox.Show("seleccione un registro");
+                return;
+            }
+            DialogResult result = MessageBox.Show("¿Cambiar Estatus?", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                MessageBox.Show("Operacion Cancelada", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            string mensaje = inventarioRepositorio.eliminarExistenciaItem(registro, !existencia) ? "Existencia del Item actualizada" : "Error al actualizar";
+            MessageBox.Show(mensaje);
+            cargarInventario(offSet);
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (registro.Equals(""))
+            {
+                MessageBox.Show("seleccione un registro");
+                return;
+            }
+
+            DialogResult result = MessageBox.Show("¿Esta seguro de eliminar este registro?","Alerta",MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.No)
+            {
+                MessageBox.Show("Operacion Cancelada","Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (inventarioRepositorio.eliminarItem(registro))
+            {
+               MessageBox.Show("Operacion realizada", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               cargarInventario(offSet);
+               return;
+            }
+
+            MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }

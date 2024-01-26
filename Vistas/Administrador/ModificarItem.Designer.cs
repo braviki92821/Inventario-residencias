@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModificarItem));
             cbxFila = new ComboBox();
             cbxColumna = new ComboBox();
             cbxTablero = new ComboBox();
@@ -241,13 +242,13 @@
             Controls.Add(txtNumeroFisico);
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MaximumSize = new Size(611, 489);
             MinimizeBox = false;
             MinimumSize = new Size(611, 489);
             Name = "ModificarItem";
             RightToLeftLayout = true;
-            ShowIcon = false;
             Text = "ModificarItem";
             TopMost = true;
             ((System.ComponentModel.ISupportInitialize)tableroBindingSource).EndInit();

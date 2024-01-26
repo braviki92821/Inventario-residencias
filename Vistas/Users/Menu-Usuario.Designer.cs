@@ -98,6 +98,7 @@
             Name = "Menu_Usuario";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Menu_Usuario";
+            Load += Menu_Usuario_Load;
             panel1.ResumeLayout(false);
             ResumeLayout(false);
         }

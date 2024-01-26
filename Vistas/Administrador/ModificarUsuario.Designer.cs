@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModificarUsuario));
             btnGuardar = new Button();
             label5 = new Label();
             pbxImagen = new PictureBox();
@@ -180,6 +181,7 @@
             Controls.Add(txtNombre);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MaximumSize = new Size(611, 406);
             MinimizeBox = false;

@@ -40,5 +40,10 @@ namespace Inventario_residencias.Vistas.Usuario
             login.Show();
             this.Hide();
         }
+
+        private void Menu_Usuario_Load(object sender, EventArgs e)
+        {
+            openChildForm(new Tablero_Inventario());
+        }
     }
 }

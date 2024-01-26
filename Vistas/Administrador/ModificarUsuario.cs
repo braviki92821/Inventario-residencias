@@ -85,14 +85,14 @@ namespace Inventario_residencias.Vistas.Administrador
 
         public void info(int usuarioId)
         {
-          Usuario = usuarioRepositorio.obtenerUsuarioPorId(usuarioId);
-          txtUsuario.Text = usuarioId.ToString();
-          txtNombre.Text = Usuario.nombre;
-          txtCorreo.Text = Usuario.correo;
-          cbxTipo.SelectedItem = Usuario.tipo;
-          MemoryStream memoryStream = new MemoryStream(Usuario.imagen);
-          Image image = Image.FromStream(memoryStream);
-          pbxImagen.Image = image;
+            Usuario = usuarioRepositorio.obtenerUsuarioPorId(usuarioId);
+            txtUsuario.Text = usuarioId.ToString();
+            txtNombre.Text = Usuario.nombre;
+            txtCorreo.Text = Usuario.correo;
+            cbxTipo.SelectedItem = Usuario.tipo;
+            MemoryStream memoryStream = new MemoryStream(Usuario.imagen);
+            Image image = Image.FromStream(memoryStream);
+            pbxImagen.Image = image;
         }
 
     }

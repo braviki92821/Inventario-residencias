@@ -48,6 +48,7 @@
             flowLayoutPanel2 = new FlowLayoutPanel();
             btnAgregar = new Button();
             btnModificar = new Button();
+            btnEstatus = new Button();
             btnEliminar = new Button();
             btnAnterior = new Button();
             btnSiguiente = new Button();
@@ -120,13 +121,13 @@
             dgvInventario.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvInventario.Columns.AddRange(new DataGridViewColumn[] { numeroFisicoIdDataGridViewTextBoxColumn, descripcionDataGridViewTextBoxColumn, dataGridViewTextBoxColumn2, columnaDataGridViewTextBoxColumn, filaDataGridViewTextBoxColumn, ubicacionDataGridViewTextBoxColumn, imagenDataGridViewImageColumn, existenciaDataGridViewCheckBoxColumn, fechaDataGridViewTextBoxColumn });
             dgvInventario.DataSource = inventarioBindingSource;
-            dgvInventario.Location = new Point(24, 137);
+            dgvInventario.Location = new Point(24, 163);
             dgvInventario.MultiSelect = false;
             dgvInventario.Name = "dgvInventario";
             dgvInventario.ReadOnly = true;
             dgvInventario.RowTemplate.Height = 25;
             dgvInventario.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvInventario.Size = new Size(757, 220);
+            dgvInventario.Size = new Size(757, 194);
             dgvInventario.TabIndex = 2;
             dgvInventario.CellClick += dgvInventario_CellClick;
             // 
@@ -211,11 +212,12 @@
             // 
             flowLayoutPanel2.Controls.Add(btnAgregar);
             flowLayoutPanel2.Controls.Add(btnModificar);
+            flowLayoutPanel2.Controls.Add(btnEstatus);
             flowLayoutPanel2.Controls.Add(btnEliminar);
             flowLayoutPanel2.Dock = DockStyle.Top;
             flowLayoutPanel2.Location = new Point(0, 0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(800, 75);
+            flowLayoutPanel2.Size = new Size(800, 98);
             flowLayoutPanel2.TabIndex = 2;
             // 
             // btnAgregar
@@ -254,24 +256,40 @@
             btnModificar.UseVisualStyleBackColor = false;
             btnModificar.Click += btnModificar_Click;
             // 
+            // btnEstatus
+            // 
+            btnEstatus.AutoSize = true;
+            btnEstatus.BackColor = Color.Tomato;
+            btnEstatus.BackgroundImageLayout = ImageLayout.None;
+            btnEstatus.Cursor = Cursors.Hand;
+            btnEstatus.FlatAppearance.BorderSize = 2;
+            btnEstatus.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 192, 192);
+            btnEstatus.FlatStyle = FlatStyle.Flat;
+            btnEstatus.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnEstatus.ForeColor = SystemColors.ControlText;
+            btnEstatus.Location = new Point(541, 3);
+            btnEstatus.Margin = new Padding(25, 3, 3, 3);
+            btnEstatus.Name = "btnEstatus";
+            btnEstatus.Size = new Size(230, 31);
+            btnEstatus.TabIndex = 3;
+            btnEstatus.Text = "Cambiar estatus";
+            btnEstatus.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btnEstatus.UseVisualStyleBackColor = false;
+            btnEstatus.Click += btnEstatus_Click;
+            // 
             // btnEliminar
             // 
-            btnEliminar.AutoSize = true;
             btnEliminar.BackColor = Color.Firebrick;
-            btnEliminar.BackgroundImageLayout = ImageLayout.None;
-            btnEliminar.Cursor = Cursors.Hand;
             btnEliminar.FlatAppearance.BorderSize = 2;
             btnEliminar.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 128, 128);
             btnEliminar.FlatStyle = FlatStyle.Flat;
-            btnEliminar.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            btnEliminar.ForeColor = SystemColors.ControlText;
-            btnEliminar.Location = new Point(541, 3);
+            btnEliminar.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnEliminar.Location = new Point(25, 40);
             btnEliminar.Margin = new Padding(25, 3, 3, 3);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(245, 31);
-            btnEliminar.TabIndex = 3;
-            btnEliminar.Text = "Cambiar estado de existencias";
-            btnEliminar.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btnEliminar.Size = new Size(230, 31);
+            btnEliminar.TabIndex = 4;
+            btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
             btnEliminar.Click += btnEliminar_Click;
             // 
@@ -421,7 +439,7 @@
         private FlowLayoutPanel flowLayoutPanel2;
         private Button btnAgregar;
         private Button btnModificar;
-        private Button btnEliminar;
+        private Button btnEstatus;
         private TextBox txtNumFisico;
         private Button btnAnterior;
         private Button btnSiguiente;
@@ -445,5 +463,6 @@
         private BindingSource inventarioBindingSource;
         private Button btnGenerarExcel;
         private Button btnRecargar;
+        private Button btnEliminar;
     }
 }

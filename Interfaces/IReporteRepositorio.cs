@@ -1,4 +1,6 @@
 ﻿
+using Inventario_residencias.Modelos;
+
 namespace Inventario_residencias.Interfaces
 {
     public interface IReporteRepositorio
@@ -8,5 +10,7 @@ namespace Inventario_residencias.Interfaces
         void GenerarReporteTablero(string[] colums, float[] tamanios, string campos, string tablero, string Letra);
 
         byte[] imagen();
+
+        bool reportarItem(Reporte reporte);
     }
 }

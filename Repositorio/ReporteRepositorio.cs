@@ -1,4 +1,6 @@
-﻿using Inventario_residencias.Interfaces;
+﻿using Inventario_residencias.Exceptions;
+using Inventario_residencias.Interfaces;
+using Inventario_residencias.modelos;
 using Inventario_residencias.Modelos;
 using Inventario_residencias.Properties;
 using iText.IO.Font.Constants;
@@ -229,6 +231,36 @@ namespace Inventario_residencias.Repositorio
         {
             byte[] bytesImagen = new System.Drawing.ImageConverter().ConvertTo(Resources.WVG, typeof(byte[])) as byte[];
             return bytesImagen;
+        }
+
+        public bool reportarItem(Reporte reporte)
+        {
+            string query = "INSERT INTO reportes(titulo, descripcion, Item, usuario, fecha, leido) " +
+                           "VALUES(@titulo, @descripcion, @Item, @usuario, @fecha, @leido)";
+            bool rows = false;
+            MySqlCommand command = new MySqlCommand(query, sqlConnection());
+            try
+            {
+                command.Parameters.Add(new MySqlParameter("@titulo", reporte.titulo));
+                command.Parameters.Add(new MySqlParameter("@descripcion", reporte.descripcion));
+                command.Parameters.Add(new MySqlParameter("@Item", reporte.Item));
+                command.Parameters.Add(new MySqlParameter("@usuario", reporte.usuario));
+                command.Parameters.Add(new MySqlParameter("@fecha", reporte.fecha));
+                command.Parameters.Add(new MySqlParameter("@leido", reporte.leido));
+                rows = command.ExecuteNonQuery() > 0;
+                CloseCommand(command);
+            }
+            catch (MySqlException ex)
+            {
+                CloseCommand(command);
+                throw new InventarioException(ex.ToString());
+            }
+            finally
+            {
+                sqlConnection().Close();
+            }
+
+            return rows;
         }
     }
 }

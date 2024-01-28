@@ -1,5 +1,11 @@
-﻿using Inventario_residencias.modelos;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using Inventario_residencias.Exceptions;
+using Inventario_residencias.Helpers;
+using Inventario_residencias.modelos;
 using Inventario_residencias.Repositorio;
+using MySql.Data.MySqlClient;
+using SpreadsheetLight;
+using SpreadsheetLight.Drawing;
 
 namespace Inventario_residencias.Vistas.Administrador
 {
@@ -7,7 +13,7 @@ namespace Inventario_residencias.Vistas.Administrador
     {
         List<Inventario> inventarios = new List<Inventario>();
         InventarioRepositorio inventarioRepositorio = new InventarioRepositorio();
-        //private Inventario Inventario;
+        GenerarExcel GenerarExcel = new GenerarExcel();
         string registro = "";
         bool existencia = false;
         double total;
@@ -93,7 +99,7 @@ namespace Inventario_residencias.Vistas.Administrador
 
         private void btnGenerarExcel_Click(object sender, EventArgs e)
         {
-
+            GenerarExcel.CrearExcel();
         }
 
         private void btnRecargar_Click(object sender, EventArgs e)
@@ -131,18 +137,18 @@ namespace Inventario_residencias.Vistas.Administrador
                 return;
             }
 
-            DialogResult result = MessageBox.Show("¿Esta seguro de eliminar este registro?","Alerta",MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult result = MessageBox.Show("¿Esta seguro de eliminar este registro?", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.No)
             {
-                MessageBox.Show("Operacion Cancelada","Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Operacion Cancelada", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             if (inventarioRepositorio.eliminarItem(registro))
             {
-               MessageBox.Show("Operacion realizada", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-               cargarInventario(offSet);
-               return;
+                MessageBox.Show("Operacion realizada", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cargarInventario(offSet);
+                return;
             }
 
             MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);

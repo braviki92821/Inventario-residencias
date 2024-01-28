@@ -34,15 +34,6 @@
             btnRecargar = new Button();
             txtNumFisico = new TextBox();
             dgvInventario = new DataGridView();
-            numeroFisicoIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            descripcionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            columnaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            filaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            ubicacionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            imagenDataGridViewImageColumn = new DataGridViewImageColumn();
-            existenciaDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
-            fechaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             inventarioBindingSource = new BindingSource(components);
             panel2 = new Panel();
             flowLayoutPanel2 = new FlowLayoutPanel();
@@ -59,6 +50,15 @@
             panel3 = new Panel();
             btnGenerarExcel = new Button();
             btnReporte = new Button();
+            numeroFisicoIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            descripcionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            columnaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            filaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            ubicacionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            imagenDataGridViewImageColumn = new DataGridViewImageColumn();
+            existenciaDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
+            fechaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvInventario).BeginInit();
             ((System.ComponentModel.ISupportInitialize)inventarioBindingSource).BeginInit();
@@ -130,70 +130,6 @@
             dgvInventario.Size = new Size(757, 194);
             dgvInventario.TabIndex = 2;
             dgvInventario.CellClick += dgvInventario_CellClick;
-            // 
-            // numeroFisicoIdDataGridViewTextBoxColumn
-            // 
-            numeroFisicoIdDataGridViewTextBoxColumn.DataPropertyName = "numeroFisicoId";
-            numeroFisicoIdDataGridViewTextBoxColumn.HeaderText = "numeroFisicoId";
-            numeroFisicoIdDataGridViewTextBoxColumn.Name = "numeroFisicoIdDataGridViewTextBoxColumn";
-            numeroFisicoIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // descripcionDataGridViewTextBoxColumn
-            // 
-            descripcionDataGridViewTextBoxColumn.DataPropertyName = "descripcion";
-            descripcionDataGridViewTextBoxColumn.HeaderText = "descripcion";
-            descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
-            descripcionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.DataPropertyName = "tablero";
-            dataGridViewTextBoxColumn2.HeaderText = "tablero";
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // columnaDataGridViewTextBoxColumn
-            // 
-            columnaDataGridViewTextBoxColumn.DataPropertyName = "columna";
-            columnaDataGridViewTextBoxColumn.HeaderText = "columna";
-            columnaDataGridViewTextBoxColumn.Name = "columnaDataGridViewTextBoxColumn";
-            columnaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // filaDataGridViewTextBoxColumn
-            // 
-            filaDataGridViewTextBoxColumn.DataPropertyName = "fila";
-            filaDataGridViewTextBoxColumn.HeaderText = "fila";
-            filaDataGridViewTextBoxColumn.Name = "filaDataGridViewTextBoxColumn";
-            filaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // ubicacionDataGridViewTextBoxColumn
-            // 
-            ubicacionDataGridViewTextBoxColumn.DataPropertyName = "ubicacion";
-            ubicacionDataGridViewTextBoxColumn.HeaderText = "ubicacion";
-            ubicacionDataGridViewTextBoxColumn.Name = "ubicacionDataGridViewTextBoxColumn";
-            ubicacionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // imagenDataGridViewImageColumn
-            // 
-            imagenDataGridViewImageColumn.DataPropertyName = "imagen";
-            imagenDataGridViewImageColumn.HeaderText = "imagen";
-            imagenDataGridViewImageColumn.Name = "imagenDataGridViewImageColumn";
-            imagenDataGridViewImageColumn.ReadOnly = true;
-            imagenDataGridViewImageColumn.Visible = false;
-            // 
-            // existenciaDataGridViewCheckBoxColumn
-            // 
-            existenciaDataGridViewCheckBoxColumn.DataPropertyName = "existencia";
-            existenciaDataGridViewCheckBoxColumn.HeaderText = "existencia";
-            existenciaDataGridViewCheckBoxColumn.Name = "existenciaDataGridViewCheckBoxColumn";
-            existenciaDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // fechaDataGridViewTextBoxColumn
-            // 
-            fechaDataGridViewTextBoxColumn.DataPropertyName = "fecha";
-            fechaDataGridViewTextBoxColumn.HeaderText = "fecha";
-            fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
-            fechaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // inventarioBindingSource
             // 
@@ -405,6 +341,70 @@
             btnReporte.UseVisualStyleBackColor = false;
             btnReporte.Click += btnReporte_Click;
             // 
+            // numeroFisicoIdDataGridViewTextBoxColumn
+            // 
+            numeroFisicoIdDataGridViewTextBoxColumn.DataPropertyName = "numeroFisicoId";
+            numeroFisicoIdDataGridViewTextBoxColumn.HeaderText = "Numero Fisico";
+            numeroFisicoIdDataGridViewTextBoxColumn.Name = "numeroFisicoIdDataGridViewTextBoxColumn";
+            numeroFisicoIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // descripcionDataGridViewTextBoxColumn
+            // 
+            descripcionDataGridViewTextBoxColumn.DataPropertyName = "descripcion";
+            descripcionDataGridViewTextBoxColumn.HeaderText = "descripcion";
+            descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
+            descripcionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.DataPropertyName = "tablero";
+            dataGridViewTextBoxColumn2.HeaderText = "tablero";
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // columnaDataGridViewTextBoxColumn
+            // 
+            columnaDataGridViewTextBoxColumn.DataPropertyName = "columna";
+            columnaDataGridViewTextBoxColumn.HeaderText = "columna";
+            columnaDataGridViewTextBoxColumn.Name = "columnaDataGridViewTextBoxColumn";
+            columnaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // filaDataGridViewTextBoxColumn
+            // 
+            filaDataGridViewTextBoxColumn.DataPropertyName = "fila";
+            filaDataGridViewTextBoxColumn.HeaderText = "fila";
+            filaDataGridViewTextBoxColumn.Name = "filaDataGridViewTextBoxColumn";
+            filaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ubicacionDataGridViewTextBoxColumn
+            // 
+            ubicacionDataGridViewTextBoxColumn.DataPropertyName = "ubicacion";
+            ubicacionDataGridViewTextBoxColumn.HeaderText = "ubicacion";
+            ubicacionDataGridViewTextBoxColumn.Name = "ubicacionDataGridViewTextBoxColumn";
+            ubicacionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // imagenDataGridViewImageColumn
+            // 
+            imagenDataGridViewImageColumn.DataPropertyName = "imagen";
+            imagenDataGridViewImageColumn.HeaderText = "imagen";
+            imagenDataGridViewImageColumn.Name = "imagenDataGridViewImageColumn";
+            imagenDataGridViewImageColumn.ReadOnly = true;
+            imagenDataGridViewImageColumn.Visible = false;
+            // 
+            // existenciaDataGridViewCheckBoxColumn
+            // 
+            existenciaDataGridViewCheckBoxColumn.DataPropertyName = "existencia";
+            existenciaDataGridViewCheckBoxColumn.HeaderText = "existencia";
+            existenciaDataGridViewCheckBoxColumn.Name = "existenciaDataGridViewCheckBoxColumn";
+            existenciaDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // fechaDataGridViewTextBoxColumn
+            // 
+            fechaDataGridViewTextBoxColumn.DataPropertyName = "fecha";
+            fechaDataGridViewTextBoxColumn.HeaderText = "fecha";
+            fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
+            fechaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // Lista_Inventario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -451,6 +451,10 @@
         private DataGridViewTextBoxColumn tableroDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private Button btnReporte;
+        private BindingSource inventarioBindingSource;
+        private Button btnGenerarExcel;
+        private Button btnRecargar;
+        private Button btnEliminar;
         private DataGridViewTextBoxColumn numeroFisicoIdDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -460,9 +464,5 @@
         private DataGridViewImageColumn imagenDataGridViewImageColumn;
         private DataGridViewCheckBoxColumn existenciaDataGridViewCheckBoxColumn;
         private DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
-        private BindingSource inventarioBindingSource;
-        private Button btnGenerarExcel;
-        private Button btnRecargar;
-        private Button btnEliminar;
     }
 }

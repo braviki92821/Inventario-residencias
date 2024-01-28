@@ -25,6 +25,11 @@ namespace Inventario_residencias.Repositorio
         {
         }
 
+        public void generarExcel()
+        {
+            
+        }
+
         public void GenerarReporteGeneral(string[] colums, float[] tamanios, string campos)
         {
             string query = "SELECT " + campos + " FROM inventario";

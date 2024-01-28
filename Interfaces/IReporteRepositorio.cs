@@ -12,5 +12,7 @@ namespace Inventario_residencias.Interfaces
         byte[] imagen();
 
         bool reportarItem(Reporte reporte);
+
+        void generarExcel();
     }
 }

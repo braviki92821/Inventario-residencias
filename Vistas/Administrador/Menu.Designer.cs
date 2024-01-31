@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             panel1 = new Panel();
+            btnRespaldo = new Button();
             btnReportes = new Button();
             btnCerrarSesion = new Button();
             btnUsuarios = new Button();
@@ -43,6 +44,7 @@
             panel1.AutoScroll = true;
             panel1.BackColor = Color.SteelBlue;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btnRespaldo);
             panel1.Controls.Add(btnReportes);
             panel1.Controls.Add(btnCerrarSesion);
             panel1.Controls.Add(btnUsuarios);
@@ -52,6 +54,22 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(309, 560);
             panel1.TabIndex = 0;
+            // 
+            // btnRespaldo
+            // 
+            btnRespaldo.BackColor = Color.FromArgb(128, 128, 255);
+            btnRespaldo.Dock = DockStyle.Top;
+            btnRespaldo.FlatAppearance.BorderSize = 2;
+            btnRespaldo.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 192, 255);
+            btnRespaldo.FlatStyle = FlatStyle.Flat;
+            btnRespaldo.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnRespaldo.Location = new Point(0, 228);
+            btnRespaldo.Name = "btnRespaldo";
+            btnRespaldo.Size = new Size(307, 76);
+            btnRespaldo.TabIndex = 12;
+            btnRespaldo.Text = "Respaldo";
+            btnRespaldo.UseVisualStyleBackColor = false;
+            btnRespaldo.Click += btnRespaldo_Click;
             // 
             // btnReportes
             // 
@@ -67,6 +85,7 @@
             btnReportes.TabIndex = 11;
             btnReportes.Text = "Reportes";
             btnReportes.UseVisualStyleBackColor = false;
+            btnReportes.Click += btnReportes_Click;
             // 
             // btnCerrarSesion
             // 
@@ -154,5 +173,6 @@
         private Button btnUsuarios;
         private Button btnCerrarSesion;
         private Button btnReportes;
+        private Button btnRespaldo;
     }
 }

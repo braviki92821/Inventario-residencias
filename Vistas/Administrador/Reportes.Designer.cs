@@ -32,10 +32,10 @@
             label1 = new Label();
             panel2 = new Panel();
             btnModificar = new Button();
-            dataGridView1 = new DataGridView();
+            dgvReportes = new DataGridView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvReportes).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -75,24 +75,30 @@
             btnModificar.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 255, 128);
             btnModificar.FlatStyle = FlatStyle.Flat;
             btnModificar.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            btnModificar.Location = new Point(50, 21);
+            btnModificar.Location = new Point(26, 22);
             btnModificar.Margin = new Padding(25, 3, 3, 3);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(230, 31);
+            btnModificar.Size = new Size(220, 31);
             btnModificar.TabIndex = 6;
             btnModificar.Text = "Marcar como leido";
             btnModificar.UseVisualStyleBackColor = false;
+            btnModificar.Click += btnModificar_Click;
             // 
-            // dataGridView1
+            // dgvReportes
             // 
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(26, 161);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(751, 220);
-            dataGridView1.TabIndex = 2;
+            dgvReportes.AllowUserToAddRows = false;
+            dgvReportes.AllowUserToDeleteRows = false;
+            dgvReportes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvReportes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvReportes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvReportes.Location = new Point(26, 161);
+            dgvReportes.Name = "dgvReportes";
+            dgvReportes.ReadOnly = true;
+            dgvReportes.RowTemplate.Height = 25;
+            dgvReportes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvReportes.Size = new Size(751, 220);
+            dgvReportes.TabIndex = 2;
+            dgvReportes.CellClick += dgvReportes_CellClick;
             // 
             // Reportes
             // 
@@ -101,7 +107,7 @@
             BackColor = Color.SteelBlue;
             ClientSize = new Size(800, 450);
             ControlBox = false;
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvReportes);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -111,7 +117,7 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvReportes).EndInit();
             ResumeLayout(false);
         }
 
@@ -121,6 +127,6 @@
         private Label label1;
         private Panel panel2;
         private Button btnModificar;
-        private DataGridView dataGridView1;
+        private DataGridView dgvReportes;
     }
 }

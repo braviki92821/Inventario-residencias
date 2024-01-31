@@ -204,7 +204,7 @@ namespace Inventario_residencias.Repositorio
             return memoryStream.ToArray();
         }
 
-        public bool numeroFisico(string numeroFisico)
+        public async Task<bool> numeroFisico(string numeroFisico)
         {
             string query = "SELECT numeroFisico FROM inventario WHERE numeroFisico='"+ numeroFisico + "' ";
             bool rows = false;
@@ -225,7 +225,7 @@ namespace Inventario_residencias.Repositorio
             finally
             {
                 sqlConnection().Close();
-                CloseReader(mReader);
+               await mReader.CloseAsync();
             }
             return rows;
         }

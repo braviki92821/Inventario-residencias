@@ -95,6 +95,11 @@ namespace Inventario_residencias.Vistas.Administrador
             cbxTablero.SelectedValue = Inventario.tablero;
             cbxColumna.SelectedItem = Inventario.columna;
             cbxFila.SelectedItem = Inventario.fila;
+            if (Inventario.imagen.Length == 4)
+            {
+                MessageBox.Show("Este Item no posee una imagen");
+                return;
+            }
             MemoryStream memoryStream = new MemoryStream(Inventario.imagen);
             Image image = Image.FromStream(memoryStream);
             pbxImagen.Image = image;

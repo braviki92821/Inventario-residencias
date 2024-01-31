@@ -58,5 +58,15 @@ namespace Inventario_residencias
         {
             openChildForm(new Lista_Inventario());
         }
+
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            openChildForm(new Reportes());
+        }
+
+        private void btnRespaldo_Click(object sender, EventArgs e)
+        {
+            openChildForm(new Respaldo());
+        }
     }
 }

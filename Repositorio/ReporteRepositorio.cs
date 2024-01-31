@@ -25,6 +25,30 @@ namespace Inventario_residencias.Repositorio
         {
         }
 
+        public bool eliminarReporte(int reporteId)
+        {
+            string query = "DELETE FROM reportes WHERE reporteId=@reporteId";
+            bool rows = false;
+            MySqlCommand command = new MySqlCommand(query, sqlConnection());
+            try
+            {
+                command.Parameters.Add(new MySqlParameter("@reporteId", reporteId));
+                rows = command.ExecuteNonQuery() > 0;
+                CloseCommand(command);
+            }
+            catch (MySqlException ex)
+            {
+                CloseCommand(command);
+                throw new InventarioException(ex.ToString());
+            }
+            finally
+            {
+                sqlConnection().Close();
+            }
+
+            return rows;
+        }
+
         public void generarExcel()
         {
             
@@ -238,6 +262,34 @@ namespace Inventario_residencias.Repositorio
             return bytesImagen;
         }
 
+        public DataTable obtenerReportes()
+        {
+            string query = "SELECT r.reporteId, r.titulo, r.descripcion, i.numeroFisico, u.nombre, r.fecha FROM reportes r, inventario i, usuarios u " +
+                           "WHERE i.numeroFisico = r.Item AND u.usuarioId = r.usuario AND r.leido = false";
+            MySqlDataReader reader = null;
+            DataTable dataTable = new DataTable();
+            MySqlCommand mySqlCommand = new MySqlCommand(query);
+            try
+            {
+                mySqlCommand.Connection = sqlConnection();
+                reader = mySqlCommand.ExecuteReader();
+                dataTable.Load(reader);
+                CloseCommand(mySqlCommand);
+            }
+            catch (MySqlException ex)
+            {
+                CloseCommand(mySqlCommand);
+                throw new InventarioException(ex.Message);
+            }
+            finally
+            {
+                sqlConnection().Close();
+                CloseReader(reader);
+            }
+            return dataTable;
+            
+        }
+
         public bool reportarItem(Reporte reporte)
         {
             string query = "INSERT INTO reportes(titulo, descripcion, Item, usuario, fecha, leido) " +
@@ -267,5 +319,6 @@ namespace Inventario_residencias.Repositorio
 
             return rows;
         }
+
     }
 }

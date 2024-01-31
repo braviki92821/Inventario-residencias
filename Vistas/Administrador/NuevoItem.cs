@@ -21,14 +21,14 @@ namespace Inventario_residencias
             cargarTableros();
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private async void btnGuardar_Click(object sender, EventArgs e)
         {
             if (!validaciones())
             {
                 return;
             }
 
-            if (inventarioRepositorio.numeroFisico(txtNumeroFisico.Text))
+            if (await inventarioRepositorio.numeroFisico(txtNumeroFisico.Text))
             {
                 MessageBox.Show("Este numero Fisico esta registrado");
                 return;

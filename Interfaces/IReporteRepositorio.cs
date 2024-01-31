@@ -1,5 +1,6 @@
 ﻿
 using Inventario_residencias.Modelos;
+using System.Data;
 
 namespace Inventario_residencias.Interfaces
 {
@@ -14,5 +15,9 @@ namespace Inventario_residencias.Interfaces
         bool reportarItem(Reporte reporte);
 
         void generarExcel();
+
+        DataTable obtenerReportes();
+
+        bool eliminarReporte(int reporteId);
     }
 }

@@ -38,6 +38,8 @@
             label3 = new Label();
             label2 = new Label();
             panel3 = new Panel();
+            llbProgreso = new Label();
+            pgbCarga = new ProgressBar();
             btnCarga = new Button();
             label12 = new Label();
             btnGenerarJson = new Button();
@@ -57,7 +59,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(800, 82);
+            panel1.Size = new Size(800, 70);
             panel1.TabIndex = 0;
             // 
             // label1
@@ -73,7 +75,6 @@
             // 
             // panel2
             // 
-            panel2.BorderStyle = BorderStyle.Fixed3D;
             panel2.Controls.Add(btnGenerarSql);
             panel2.Controls.Add(label6);
             panel2.Controls.Add(label5);
@@ -81,9 +82,9 @@
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label2);
             panel2.Dock = DockStyle.Left;
-            panel2.Location = new Point(0, 82);
+            panel2.Location = new Point(0, 70);
             panel2.Name = "panel2";
-            panel2.Size = new Size(397, 368);
+            panel2.Size = new Size(397, 380);
             panel2.TabIndex = 1;
             // 
             // btnGenerarSql
@@ -93,7 +94,7 @@
             btnGenerarSql.FlatAppearance.MouseDownBackColor = Color.FromArgb(128, 255, 128);
             btnGenerarSql.FlatStyle = FlatStyle.Flat;
             btnGenerarSql.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnGenerarSql.Location = new Point(88, 195);
+            btnGenerarSql.Location = new Point(88, 184);
             btnGenerarSql.Name = "btnGenerarSql";
             btnGenerarSql.Size = new Size(165, 38);
             btnGenerarSql.TabIndex = 5;
@@ -105,7 +106,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(26, 157);
+            label6.Location = new Point(26, 148);
             label6.Name = "label6";
             label6.Size = new Size(356, 20);
             label6.TabIndex = 4;
@@ -116,7 +117,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(26, 118);
+            label5.Location = new Point(26, 109);
             label5.Name = "label5";
             label5.Size = new Size(328, 20);
             label5.TabIndex = 3;
@@ -155,6 +156,8 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(llbProgreso);
+            panel3.Controls.Add(pgbCarga);
             panel3.Controls.Add(btnCarga);
             panel3.Controls.Add(label12);
             panel3.Controls.Add(btnGenerarJson);
@@ -164,10 +167,27 @@
             panel3.Controls.Add(label11);
             panel3.Controls.Add(label7);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(397, 82);
+            panel3.Location = new Point(397, 70);
             panel3.Name = "panel3";
-            panel3.Size = new Size(403, 368);
+            panel3.Size = new Size(403, 380);
             panel3.TabIndex = 2;
+            // 
+            // llbProgreso
+            // 
+            llbProgreso.AutoSize = true;
+            llbProgreso.Location = new Point(42, 315);
+            llbProgreso.Name = "llbProgreso";
+            llbProgreso.Size = new Size(54, 15);
+            llbProgreso.TabIndex = 13;
+            llbProgreso.Text = "Progreso";
+            // 
+            // pgbCarga
+            // 
+            pgbCarga.Location = new Point(42, 333);
+            pgbCarga.Name = "pgbCarga";
+            pgbCarga.Size = new Size(327, 23);
+            pgbCarga.Style = ProgressBarStyle.Continuous;
+            pgbCarga.TabIndex = 12;
             // 
             // btnCarga
             // 
@@ -176,7 +196,7 @@
             btnCarga.FlatAppearance.MouseDownBackColor = Color.FromArgb(128, 255, 128);
             btnCarga.FlatStyle = FlatStyle.Flat;
             btnCarga.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCarga.Location = new Point(119, 298);
+            btnCarga.Location = new Point(119, 270);
             btnCarga.Name = "btnCarga";
             btnCarga.Size = new Size(165, 38);
             btnCarga.TabIndex = 11;
@@ -188,7 +208,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label12.Location = new Point(157, 260);
+            label12.Location = new Point(157, 240);
             label12.Name = "label12";
             label12.Size = new Size(95, 15);
             label12.TabIndex = 10;
@@ -201,7 +221,7 @@
             btnGenerarJson.FlatAppearance.MouseDownBackColor = Color.FromArgb(128, 255, 128);
             btnGenerarJson.FlatStyle = FlatStyle.Flat;
             btnGenerarJson.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnGenerarJson.Location = new Point(119, 197);
+            btnGenerarJson.Location = new Point(119, 184);
             btnGenerarJson.Name = "btnGenerarJson";
             btnGenerarJson.Size = new Size(165, 38);
             btnGenerarJson.TabIndex = 9;
@@ -213,7 +233,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(24, 159);
+            label8.Location = new Point(24, 148);
             label8.Name = "label8";
             label8.Size = new Size(356, 20);
             label8.TabIndex = 8;
@@ -224,7 +244,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(24, 120);
+            label9.Location = new Point(24, 109);
             label9.Name = "label9";
             label9.Size = new Size(328, 20);
             label9.TabIndex = 7;
@@ -304,5 +324,7 @@
         private Label label9;
         private Label label10;
         private Label label11;
+        private ProgressBar pgbCarga;
+        private Label llbProgreso;
     }
 }

@@ -90,6 +90,11 @@ namespace Inventario_residencias.Vistas.Administrador
             txtNombre.Text = Usuario.nombre;
             txtCorreo.Text = Usuario.correo;
             cbxTipo.SelectedItem = Usuario.tipo;
+            if (Usuario.imagen.Length == 4)
+            {
+                MessageBox.Show("Este Usuario no posee una imagen");
+                return;
+            }
             MemoryStream memoryStream = new MemoryStream(Usuario.imagen);
             Image image = Image.FromStream(memoryStream);
             pbxImagen.Image = image;

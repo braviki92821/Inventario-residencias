@@ -18,7 +18,7 @@ namespace Inventario_residencias.Vistas.Administrador
             Usuario = new modelos.Usuario();
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private async void btnGuardar_Click(object sender, EventArgs e)
         {
             if (!validaciones())
             {
@@ -42,7 +42,7 @@ namespace Inventario_residencias.Vistas.Administrador
 
             if (usuarioRepositorio.agregarUsuario(Usuario))
             {
-                enviar(correo, password);
+                await enviar(correo, password);
                 MessageBox.Show("Agregado Correctamente");
                 Limpiar();
                 return;
@@ -99,17 +99,17 @@ namespace Inventario_residencias.Vistas.Administrador
             return res.ToString();
         }
 
-        private void enviar(string correo, string password)
+        private async Task enviar(string correo, string password)
         {
             string body = "Hola tu contraseña de acceso para tableros de inventario es: " + password + " guarda esta contraseña en un lugar seguro";
 
-            var client = new SmtpClient("smtp.ionos.mx", 587)
+            SmtpClient client = new SmtpClient("sandbox.smtp.mailtrap.io", 2525)
             {
-                Credentials = new NetworkCredential("braviki92821@braviki.com", "@BRAjaviki92821@"),
+                Credentials = new NetworkCredential("9a2119837bc3f7", "a42b77fcc5dbe5"),
                 EnableSsl = true
             };
-
-            client.Send("braviki92821@braviki.com", correo, "Contraseña de acceso", body);
+            await client.SendMailAsync("inventario@vw-pozarica.com.mx", correo, "Contraseña de acceso", body);
+           //client.Send("inventario@vw-pozarica.com.mx", correo, "Contraseña de acceso", body);
             MessageBox.Show("enviado correctamente");
         }
 

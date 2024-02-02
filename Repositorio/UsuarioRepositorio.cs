@@ -218,7 +218,10 @@ namespace Inventario_residencias.Repositorio
                     usuario.nombre = mReader.GetString("nombre");
                     usuario.correo = mReader.GetString("correo");
                     usuario.tipo = mReader.GetString("tipo");
-                    usuario.imagen = (byte[])mReader.GetValue(4);
+                    if(mReader.GetValue(4) != System.DBNull.Value)
+                    {
+                        usuario.imagen = (byte[]?)mReader.GetValue(4);
+                    }                 
                 }
                 CloseCommand(mySqlCommand);
             }

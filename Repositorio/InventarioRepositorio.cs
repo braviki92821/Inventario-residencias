@@ -98,7 +98,10 @@ namespace Inventario_residencias.Repositorio
                     inventario.columna = mReader.GetString("columna");
                     inventario.fila = mReader.GetString("fila");
                     inventario.ubicacion = mReader.GetString("ubicacion");
-                    inventario.imagen = (byte[])mReader.GetValue(6);
+                    if (mReader.GetValue(6) != System.DBNull.Value)
+                    {
+                        inventario.imagen = (byte[])mReader.GetValue(6);
+                    }
                     inventario.existencia = mReader.GetBoolean(7);
                 }
                 CloseCommand(mySqlCommand);

@@ -27,7 +27,6 @@ namespace Inventario_residencias.Vistas.Users
             reporte.Item = lblNumeroFisico.Text;
             reporte.usuario = Session.usuarioId;
             reporte.fecha = DateTime.Now;
-            reporte.leido = false;
             DialogResult = ReporteRepositorio.reportarItem(reporte) ? MessageBox.Show("Reporte Enviado") : MessageBox.Show("Error al enviar");
         }
 
@@ -57,6 +56,18 @@ namespace Inventario_residencias.Vistas.Users
             }
 
             return true;
+        }
+
+        private void txtAsunto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
+                e.Handled = true;
+        }
+
+        private void txtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space) && char.IsLetter(e.KeyChar) )
+                e.Handled = true;
         }
     }
 }

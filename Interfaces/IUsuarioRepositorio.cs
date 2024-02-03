@@ -9,7 +9,7 @@ namespace Inventario_residencias.Interfaces
 {
     public interface IUsuarioRepositorio
     {
-        List<Usuario> obtenerUsuarios(bool status, int usuarioId);
+        Task<List<Usuario>> obtenerUsuarios(bool status, int usuarioId);
 
         byte[] ImageToByteArray(Image image);
 

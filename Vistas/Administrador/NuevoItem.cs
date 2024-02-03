@@ -57,7 +57,7 @@ namespace Inventario_residencias
         {
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-
+            openFile.Filter = "Png File |*.png";
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 pbxImagen.ImageLocation = openFile.FileName;
@@ -124,5 +124,10 @@ namespace Inventario_residencias
             pbxImagen.Image = null;
         }
 
+        private void txtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
+                e.Handled = true;
+        }
     }
 }

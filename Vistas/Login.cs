@@ -28,14 +28,14 @@ namespace Inventario_residencias
             {
                 if (Session.tipo == "Administrador")
                 {
-                    MessageBox.Show("Bienvenido");
+                    MessageBox.Show("Bienvenido: " + Session.nombre, "¡Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Menu menu = new Menu();
                     menu.Show();
                     this.Hide();
                 }
                 else if (Session.tipo == "Usuario")
                 {
-                    MessageBox.Show("Hola" + Session.nombre);
+                    MessageBox.Show("Bienvenido: " + Session.nombre, "¡Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Menu_Usuario menu_Usuario = new Menu_Usuario();
                     menu_Usuario.Show();
                     this.Hide();
@@ -71,6 +71,11 @@ namespace Inventario_residencias
         private void Login_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.ExitThread();
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
         }
     }
 }

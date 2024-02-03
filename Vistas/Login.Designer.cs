@@ -86,6 +86,7 @@
             txtPassword.Size = new Size(304, 26);
             txtPassword.TabIndex = 5;
             txtPassword.UseSystemPasswordChar = true;
+            txtPassword.KeyPress += txtPassword_KeyPress;
             // 
             // label3
             // 

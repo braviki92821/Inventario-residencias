@@ -115,7 +115,7 @@ namespace Inventario_residencias.Vistas.Administrador
         {
             if (registro.Equals(""))
             {
-                MessageBox.Show("seleccione un registro");
+                MessageBox.Show("seleccione un registro", "¿?", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 return;
             }
             DialogResult result = MessageBox.Show("¿Cambiar Estatus?", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -133,7 +133,7 @@ namespace Inventario_residencias.Vistas.Administrador
         {
             if (registro.Equals(""))
             {
-                MessageBox.Show("seleccione un registro");
+                MessageBox.Show("seleccione un registro", "¿?", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 return;
             }
 

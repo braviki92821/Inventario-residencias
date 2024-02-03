@@ -95,6 +95,7 @@
             txtDescripcion.Name = "txtDescripcion";
             txtDescripcion.Size = new Size(206, 23);
             txtDescripcion.TabIndex = 4;
+            txtDescripcion.KeyPress += txtDescripcion_KeyPress;
             // 
             // label5
             // 

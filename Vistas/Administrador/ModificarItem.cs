@@ -31,7 +31,7 @@ namespace Inventario_residencias.Vistas.Administrador
             Inventario.imagen = inventarioRepositorio.ImageToByteArray(pbxImagen.Image);
             if (inventarioRepositorio.actualizarItem(Inventario))
             {
-                MessageBox.Show("Cambios Guardados Correctamente");
+                MessageBox.Show("Cambios Guardados Correctamente","¡Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
                 return;
             }
@@ -42,6 +42,7 @@ namespace Inventario_residencias.Vistas.Administrador
         {
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            openFile.Filter = "Png File |*.png";
 
             if (openFile.ShowDialog() == DialogResult.OK)
             {
@@ -97,7 +98,7 @@ namespace Inventario_residencias.Vistas.Administrador
             cbxFila.SelectedItem = Inventario.fila;
             if (Inventario.imagen == null || Inventario.imagen.Length == 4)
             {
-                MessageBox.Show("Este Item no posee una imagen");
+                MessageBox.Show("Este Item no posee una imagen", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             MemoryStream memoryStream = new MemoryStream(Inventario.imagen);
@@ -110,5 +111,10 @@ namespace Inventario_residencias.Vistas.Administrador
             cbxTablero.DataSource = inventarioRepositorio.obtenerTableros();
         }
 
+        private void txtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
+                e.Handled = true;
+        }
     }
 }

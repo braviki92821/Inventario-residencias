@@ -103,13 +103,13 @@ namespace Inventario_residencias.Vistas.Administrador
         {
             string body = "Hola tu contraseña de acceso para tableros de inventario es: " + password + " guarda esta contraseña en un lugar seguro";
 
-            SmtpClient client = new SmtpClient("sandbox.smtp.mailtrap.io", 2525)
+            SmtpClient client = new SmtpClient("mail.vw-pozarica.com.mx", 26)
             {
-                Credentials = new NetworkCredential("9a2119837bc3f7", "a42b77fcc5dbe5"),
+                Credentials = new NetworkCredential("inventario@vw-pozarica.com.mx", "inventario123"),
                 EnableSsl = true
             };
             await client.SendMailAsync("inventario@vw-pozarica.com.mx", correo, "Contraseña de acceso", body);
-           //client.Send("inventario@vw-pozarica.com.mx", correo, "Contraseña de acceso", body);
+            //client.Send("inventario@vw-pozarica.com.mx", correo, "Contraseña de acceso", body);
             MessageBox.Show("enviado correctamente");
         }
 
@@ -124,11 +124,18 @@ namespace Inventario_residencias.Vistas.Administrador
         {
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            openFile.Filter = "Png File |*.png";
 
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 pbxImagen.ImageLocation = openFile.FileName;
             }
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
+                e.Handled = true;
         }
     }
 }

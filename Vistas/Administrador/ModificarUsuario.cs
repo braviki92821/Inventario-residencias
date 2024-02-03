@@ -40,7 +40,7 @@ namespace Inventario_residencias.Vistas.Administrador
         {
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-
+            openFile.Filter = "Png File |*.png";
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 pbxImagen.ImageLocation = openFile.FileName;
@@ -92,7 +92,7 @@ namespace Inventario_residencias.Vistas.Administrador
             cbxTipo.SelectedItem = Usuario.tipo;
             if (Usuario.imagen == null || Usuario.imagen.Length == 4)
             {
-                MessageBox.Show("Este Usuario no posee una imagen");
+                MessageBox.Show("Este Usuario no posee una imagen","Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             MemoryStream memoryStream = new MemoryStream(Usuario.imagen);
@@ -100,5 +100,10 @@ namespace Inventario_residencias.Vistas.Administrador
             pbxImagen.Image = image;
         }
 
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
+                e.Handled = true;
+        }
     }
 }

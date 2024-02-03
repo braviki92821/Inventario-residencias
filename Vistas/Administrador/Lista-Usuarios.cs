@@ -38,30 +38,32 @@ namespace Inventario_residencias.Vistas.Administrador
         {
             if (registro.Equals(""))
             {
-                MessageBox.Show("Seleccione un registro");
+                MessageBox.Show("Seleccione un registro", "¿?", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 return;
             }
 
             DialogResult result = MessageBox.Show("¿Esta seguro de eliminar a este usuario?", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            if(result == DialogResult.No)
+            if (result == DialogResult.No)
             {
-                MessageBox.Show("Operacion Caneclada", "Cancelar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Operacion Cancelada", "Cancelar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
 
             if (UsuarioRepositorio.eliminarUsuario(int.Parse(registro)))
             {
-                MessageBox.Show("Usuario dado de baja");
+                MessageBox.Show("Usuario dado de baja", "¡Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 cargarUsuarios();
+                registro = "";
                 return;
             }
-            MessageBox.Show("Error al actualizar estatus del usuario");
+            MessageBox.Show("Error al actualizar estatus del usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void cargarUsuarios()
+        private async void cargarUsuarios()
         {
             usuarios.Clear();
-            usuarios = UsuarioRepositorio.obtenerUsuarios(true, Session.usuarioId);
+            usuarios = await UsuarioRepositorio.obtenerUsuarios(true, Session.usuarioId);
             dgvUsuarios.DataSource = usuarios;
         }
 

@@ -76,7 +76,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 80);
             panel2.Name = "panel2";
-            panel2.Size = new Size(800, 70);
+            panel2.Size = new Size(800, 79);
             panel2.TabIndex = 1;
             // 
             // flowLayoutPanel1
@@ -87,7 +87,7 @@
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(800, 70);
+            flowLayoutPanel1.Size = new Size(800, 79);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // btnAgregar
@@ -163,13 +163,13 @@
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dgvUsuarios.DefaultCellStyle = dataGridViewCellStyle1;
-            dgvUsuarios.Location = new Point(24, 174);
+            dgvUsuarios.Location = new Point(24, 187);
             dgvUsuarios.MultiSelect = false;
             dgvUsuarios.Name = "dgvUsuarios";
             dgvUsuarios.ReadOnly = true;
             dgvUsuarios.RowTemplate.Height = 25;
             dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvUsuarios.Size = new Size(764, 264);
+            dgvUsuarios.Size = new Size(764, 251);
             dgvUsuarios.TabIndex = 2;
             dgvUsuarios.CellClick += dgvUsuarios_CellClick;
             // 

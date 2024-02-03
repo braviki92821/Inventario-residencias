@@ -151,10 +151,10 @@ namespace Inventario_residencias
             MessageBox.Show("enviado correctamente");
         }
 
-        private void cargarUsuarios()
+        private async void cargarUsuarios()
         {
             usuarios.Clear();
-            usuarios = usuarioRepositorio.obtenerUsuarios(true, Session.usuarioId);
+            usuarios = await usuarioRepositorio.obtenerUsuarios(true, Session.usuarioId);
             dgvUsuarios.DataSource = usuarios;
         }
 

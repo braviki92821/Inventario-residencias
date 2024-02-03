@@ -74,12 +74,11 @@ namespace Inventario_residencias.Repositorio
 
         public bool eliminarUsuario(int usuarioId)
         {
-            string query = "UPDATE usuarios SET estatus=@estatus WHERE usuarioId=@usuarioId";
+            string query = "DELETE FROM usuarios WHERE usuarioId=@usuarioId";
             bool rows = false;
             MySqlCommand command = new MySqlCommand(query, sqlConnection());
             try
             {
-                command.Parameters.Add(new MySqlParameter("@estatus", false));
                 command.Parameters.Add(new MySqlParameter("@usuarioId", usuarioId));
                 rows = command.ExecuteNonQuery() > 0;
                 CloseCommand(command);
@@ -239,10 +238,10 @@ namespace Inventario_residencias.Repositorio
             return usuario;
         }
 
-        public List<Usuario> obtenerUsuarios(bool estatus, int usuarioId)
+        public async Task<List<Usuario>> obtenerUsuarios(bool estatus, int usuarioId)
         {
             int boo = estatus  ?  1 : 0;
-            string query = "SELECT * FROM usuarios WHERE estatus='"+boo+ "' AND usuarioId <>'" + usuarioId+"' ";
+            string query = "SELECT usuarioId, nombre, correo, password, tipo, estatus FROM usuarios WHERE estatus='"+boo+ "' AND usuarioId <>'" + usuarioId+"' ";
             MySqlDataReader mReader = null;
             List<Usuario> usuarios = new List<Usuario>();
             MySqlCommand mySqlCommand = new MySqlCommand(query);
@@ -264,18 +263,18 @@ namespace Inventario_residencias.Repositorio
 
                     usuarios.Add(usuario);
                 }
-                CloseCommand(mySqlCommand);
+               await mySqlCommand.Connection.CloseAsync();
             }
             catch (Exception ex)
             {
-                CloseCommand(mySqlCommand);
-                CloseReader(mReader);
+                await mySqlCommand.Connection.CloseAsync();
+                await mReader.CloseAsync();
                 throw;
             }
             finally
             {
                 sqlConnection().Close();
-                mReader.Close();
+                await mReader.CloseAsync();
             }
 
             return usuarios;

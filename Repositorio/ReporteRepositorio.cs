@@ -265,7 +265,7 @@ namespace Inventario_residencias.Repositorio
         public DataTable obtenerReportes()
         {
             string query = "SELECT r.reporteId, r.titulo, r.descripcion, i.numeroFisico, u.nombre, r.fecha FROM reportes r, inventario i, usuarios u " +
-                           "WHERE i.numeroFisico = r.Item AND u.usuarioId = r.usuario AND r.leido = false";
+                           "WHERE i.numeroFisico = r.Item AND u.usuarioId = r.usuario";
             MySqlDataReader reader = null;
             DataTable dataTable = new DataTable();
             MySqlCommand mySqlCommand = new MySqlCommand(query);
@@ -293,7 +293,7 @@ namespace Inventario_residencias.Repositorio
         public bool reportarItem(Reporte reporte)
         {
             string query = "INSERT INTO reportes(titulo, descripcion, Item, usuario, fecha, leido) " +
-                           "VALUES(@titulo, @descripcion, @Item, @usuario, @fecha, @leido)";
+                           "VALUES(@titulo, @descripcion, @Item, @usuario, @fecha)";
             bool rows = false;
             MySqlCommand command = new MySqlCommand(query, sqlConnection());
             try
@@ -303,7 +303,6 @@ namespace Inventario_residencias.Repositorio
                 command.Parameters.Add(new MySqlParameter("@Item", reporte.Item));
                 command.Parameters.Add(new MySqlParameter("@usuario", reporte.usuario));
                 command.Parameters.Add(new MySqlParameter("@fecha", reporte.fecha));
-                command.Parameters.Add(new MySqlParameter("@leido", reporte.leido));
                 rows = command.ExecuteNonQuery() > 0;
                 CloseCommand(command);
             }

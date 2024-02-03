@@ -76,6 +76,7 @@
             txtAsunto.PlaceholderText = "Ejem. Faltan Herramientas";
             txtAsunto.Size = new Size(331, 26);
             txtAsunto.TabIndex = 3;
+            txtAsunto.KeyPress += txtAsunto_KeyPress;
             // 
             // label4
             // 
@@ -96,6 +97,7 @@
             txtDescripcion.PlaceholderText = "Ejem. No se encontro presencia de la herramienta";
             txtDescripcion.Size = new Size(327, 96);
             txtDescripcion.TabIndex = 5;
+            txtDescripcion.KeyPress += txtDescripcion_KeyPress;
             // 
             // btnReportar
             // 

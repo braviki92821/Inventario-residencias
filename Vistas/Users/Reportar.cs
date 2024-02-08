@@ -66,8 +66,6 @@ namespace Inventario_residencias.Vistas.Users
 
         private void txtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space) && char.IsLetter(e.KeyChar) )
-                e.Handled = true;
         }
     }
 }

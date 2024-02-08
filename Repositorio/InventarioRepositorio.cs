@@ -3,6 +3,7 @@ using Inventario_residencias.Interfaces;
 using Inventario_residencias.modelos;
 using Inventario_residencias.Modelos;
 using MySql.Data.MySqlClient;
+using System.Data;
 using System.Drawing.Imaging;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -37,6 +38,7 @@ namespace Inventario_residencias.Repositorio
             catch(MySqlException ex)
             {
                 CloseCommand(command);
+                sqlConnection().Close();
                 throw new InventarioException(ex.Message);
             } finally
             {
@@ -69,6 +71,7 @@ namespace Inventario_residencias.Repositorio
             catch(MySqlException ex)
             {
                 CloseCommand(command);
+                sqlConnection().Close();
                 throw new InventarioException(ex.Message);
             }
             finally
@@ -110,6 +113,7 @@ namespace Inventario_residencias.Repositorio
             {
                 CloseCommand(mySqlCommand);
                 CloseReader(mReader);
+                sqlConnection().Close();
                 throw new InventarioException(ex.Message);
             }
             finally
@@ -141,6 +145,7 @@ namespace Inventario_residencias.Repositorio
             {
                 CloseCommand(mySqlCommand);
                 CloseReader(mReader);
+                sqlConnection().Close();
                 throw new InventarioException(ex.Message);
             }
             finally
@@ -166,6 +171,7 @@ namespace Inventario_residencias.Repositorio
             } catch(MySqlException ex)
             {
                 CloseCommand(command);
+                sqlConnection().Close();
                 throw new InventarioException(ex.Message);
             } finally
             {
@@ -189,6 +195,7 @@ namespace Inventario_residencias.Repositorio
             catch(MySqlException ex)
             {
                 CloseCommand(command);
+                sqlConnection().Close();
                 throw new InventarioException(ex.ToString());
             }
             finally
@@ -222,26 +229,28 @@ namespace Inventario_residencias.Repositorio
             }
             catch(MySqlException ex)
             {
+                await mReader.CloseAsync();
                 CloseCommand(mySqlCommand);
+                sqlConnection().Close();
                 throw;
             }
             finally
             {
-                sqlConnection().Close();
+               sqlConnection().Close();
                await mReader.CloseAsync();
             }
             return rows;
         }
 
-        public List<Inventario> obtenerInventario(string numeroFisico, int limite, int offset)
+        public DataTable obtenerInventario(string numeroFisico, int limite, int offset)
         {
-            string query = "SELECT numeroFisico, descripcion, tablero, columna, fila, ubicacion, existencia, fechaCompra FROM inventario  LIMIT " + limite + " OFFSET " + offset + "";
+            string query = "SELECT i.numeroFisico, i.descripcion, t.tablero, i.columna, i.fila, i.ubicacion, i.existencia, i.fechaCompra FROM inventario i, tablero t  WHERE i.tablero = t.tableroId  LIMIT " + limite + " OFFSET " + offset + "";
             MySqlDataReader mReader = null;
-            List<Inventario> inventarios = new List<Inventario>();
+            DataTable dataTable = new DataTable();
 
             if (!numeroFisico.Equals(""))
             {
-                query = "SELECT numeroFisico, descripcion, tablero, columna, fila, ubicacion, existencia, fechaCompra FROM inventario WHERE numeroFisico LIKE '%" + numeroFisico + "%' LIMIT " + limite + " OFFSET " + offset + "";
+                query = "SELECT i.numeroFisico, i.descripcion, t.tablero, i.columna, i.fila, i.ubicacion, i.existencia, i.fechaCompra FROM inventario i, tablero t  WHERE i.tablero = t.tableroId  AND i.numeroFisico LIKE '%" + numeroFisico + "%' LIMIT " + limite + " OFFSET " + offset + "";
             }
 
             MySqlCommand mySqlCommand = new MySqlCommand(query);
@@ -250,26 +259,15 @@ namespace Inventario_residencias.Repositorio
                 mySqlCommand.Connection = sqlConnection();
                 mReader = mySqlCommand.ExecuteReader();
 
-                Inventario inventario = null;
-                while (mReader.Read())
-                {
-                    inventario = new Inventario();
-                    inventario.numeroFisicoId = mReader.GetString("numeroFisico");
-                    inventario.descripcion = mReader.GetString("descripcion");
-                    inventario.tablero= mReader.GetInt16("tablero");
-                    inventario.columna = mReader.GetString("columna");
-                    inventario.fila = mReader.GetString("fila");
-                    inventario.ubicacion = mReader.GetString("ubicacion");
-                    inventario.existencia = mReader.GetBoolean("existencia");
-                    inventario.fecha = mReader.GetString("fechaCompra");
-                    inventarios.Add(inventario);
-                }
+                dataTable.Load(mReader);
+                
                 CloseCommand(mySqlCommand);
             }
             catch (Exception ex)
             {
                 CloseCommand(mySqlCommand);
                 CloseReader(mReader);
+                sqlConnection().Close();
                 throw new InventarioException(ex.Message);
             }
             finally
@@ -278,7 +276,7 @@ namespace Inventario_residencias.Repositorio
                 CloseReader(mReader);
             }
 
-            return inventarios;
+            return dataTable;
         }
 
         public List<Tablero> obtenerTableros()
@@ -306,6 +304,7 @@ namespace Inventario_residencias.Repositorio
             {
                 CloseCommand(mySqlCommand);
                 CloseReader(mReader);
+                sqlConnection().Close();
                 throw new InventarioException(ex.ToString());
             } finally
             {

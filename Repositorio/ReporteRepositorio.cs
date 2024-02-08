@@ -39,6 +39,7 @@ namespace Inventario_residencias.Repositorio
             catch (MySqlException ex)
             {
                 CloseCommand(command);
+                sqlConnection().Close();
                 throw new InventarioException(ex.ToString());
             }
             finally
@@ -109,8 +110,10 @@ namespace Inventario_residencias.Repositorio
                 }
                 catch(MySqlException ex)
                 {
-                    MessageBox.Show(ex.ToString());
-                    throw;
+                    CloseCommand(mySqlCommand);
+                    CloseReader(mReader);
+                    sqlConnection().Close();
+                    throw new InventarioException(ex.ToString());
                 }
                 finally
                 {
@@ -211,7 +214,10 @@ namespace Inventario_residencias.Repositorio
                 }
                 catch(MySqlException ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    CloseCommand(mySqlCommand);
+                    sqlConnection().Close();
+                    CloseReader(mReader);
+                    throw new InventarioException(ex.ToString());
                 }
                 finally
                 {
@@ -279,6 +285,8 @@ namespace Inventario_residencias.Repositorio
             catch (MySqlException ex)
             {
                 CloseCommand(mySqlCommand);
+                CloseReader(reader);
+                sqlConnection().Close();
                 throw new InventarioException(ex.Message);
             }
             finally
@@ -309,6 +317,7 @@ namespace Inventario_residencias.Repositorio
             catch (MySqlException ex)
             {
                 CloseCommand(command);
+                sqlConnection().Close();
                 throw new InventarioException(ex.ToString());
             }
             finally

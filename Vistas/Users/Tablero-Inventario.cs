@@ -32,12 +32,10 @@ namespace Inventario_residencias.Vistas.Usuario
 
         private void cargarInventario(int offSet, string numeroFisico = "")
         {
-            inventarios.Clear();
-            inventarios = inventarioRepositorio.obtenerInventario(numeroFisico, 10, offSet);
             total = inventarioRepositorio.cantidadRegistros();
             paginas = Math.Ceiling(total / 10);
             txtTotalPaginas.Text = paginas.ToString();
-            dgvInventario.DataSource = inventarios;
+            dgvInventario.DataSource = inventarioRepositorio.obtenerInventario(numeroFisico, 10, offSet); ;
         }
 
         private void btnBuscarNumero_Click(object sender, EventArgs e)

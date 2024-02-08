@@ -36,6 +36,7 @@ namespace Inventario_residencias.Repositorio
             catch(Exception e)
             {
                 CloseCommand(command);
+                sqlConnection().Close();
                 throw new InventarioException();
             }
             finally
@@ -62,6 +63,7 @@ namespace Inventario_residencias.Repositorio
             catch (Exception ex)
             {
                 CloseCommand(mySqlCommand);
+                sqlConnection().Close();
                 throw new InventarioException(ex.Message);
             }
             finally
@@ -86,6 +88,7 @@ namespace Inventario_residencias.Repositorio
             catch(Exception e)
             {
                 CloseCommand(command);
+                sqlConnection().Close();
                 throw new InventarioException(e.Message);
             }
             finally
@@ -153,6 +156,7 @@ namespace Inventario_residencias.Repositorio
             catch (Exception e)
             {
                 CloseCommand(command);
+                sqlConnection().Close();
                 throw new InventarioException(e.Message);
             }finally
             {
@@ -189,6 +193,7 @@ namespace Inventario_residencias.Repositorio
             {
                 CloseCommand(mySqlCommand);
                 CloseReader(mReader);
+                sqlConnection().Close();
                 throw new InventarioException(ex.Message); 
             }
             finally
@@ -228,6 +233,7 @@ namespace Inventario_residencias.Repositorio
             {
                 CloseCommand(mySqlCommand);
                 CloseReader(mReader);
+                sqlConnection().Close();
                 throw new InventarioException();
             }finally
             {
@@ -269,7 +275,8 @@ namespace Inventario_residencias.Repositorio
             {
                 await mySqlCommand.Connection.CloseAsync();
                 await mReader.CloseAsync();
-                throw;
+                sqlConnection().Close();
+                throw new InventarioException(ex.ToString());
             }
             finally
             {

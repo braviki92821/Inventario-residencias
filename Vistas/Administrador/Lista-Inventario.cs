@@ -30,12 +30,12 @@ namespace Inventario_residencias.Vistas.Administrador
 
         private void cargarInventario(int offSet, string numeroFisico = "")
         {
-            inventarios.Clear();
-            inventarios = inventarioRepositorio.obtenerInventario(numeroFisico, 10, offSet);
+           
             total = inventarioRepositorio.cantidadRegistros();
             paginas = Math.Ceiling(total / 10);
             txtTotalPaginas.Text = paginas.ToString();
-            dgvInventario.DataSource = inventarios;
+            dgvInventario.DataSource = null;
+            dgvInventario.DataSource = inventarioRepositorio.obtenerInventario(numeroFisico, 10, offSet); ;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -59,7 +59,7 @@ namespace Inventario_residencias.Vistas.Administrador
         private void dgvInventario_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             registro = dgvInventario.CurrentRow.Cells[0].Value.ToString();
-            existencia = dgvInventario.CurrentRow.Cells[7].Value.Equals(true) ? true : false;
+            existencia = dgvInventario.CurrentRow.Cells[6].Value.Equals(true) ? true : false;
         }
 
         private void txtNumFisico_TextChanged(object sender, EventArgs e)

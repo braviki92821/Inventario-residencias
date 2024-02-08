@@ -300,7 +300,7 @@ namespace Inventario_residencias.Repositorio
 
         public bool reportarItem(Reporte reporte)
         {
-            string query = "INSERT INTO reportes(titulo, descripcion, Item, usuario, fecha, leido) " +
+            string query = "INSERT INTO reportes(titulo, descripcion, Item, usuario, fecha) " +
                            "VALUES(@titulo, @descripcion, @Item, @usuario, @fecha)";
             bool rows = false;
             MySqlCommand command = new MySqlCommand(query, sqlConnection());

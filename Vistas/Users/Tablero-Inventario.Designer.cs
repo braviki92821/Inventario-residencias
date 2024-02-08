@@ -214,6 +214,7 @@
             btnAnterior.TabIndex = 10;
             btnAnterior.Text = "<";
             btnAnterior.UseVisualStyleBackColor = true;
+            btnAnterior.Click += btnAnterior_Click;
             // 
             // txtTotalPaginas
             // 
@@ -235,6 +236,7 @@
             btnSiguiente.TabIndex = 11;
             btnSiguiente.Text = ">";
             btnSiguiente.UseVisualStyleBackColor = true;
+            btnSiguiente.Click += btnSiguiente_Click;
             // 
             // label2
             // 

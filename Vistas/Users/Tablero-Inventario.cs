@@ -64,5 +64,29 @@ namespace Inventario_residencias.Vistas.Usuario
         {
             cargarInventario(0, "");
         }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if (txtPaginaActual.Text.Equals("1"))
+            {
+                return;
+            }
+            paginaActual--;
+            offSet = paginaActual * 10 - 10;
+            cargarInventario(offSet);
+            txtPaginaActual.Text = paginaActual.ToString();
+        }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            if (txtPaginaActual.Text.Equals(paginas.ToString()))
+            {
+                return;
+            }
+            paginaActual++;
+            offSet = paginaActual * 10 - 10;
+            cargarInventario(offSet);
+            txtPaginaActual.Text = paginaActual.ToString();
+        }
     }
 }

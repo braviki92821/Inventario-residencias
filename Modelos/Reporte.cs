@@ -9,6 +9,5 @@ namespace Inventario_residencias.Modelos
         public string? Item { get; set; }
         public int? usuario { get; set; }
         public DateTime? fecha { get; set; }
-        public bool leido { get; set; }
     }
 }
